@@ -5,9 +5,6 @@ import io.realm.Realm
 
 class RealmDAO() {
     companion object {
-        fun getInstance(): RealmDAO {
-            return RealmDAO()
-        }
 
         fun getProfileLogin(): Profile? {
             val profile = Realm.getDefaultInstance().where(Profile::class.java!!).findFirst()
