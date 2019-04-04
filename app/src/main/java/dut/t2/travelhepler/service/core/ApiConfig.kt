@@ -1,4 +1,4 @@
-package dut.t2.basemvp.service.core
+package dut.t2.travelhelper.service.core
 
 import android.content.Context
 

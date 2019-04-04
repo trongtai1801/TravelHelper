@@ -1,4 +1,4 @@
-package dut.t2.travel_helper.service.model
+package dut.t2.travelhelper.service.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
