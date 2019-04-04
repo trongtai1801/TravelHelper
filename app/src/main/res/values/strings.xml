@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TravelHepler</string>
+
+    <string name="loading">Loading...</string>
 </resources>
