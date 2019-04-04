@@ -2,8 +2,14 @@ package dut.t2.travelhelper.service.model
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
+import io.realm.annotations.RealmClass
+import javax.annotation.Nullable
 
-data class Profile(
+@RealmClass
+open class  Profile constructor(
+    @PrimaryKey
     @SerializedName("id")
     @Expose
     var id: String,
@@ -34,9 +40,11 @@ data class Profile(
 
     @SerializedName("email")
     @Expose
-    var email: String,
+    var email: String
 
-    @SerializedName("phoneNumber")
-    @Expose
-    var phoneNumber: String
-)
+//    @SerializedName("phoneNumber")
+//    @Expose
+//    var phoneNumber: String
+) : RealmObject() {
+    public constructor() : this("", "", "", true, "", "", "", "")//, "")
+}

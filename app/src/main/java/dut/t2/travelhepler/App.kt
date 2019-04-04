@@ -1,8 +1,12 @@
 package dut.t2.travelhepler
 
 import android.app.Application
+import android.content.Context
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhelper.service.core.ApiConfig
+import dut.t2.travelhepler.utils.Constant
+import dut.t2.travelhepler.utils.SessionManager
+import dut.t2.travelhepler.utils.SharedPrefs
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
@@ -31,7 +35,11 @@ class App : Application() {
             .schemaVersion(0)
             .deleteRealmIfMigrationNeeded()
             .build()
-        Realm.setDefaultConfiguration(realmConfiguration)
+        Realm.setDefaultConfiguration(realmConfiguration)//Init SharedPreferences utils
+        SharedPrefs.getInstance()
+            .setSharedPreferences(this.getSharedPreferences(Constant.SHARE_PREFERENCES_NAME, Context.MODE_PRIVATE))
+
+        SessionManager.init()
 
         /*
         * start service

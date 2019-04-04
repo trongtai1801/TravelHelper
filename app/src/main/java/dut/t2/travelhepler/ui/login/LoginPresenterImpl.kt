@@ -4,6 +4,7 @@ import dut.t2.basemvp.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhelper.service.model.User
 import dut.t2.travelhelper.service.response.LoginResponse
+import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -14,8 +15,11 @@ class LoginPresenterImpl : BasePresenter<LoginContract.LoginView>(), LoginContra
         req.enqueue(object : Callback<LoginResponse> {
 
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                if (response.isSuccessful) view!!.loginResult()
-                else {
+                if (response.isSuccessful && response != null) {
+                    SessionManager.setAccessToken(response.body()!!.token)
+                    SessionManager.saveProfile(response.body()!!.profile)
+                    view!!.loginResult()
+                } else {
                     view!!.showToast(response.message())
                     view!!.dismissLoading()
                 }
