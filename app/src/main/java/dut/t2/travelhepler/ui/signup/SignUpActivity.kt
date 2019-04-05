@@ -10,10 +10,13 @@ import org.androidannotations.annotations.EActivity
 import org.androidannotations.annotations.TextChange
 import android.util.Patterns
 import android.text.TextUtils
+import com.google.gson.JsonObject
 import dut.t2.travelhepler.R
+import kotlinx.android.synthetic.main.activity_login.*
+import org.androidannotations.annotations.Click
 
 @EActivity(R.layout.activity_sign_up)
-class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterImpl>(), SignUpContract.SignUpPresenter {
+class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterImpl>(), SignUpContract.SignUpView {
 
     override var mPresenter: SignUpPresenterImpl = SignUpPresenterImpl()
 
@@ -35,15 +38,15 @@ class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterIm
     fun onTextChange(tv: TextView, text: CharSequence) {
         when (tv.id) {
             R.id.edt_sign_up_user_name -> {
-                if (!text.equals("")) ic_sign_up_user_name.visibility = View.VISIBLE
+                if (!text.isEmpty()) ic_sign_up_user_name.visibility = View.VISIBLE
                 else ic_sign_up_user_name.visibility = View.INVISIBLE
             }
             R.id.edt_sign_up_password -> {
-                if (!text.equals("") && (text.length >= 6)) ic_sign_up_password.visibility = View.VISIBLE
+                if (!text.isEmpty() && (text.length >= 6)) ic_sign_up_password.visibility = View.VISIBLE
                 else ic_sign_up_password.visibility = View.INVISIBLE
             }
             R.id.edt_sign_up_full_name -> {
-                if (!text.equals("")) ic_sign_up_full_name.visibility = View.VISIBLE
+                if (!text.isEmpty()) ic_sign_up_full_name.visibility = View.VISIBLE
                 else ic_sign_up_full_name.visibility = View.INVISIBLE
             }
             R.id.edt_sign_up_email -> {
@@ -53,7 +56,44 @@ class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterIm
         }
     }
 
+    @Click(R.id.btn_sign_up_submit)
+    fun onClick(v: View) {
+        when (v.id) {
+            R.id.btn_sign_up_submit -> {
+                if (isUserNameEmpty()) {
+                    showToast(getString(R.string.require_user_name))
+                    return
+                }
+                if (isPasswordEmpty()) {
+                    showToast(getString(R.string.require_password))
+                    return
+                }
+                var signUpObject = JsonObject()
+                signUpObject.addProperty("Username", edt_sign_up_user_name.text.toString())
+                signUpObject.addProperty("Password", edt_sign_up_password.text.toString())
+                signUpObject.addProperty("Fullname", edt_sign_up_full_name.text.toString())
+                signUpObject.addProperty("Email", edt_sign_up_email.text.toString())
+                showLoading()
+                mPresenter.signUp(signUpObject)
+            }
+        }
+    }
+
+    override fun signUpResult() {
+        dismissLoading()
+        showToast(getString(R.string.register_success))
+        finish()
+    }
+
     fun isValidEmail(target: CharSequence): Boolean {
         return !TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches()
+    }
+
+    fun isUserNameEmpty(): Boolean {
+        return edt_sign_up_user_name.text.toString().isEmpty()
+    }
+
+    fun isPasswordEmpty(): Boolean {
+        return edt_sign_up_password.text.toString().isEmpty()
     }
 }

@@ -25,4 +25,7 @@
     <string name="fullname">Họ Tên</string>
     <string name="email">Email</string>
     <string name="dashboard">Trang chủ</string>
+    <string name="require_user_name">Nhập tên người dùng</string>
+    <string name="require_password">Nhập mật khẩu</string>
+    <string name="register_success">Đăng kí thành công</string>
 </resources>
