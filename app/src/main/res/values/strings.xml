@@ -24,4 +24,7 @@
     <string name="fullname">Full Name</string>
     <string name="email">Email</string>
     <string name="dashboard">Dashboard</string>
+    <string name="require_user_name">Please input your user name</string>
+    <string name="require_password">Please input your password</string>
+    <string name="register_success">Register successfully</string>
 </resources>

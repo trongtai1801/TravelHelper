@@ -1,6 +1,6 @@
 package dut.t2.travelhepler.ui.splash
 
-import dut.t2.basemvp.base.BaseView
+import dut.t2.travelhelper.base.BaseView
 
 interface SplashContract {
 

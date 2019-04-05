@@ -1,7 +1,6 @@
 package dut.t2.travelhepler.utils
 
 import android.content.SharedPreferences
-import dut.t2.travelhepler.App
 
 class SharedPrefs private constructor() {
     private var mSharedPreferences: SharedPreferences? = null
