@@ -1,6 +1,6 @@
 package dut.t2.travelhepler.ui.login
 
-import dut.t2.basemvp.base.BasePresenter
+import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhelper.service.model.User
 import dut.t2.travelhelper.service.response.LoginResponse

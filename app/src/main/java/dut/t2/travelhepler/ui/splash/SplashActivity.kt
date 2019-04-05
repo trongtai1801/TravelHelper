@@ -1,10 +1,9 @@
 package dut.t2.travelhepler.ui.splash
 
 import android.os.Handler
-import dut.t2.basemvp.base.BaseActivity
+import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.login.LoginActivity_
-import dut.t2.travelhepler.ui.main.MainActivity_
 import org.androidannotations.annotations.EActivity
 
 @EActivity(R.layout.activity_splash)

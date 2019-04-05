@@ -1,4 +1,4 @@
-package dut.t2.basemvp.base
+package dut.t2.travelhelper.base
 
 import android.content.Context
 

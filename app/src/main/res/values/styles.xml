@@ -29,4 +29,18 @@
         <item name="android:textSize">@dimen/_15ssp</item>
     </style>
 
+    <style name="SignUpActivityLinearStyle">
+        <item name="android:layout_marginStart">@dimen/_5sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_5sdp</item>
+    </style>
+
+    <style name="SignUpActivityEditTextStyle">
+        <item name="android:padding">@dimen/_3sdp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:background">@drawable/background_edt_sign_up</item>
+        <item name="android:layout_marginStart">@dimen/_2sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_2sdp</item>
+    </style>
+
 </resources>

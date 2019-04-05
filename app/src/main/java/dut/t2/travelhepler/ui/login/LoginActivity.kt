@@ -1,12 +1,11 @@
 package dut.t2.travelhepler.ui.login
 
 import android.view.View
-import dut.t2.basemvp.base.BaseActivity
+import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.User
-import dut.t2.travelhelper.service.response.LoginResponse
+import dut.t2.travelhelper.ui.signup.SignUpActivity_
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.main.MainActivity_
-import dut.t2.travelhepler.utils.SessionManager
 import kotlinx.android.synthetic.main.activity_login.*
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
@@ -25,7 +24,7 @@ class LoginActivity : BaseActivity<LoginContract.LoginView, LoginPresenterImpl>(
     fun onClick(v: View) {
         when (v.id) {
             R.id.tv_login_sign_up -> {
-//                SignUpActivity_.intent(this).start()
+                SignUpActivity_.intent(this).start()
             }
             R.id.btn_login_submit -> {
                 if (!isEmptyField()) {
@@ -45,7 +44,6 @@ class LoginActivity : BaseActivity<LoginContract.LoginView, LoginPresenterImpl>(
     }
 
     fun isEmptyField(): Boolean {
-        if (edt_login_user_name.text.isEmpty() || edt_login_password.text.isEmpty()) return true;
-        return false
+        return (edt_login_user_name.text.isEmpty() || edt_login_password.text.isEmpty())
     }
 }
