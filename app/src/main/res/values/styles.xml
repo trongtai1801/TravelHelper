@@ -4,13 +4,28 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="SplashActivityTexViewStyle">
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/_15ssp</item>
+    </style>
+
+    <style name="LoginActivityTextViewStyle">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/_15ssp</item>
+    </style>
+
+    <style name="LoginActivityEditTextStyle">
+        <item name="android:padding">@dimen/_5sdp</item>
+        <item name="android:layout_marginTop">@dimen/_10sdp</item>
+        <item name="android:background">@drawable/background_edt_login</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@color/colorBlack</item>
         <item name="android:textSize">@dimen/_15ssp</item>
     </style>
 
