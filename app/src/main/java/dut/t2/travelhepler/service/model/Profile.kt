@@ -14,30 +14,37 @@ open class  Profile constructor(
     @Expose
     var id: String,
 
+    @Ignore
     @SerializedName("fullName")
     @Expose
     var fullName: String,
 
+    @Ignore
     @SerializedName("address")
     @Expose
     var address: String,
 
+    @Ignore
     @SerializedName("gender")
     @Expose
     var gender: Boolean,
 
+    @Ignore
     @SerializedName("birthday")
     @Expose
     var birthday: String,
 
+    @Ignore
     @SerializedName("occupation")
     @Expose
     var occupation: String,
 
+    @Ignore
     @SerializedName("fluentLanguage")
     @Expose
     var fluentLanguage: String,
 
+    @Ignore
     @SerializedName("email")
     @Expose
     var email: String,

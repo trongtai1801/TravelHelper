@@ -3,7 +3,6 @@ package dut.t2.travelhepler.utils
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.utils.Constant.Companion.ACCESS_TOKEN
 
-
 class SessionManager {
     companion object {
         private var AccessToken: String? = null
