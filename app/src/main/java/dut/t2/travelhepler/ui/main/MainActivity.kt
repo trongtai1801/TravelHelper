@@ -1,6 +1,6 @@
 package dut.t2.travelhepler.ui.main
 
-import dut.t2.basemvp.base.BaseActivity
+import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.SharedPrefs
