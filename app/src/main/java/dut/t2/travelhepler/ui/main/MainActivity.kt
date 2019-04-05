@@ -59,7 +59,10 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     fun setFragment(fragment: Fragment, i: Int) {
         if (i == index) return
         when (fragment) {
-            is DashboardFragment -> index = Constant.INDEX_FRAGMENT_DASBOARD
+            is DashboardFragment -> {
+                index = Constant.INDEX_FRAGMENT_DASBOARD
+                mActionBar!!.hide()
+            }
             is SearchFragment -> index = Constant.INDEX_FRAGMENT_SEARCH
             is MoreFragment -> index = Constant.INDEX_FRAGMENT_MORE
         }
