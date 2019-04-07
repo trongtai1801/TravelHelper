@@ -43,4 +43,11 @@
         <item name="android:layout_marginEnd">@dimen/_2sdp</item>
     </style>
 
+    <style name="DashboardTextViewLabel">
+        <item name="android:textSize">@dimen/_17ssp</item>
+        <item name="android:layout_margin">@dimen/_10sdp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorBlueDark</item>
+    </style>
+
 </resources>

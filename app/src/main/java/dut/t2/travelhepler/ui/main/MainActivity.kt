@@ -61,7 +61,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         when (fragment) {
             is DashboardFragment -> {
                 index = Constant.INDEX_FRAGMENT_DASBOARD
-                mActionBar!!.hide()
+//                mActionBar!!.hide()
             }
             is SearchFragment -> index = Constant.INDEX_FRAGMENT_SEARCH
             is MoreFragment -> index = Constant.INDEX_FRAGMENT_MORE

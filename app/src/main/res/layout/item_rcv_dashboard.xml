@@ -5,9 +5,9 @@
         android:foreground="?attr/selectableItemBackground"
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardPreventCornerOverlap="false"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_180sdp">
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_80sdp">
 
     <LinearLayout
             android:orientation="vertical"
@@ -15,8 +15,7 @@
             android:layout_height="match_parent">
         <ImageView
                 android:id="@+id/img_item_rcv_dashboard"
-                android:background="@drawable/host"
-                android:layout_margin="@dimen/_2sdp"
+                android:scaleType="fitXY"
                 android:layout_weight="4"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"/>
@@ -24,7 +23,7 @@
                 android:id="@+id/tv_item_rcv_dashboard"
                 android:textColor="@color/colorBlack"
                 android:text="Hosts"
-                android:textSize="@dimen/_15ssp"
+                android:textSize="@dimen/_12ssp"
                 android:gravity="center_vertical"
                 android:paddingStart="@dimen/_5sdp"
                 android:layout_weight="1"

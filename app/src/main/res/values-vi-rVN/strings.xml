@@ -28,4 +28,5 @@
     <string name="require_user_name">Nhập tên người dùng</string>
     <string name="require_password">Nhập mật khẩu</string>
     <string name="register_success">Đăng kí thành công</string>
+    <string name="title_upcoming_travel">Chuyến đi sắp tới</string>
 </resources>
