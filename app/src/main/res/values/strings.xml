@@ -28,4 +28,7 @@
     <string name="require_password">Please input your password</string>
     <string name="register_success">Register successfully</string>
     <string name="title_upcoming_travel">Upcoming Travel</string>
+    <string name="location">Location</string>
+    <string name="public_trip">Public Trip</string>
+    <string name="no_upcoming">No up coming trip or host</string>
 </resources>
