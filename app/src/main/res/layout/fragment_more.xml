@@ -5,6 +5,7 @@
         android:layout_height="match_parent">
 
     <TextView
+            android:id="@+id/tv_logout"
             android:text="More"
             android:textSize="@dimen/_20sdp"
             android:gravity="center"

@@ -10,6 +10,8 @@ import dut.t2.travelhepler.ui.main.more.MoreFragment_
 import dut.t2.travelhepler.ui.main.search.SearchFragment
 import dut.t2.travelhepler.ui.main.search.SearchFragment_
 import dut.t2.travelhepler.utils.Constant
+import dut.t2.travelhepler.utils.RealmDAO
+import dut.t2.travelhepler.utils.SessionManager
 import kotlinx.android.synthetic.main.actionbar.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.androidannotations.annotations.EActivity
@@ -28,6 +30,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         tv_actionbar_title.setText(getString(R.string.dashboard))
         mActionBar!!.setDisplayHomeAsUpEnabled(false)
         initBottomNavigationView()
+        showToast(getString(R.string.hello) + " " + RealmDAO.getProfileLogin()!!.fullName)
     }
 
     override fun onBackPressed() {
@@ -61,10 +64,16 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         when (fragment) {
             is DashboardFragment -> {
                 index = Constant.INDEX_FRAGMENT_DASBOARD
-//                mActionBar!!.hide()
+                tv_actionbar_title.setText(getString(R.string.dashboard))
             }
-            is SearchFragment -> index = Constant.INDEX_FRAGMENT_SEARCH
-            is MoreFragment -> index = Constant.INDEX_FRAGMENT_MORE
+            is SearchFragment -> {
+                index = Constant.INDEX_FRAGMENT_SEARCH
+                tv_actionbar_title.setText(getString(R.string.search))
+            }
+            is MoreFragment -> {
+                index = Constant.INDEX_FRAGMENT_MORE
+                tv_actionbar_title.setText(getString(R.string.more))
+            }
         }
         supportFragmentManager
             .beginTransaction()

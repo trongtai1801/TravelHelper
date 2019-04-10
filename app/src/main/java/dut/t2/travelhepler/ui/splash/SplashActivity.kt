@@ -4,6 +4,10 @@ import android.os.Handler
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.login.LoginActivity_
+import dut.t2.travelhepler.ui.main.MainActivity_
+import dut.t2.travelhepler.utils.Constant
+import dut.t2.travelhepler.utils.RealmDAO
+import dut.t2.travelhepler.utils.SharedPrefs
 import org.androidannotations.annotations.EActivity
 
 @EActivity(R.layout.activity_splash)
@@ -14,8 +18,16 @@ class SplashActivity : BaseActivity<SplashContract.SplashView, SplashPresenterIm
         mActionBar!!.hide()
 
         Handler().postDelayed({
-            LoginActivity_.intent(this).start()
+            if (SharedPrefs.getInstance().get(Constant.ACCESS_TOKEN, String::class.java) == null ||
+                SharedPrefs.getInstance().get(Constant.ACCESS_TOKEN, String::class.java).equals("")
+            )
+                RealmDAO.deleteProfileLogin()
+
+            if (RealmDAO.getProfileLogin() != null) MainActivity_.intent(this).start()
+            else LoginActivity_.intent(this).start()
             finish()
-        }, 2500)
+        }, 1500)
+
+
     }
 }
