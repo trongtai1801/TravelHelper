@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp">
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+        <ImageView
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_maker"
+                android:padding="@dimen/_3sdp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+        <TextView
+                android:id="@+id/tv_item_upcoming_trip_location"
+                android:text="@string/location"
+                android:textSize="@dimen/_12ssp"
+                android:gravity="center_vertical|left"
+                android:layout_weight="13"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="horizontal"
+            android:layout_weight="2.5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+                android:background="@drawable/background_icon_airplane"
+                android:padding="@dimen/_7sdp"
+                android:src="@drawable/ic_airplane"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_weight="7.5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+            <TextView
+                    android:text="@string/public_trip"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="@dimen/_13ssp"
+                    android:gravity="left|center_vertical"
+                    android:layout_weight="2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"/>
+            <TextView
+                    android:id="@+id/tv_item_upcoming_trip_previous"
+                    android:text="Sun, Apr 11 - Sat, Apr 13"
+                    android:gravity="left|center_vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"/>
+        </LinearLayout>
+    </LinearLayout>
+    <View
+            android:layout_marginStart="@dimen/_38sdp"
+            android:background="@color/colorGray"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_weight="0.05"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+
+</LinearLayout>
