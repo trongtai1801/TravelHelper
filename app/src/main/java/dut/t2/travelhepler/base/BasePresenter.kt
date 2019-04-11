@@ -2,13 +2,8 @@ package dut.t2.travelhelper.base
 
 import android.content.Context
 
-abstract class BasePresenter<T : BaseView> {
+abstract class BasePresenter<T : BaseView>(var context: Context) {
     protected var view: T? = null
-    protected var context: Context? = null
-
-    fun BasePresenter(context: Context) {
-        this.context = context
-    }
 
     fun attachView(view: T) {
         this.view = view

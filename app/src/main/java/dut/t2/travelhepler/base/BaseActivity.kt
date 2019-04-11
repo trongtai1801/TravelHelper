@@ -19,17 +19,19 @@ import java.lang.Exception
 abstract class BaseActivity<V : BaseView, T : BasePresenter<V>> : AppCompatActivity(), BaseView {
 
     private val TAG = this.javaClass.simpleName
-    protected abstract var mPresenter: T
+    protected var mPresenter: T? = null
     protected var mActionBar: ActionBar? = null
 
     lateinit var mProgressDialog: ProgressDialog
 
+    protected abstract fun initPresenter()
     protected abstract fun afterViews()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (mPresenter != null) mPresenter.attachView(this as V)
+        this.initPresenter()
+        if (mPresenter != null) mPresenter!!.attachView(this as V)
         initProgressDialog()
     }
 
@@ -40,7 +42,7 @@ abstract class BaseActivity<V : BaseView, T : BasePresenter<V>> : AppCompatActiv
     }
 
     override fun onDestroy() {
-        mPresenter.detachView()
+        mPresenter!!.detachView()
         try {
             if (mProgressDialog != null && mProgressDialog.isShowing) {
                 mProgressDialog.dismiss()

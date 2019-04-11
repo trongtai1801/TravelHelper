@@ -18,7 +18,9 @@ import org.androidannotations.annotations.Click
 @EActivity(R.layout.activity_sign_up)
 class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterImpl>(), SignUpContract.SignUpView {
 
-    override var mPresenter: SignUpPresenterImpl = SignUpPresenterImpl()
+    override fun initPresenter() {
+        mPresenter = SignUpPresenterImpl(this)
+    }
 
     override fun afterViews() {
         tv_actionbar_title.text = getString(R.string.sign_up)
@@ -74,7 +76,7 @@ class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterIm
                 signUpObject.addProperty("Fullname", edt_sign_up_full_name.text.toString())
                 signUpObject.addProperty("Email", edt_sign_up_email.text.toString())
                 showLoading()
-                mPresenter.signUp(signUpObject)
+                mPresenter!!.signUp(signUpObject)
             }
         }
     }

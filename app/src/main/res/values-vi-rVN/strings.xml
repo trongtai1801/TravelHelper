@@ -35,4 +35,5 @@
     <string name="hello">Xin chào</string>
     <string name="search">Tìm kiếm</string>
     <string name="more">Mở rộng</string>
+    <string name="get_publictrips_error">Không thể lấy các chuyến du lịch công khai.</string>
 </resources>

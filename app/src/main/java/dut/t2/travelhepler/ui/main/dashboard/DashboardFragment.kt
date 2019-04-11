@@ -7,27 +7,32 @@ import android.widget.Toast
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.model.SearchItem
+import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EFragment
+import org.androidannotations.annotations.FragmentArg
 
 @EFragment(R.layout.fragment_dashboard)
 class DashboardFragment :  Fragment(){
     lateinit var searchAdapter: SearchAdapter
     lateinit var publicTripAdapter: PublicTripAdapter
     var searchItems: ArrayList<SearchItem> = ArrayList()
-    var publicTrips: ArrayList<PublicTrip> = ArrayList()
+
+    //    @FragmentArg(Constant.PUBLIC_TRIPS)
+    var mPublicTrips: ArrayList<PublicTrip> = ArrayList()
 
     @AfterViews
     fun afterViews() {
+        mPublicTrips.addAll(arguments!!.get(Constant.PUBLIC_TRIPS) as Collection<PublicTrip>)
         initSearchRcv()
         initPublicTripsRcv()
     }
 
     override fun onResume() {
         super.onResume()
-        if (publicTrips.size <= 0) {
+        if (mPublicTrips.size <= 0) {
             tv_no_upcoming_dashboard.visibility = View.VISIBLE
             rcv_public_trip_dashboard.visibility = View.GONE
         } else {
@@ -76,15 +81,15 @@ class DashboardFragment :  Fragment(){
     }
 
     fun initPublicTripsRcv() {
-        publicTrips.clear()
-        publicTrips.add(
-            PublicTrip("2019.04.30", "2019.01.05", "Viet Nam", 2)
-        )
-        publicTrips.add(
-            PublicTrip("2019.04.30", "2019.01.05", "Canada", 3)
-        )
+//        publicTrips.clear()
+//        publicTrips.add(
+//            PublicTrip("2019.04.30", "2019.01.05", "Viet Nam", 2)
+//        )
+//        publicTrips.add(
+//            PublicTrip("2019.04.30", "2019.01.05", "Canada", 3)
+//        )
         rcv_public_trip_dashboard.setHasFixedSize(true)
-        publicTripAdapter = PublicTripAdapter(context!!, publicTrips, object : PublicTripAdapter.ItemClickListener {
+        publicTripAdapter = PublicTripAdapter(context!!, mPublicTrips, object : PublicTripAdapter.ItemClickListener {
             override fun onClick(publicTrip: PublicTrip) {
                 Toast.makeText(context, publicTrip.destination, Toast.LENGTH_LONG).show()
             }

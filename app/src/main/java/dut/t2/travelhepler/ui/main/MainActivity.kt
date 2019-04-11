@@ -1,8 +1,10 @@
 package dut.t2.travelhepler.ui.main
 
+import android.os.Bundle
 import android.support.v4.app.Fragment
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
+import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.ui.main.dashboard.DashboardFragment
 import dut.t2.travelhepler.ui.main.dashboard.DashboardFragment_
 import dut.t2.travelhepler.ui.main.more.MoreFragment
@@ -20,22 +22,34 @@ import org.androidannotations.annotations.EActivity
 class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     MainContract.MainView {
 
-    override var mPresenter: MainPresenterImpl = MainPresenterImpl()
     private var dashboardFragment = DashboardFragment_()
     private var searchFragment = SearchFragment_()
     private var moreFragment = MoreFragment_()
     private var index: Int = -1
+    private var mPublicTrips: ArrayList<PublicTrip> = ArrayList()
+
+
+    override fun initPresenter() {
+        mPresenter = MainPresenterImpl(this)
+    }
 
     override fun afterViews() {
         tv_actionbar_title.setText(getString(R.string.dashboard))
         mActionBar!!.setDisplayHomeAsUpEnabled(false)
-        initBottomNavigationView()
-        showToast(getString(R.string.hello) + " " + RealmDAO.getProfileLogin()!!.fullName)
+        showLoading()
+        mPresenter!!.getPublicTrips()
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
+    }
+
+    override fun getPublicTripsResult(publicTrips: ArrayList<PublicTrip>) {
+        mPublicTrips.clear()
+        mPublicTrips.addAll(publicTrips)
+        dismissLoading()
+        initBottomNavigationView()
     }
 
     fun initBottomNavigationView() {
@@ -63,6 +77,9 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         if (i == index) return
         when (fragment) {
             is DashboardFragment -> {
+                var b = Bundle()
+                b.putParcelableArrayList(Constant.PUBLIC_TRIPS, mPublicTrips)
+                dashboardFragment.arguments = b
                 index = Constant.INDEX_FRAGMENT_DASBOARD
                 tv_actionbar_title.setText(getString(R.string.dashboard))
             }
