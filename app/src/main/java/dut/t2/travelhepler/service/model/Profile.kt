@@ -1,8 +1,9 @@
 package dut.t2.travelhelper.service.model
 
+import android.support.annotation.Nullable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-import io.realm.RealmObject
+import io.realm.RealmModel
 import io.realm.annotations.Ignore
 import io.realm.annotations.PrimaryKey
 import io.realm.annotations.RealmClass
@@ -14,45 +15,56 @@ open class  Profile constructor(
     @Expose
     var id: String,
 
-    @Ignore
     @SerializedName("fullName")
     @Expose
+    @Nullable
     var fullName: String,
 
-    @Ignore
     @SerializedName("address")
     @Expose
+    @Nullable
     var address: String,
 
-    @Ignore
     @SerializedName("gender")
     @Expose
+    @Nullable
     var gender: Boolean,
 
-    @Ignore
     @SerializedName("birthday")
     @Expose
+    @Nullable
     var birthday: String,
 
-    @Ignore
     @SerializedName("occupation")
     @Expose
+    @Nullable
     var occupation: String,
 
     @Ignore
     @SerializedName("fluentLanguage")
     @Expose
+    @Nullable
     var fluentLanguage: String,
 
-    @Ignore
     @SerializedName("email")
     @Expose
     var email: String,
 
-    @Ignore
     @SerializedName("phoneNumber")
     @Expose
     var phoneNumber: String
-) : RealmObject() {
+) : RealmModel {
     public constructor() : this("", "", "", true, "", "", "", "", "")
+
+    fun setDefaultValue() {
+        if (id == null) id = ""
+        if (fullName == null) fullName = ""
+        if (address == null) address = ""
+        if (gender == null) gender = false
+        if (birthday == null) birthday = ""
+        if (occupation == null) occupation = ""
+        if (fluentLanguage == null) fluentLanguage = ""
+        if (email == null) email = ""
+        if (phoneNumber == null) phoneNumber = ""
+    }
 }

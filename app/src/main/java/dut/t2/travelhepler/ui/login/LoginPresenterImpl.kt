@@ -17,7 +17,12 @@ class LoginPresenterImpl : BasePresenter<LoginContract.LoginView>(), LoginContra
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 if (response.isSuccessful && response != null) {
                     SessionManager.setAccessToken(response.body()!!.token)
-                    SessionManager.saveProfile(response.body()!!.profile)
+
+                    var profile = response.body()!!.profile
+                    //realm is not allow nul field
+                    profile.setDefaultValue()
+                    SessionManager.saveProfile(profile)
+
                     view!!.loginResult()
                 } else {
                     view!!.showToast(response.message())

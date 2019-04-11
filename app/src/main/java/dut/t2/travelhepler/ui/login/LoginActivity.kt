@@ -39,6 +39,7 @@ class LoginActivity : BaseActivity<LoginContract.LoginView, LoginPresenterImpl>(
 
     override fun loginResult() {
         dismissLoading()
+        finish()
         MainActivity_.intent(this).start()
         finish()
     }
