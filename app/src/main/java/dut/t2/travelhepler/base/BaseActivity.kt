@@ -28,8 +28,6 @@ abstract class BaseActivity<V : BaseView, T : BasePresenter<V>> : AppCompatActiv
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         if (mPresenter != null) mPresenter.attachView(this as V)
         initProgressDialog()
