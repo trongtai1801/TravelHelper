@@ -28,4 +28,11 @@
     <string name="require_user_name">Nhập tên người dùng</string>
     <string name="require_password">Nhập mật khẩu</string>
     <string name="register_success">Đăng kí thành công</string>
+    <string name="title_upcoming_travel">Chuyến đi sắp tới</string>
+    <string name="location">Địa điểm</string>
+    <string name="public_trip">Public Trip</string>
+    <string name="no_upcoming">không có lịch trình nào</string>
+    <string name="hello">Xin chào</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="more">Mở rộng</string>
 </resources>
