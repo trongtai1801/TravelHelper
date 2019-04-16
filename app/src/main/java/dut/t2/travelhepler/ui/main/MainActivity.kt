@@ -45,11 +45,12 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         finish()
     }
 
-    override fun getPublicTripsResult(publicTrips: ArrayList<PublicTrip>) {
+    override fun getPublicTripsResult(publicTrips: ArrayList<PublicTrip>?) {
         mPublicTrips.clear()
-        mPublicTrips.addAll(publicTrips)
-        dismissLoading()
+        if (publicTrips != null)
+            mPublicTrips.addAll(publicTrips!!)
         initBottomNavigationView()
+        dismissLoading()
     }
 
     fun initBottomNavigationView() {

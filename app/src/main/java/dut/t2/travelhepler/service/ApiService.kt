@@ -3,6 +3,7 @@ package dut.t2.travelhelper.service
 import com.google.gson.JsonObject
 import dut.t2.travelhelper.service.model.User
 import dut.t2.travelhelper.service.response.LoginResponse
+import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.response.PublicTripsResponse
 import dut.t2.travelhepler.service.response.SignUpResponse
 import retrofit2.Call
@@ -19,8 +20,7 @@ interface ApiService {
     @POST("ApplicationUser/Register")
     fun signUp(@Body jsonObject: JsonObject): Call<SignUpResponse>
 
-
-    @GET("Users")
-    fun getPublicTrips(@Header("Authorization") authorization: String): Call<PublicTripsResponse>
+    @GET("Users/Publictrips")
+    fun getPublicTrips(@Header("Authorization") authorization: String): Call<ArrayList<PublicTrip>>
 
 }

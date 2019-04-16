@@ -12,15 +12,13 @@ import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EFragment
-import org.androidannotations.annotations.FragmentArg
 
 @EFragment(R.layout.fragment_dashboard)
-class DashboardFragment :  Fragment(){
+class DashboardFragment : Fragment() {
     lateinit var searchAdapter: SearchAdapter
     lateinit var publicTripAdapter: PublicTripAdapter
     var searchItems: ArrayList<SearchItem> = ArrayList()
 
-    //    @FragmentArg(Constant.PUBLIC_TRIPS)
     var mPublicTrips: ArrayList<PublicTrip> = ArrayList()
 
     @AfterViews
@@ -81,13 +79,6 @@ class DashboardFragment :  Fragment(){
     }
 
     fun initPublicTripsRcv() {
-//        publicTrips.clear()
-//        publicTrips.add(
-//            PublicTrip("2019.04.30", "2019.01.05", "Viet Nam", 2)
-//        )
-//        publicTrips.add(
-//            PublicTrip("2019.04.30", "2019.01.05", "Canada", 3)
-//        )
         rcv_public_trip_dashboard.setHasFixedSize(true)
         publicTripAdapter = PublicTripAdapter(context!!, mPublicTrips, object : PublicTripAdapter.ItemClickListener {
             override fun onClick(publicTrip: PublicTrip) {

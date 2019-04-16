@@ -8,5 +8,4 @@ class PublicTripsResponse(
     @SerializedName("publicTrips")
     @Expose
     var publicTrips: ArrayList<PublicTrip>
-) {
-}
+)
