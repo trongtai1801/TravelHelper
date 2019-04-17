@@ -12,8 +12,6 @@ import dut.t2.travelhepler.ui.main.more.MoreFragment_
 import dut.t2.travelhepler.ui.main.search.SearchFragment
 import dut.t2.travelhepler.ui.main.search.SearchFragment_
 import dut.t2.travelhepler.utils.Constant
-import dut.t2.travelhepler.utils.RealmDAO
-import dut.t2.travelhepler.utils.SessionManager
 import kotlinx.android.synthetic.main.actionbar.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.androidannotations.annotations.EActivity
@@ -36,8 +34,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     override fun afterViews() {
         tv_actionbar_title.setText(getString(R.string.dashboard))
         mActionBar!!.setDisplayHomeAsUpEnabled(false)
-        showLoading()
-        mPresenter!!.getPublicTrips()
+        getPublicTrips()
     }
 
     override fun onBackPressed() {
@@ -48,9 +45,10 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     override fun getPublicTripsResult(publicTrips: ArrayList<PublicTrip>?) {
         mPublicTrips.clear()
         if (publicTrips != null)
-            mPublicTrips.addAll(publicTrips!!)
+            mPublicTrips.addAll(publicTrips)
         initBottomNavigationView()
         dismissLoading()
+        dashboardFragment.dismissSwipeRefreshLayout()
     }
 
     fun initBottomNavigationView() {
@@ -78,7 +76,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         if (i == index) return
         when (fragment) {
             is DashboardFragment -> {
-                var b = Bundle()
+                val b = Bundle()
                 b.putParcelableArrayList(Constant.PUBLIC_TRIPS, mPublicTrips)
                 dashboardFragment.arguments = b
                 index = Constant.INDEX_FRAGMENT_DASBOARD
@@ -97,5 +95,9 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
             .beginTransaction()
             .replace(R.id.frame_container, fragment, "fragment" + i)
             .commit()
+    }
+
+    fun getPublicTrips() {
+        mPresenter!!.getPublicTrips()
     }
 }

@@ -4,7 +4,6 @@ import com.google.gson.JsonObject
 import dut.t2.travelhelper.service.model.User
 import dut.t2.travelhelper.service.response.LoginResponse
 import dut.t2.travelhepler.service.model.PublicTrip
-import dut.t2.travelhepler.service.response.PublicTripsResponse
 import dut.t2.travelhepler.service.response.SignUpResponse
 import retrofit2.Call
 import retrofit2.http.Body

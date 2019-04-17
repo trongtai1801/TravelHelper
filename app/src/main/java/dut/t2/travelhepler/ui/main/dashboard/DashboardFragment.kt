@@ -1,12 +1,14 @@
 package dut.t2.travelhepler.ui.main.dashboard
 
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Toast
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.model.SearchItem
+import dut.t2.travelhepler.ui.main.MainActivity
 import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.androidannotations.annotations.AfterViews
@@ -26,6 +28,9 @@ class DashboardFragment : Fragment() {
         mPublicTrips.addAll(arguments!!.get(Constant.PUBLIC_TRIPS) as Collection<PublicTrip>)
         initSearchRcv()
         initPublicTripsRcv()
+        swf_dashboard.setOnRefreshListener {
+            (activity as MainActivity).getPublicTrips()
+        }
     }
 
     override fun onResume() {
@@ -87,5 +92,10 @@ class DashboardFragment : Fragment() {
         })
         rcv_public_trip_dashboard.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rcv_public_trip_dashboard.adapter = publicTripAdapter
+    }
+
+    fun dismissSwipeRefreshLayout() {
+        if (swf_dashboard != null && swf_dashboard.isRefreshing)
+            swf_dashboard.isRefreshing = false
     }
 }

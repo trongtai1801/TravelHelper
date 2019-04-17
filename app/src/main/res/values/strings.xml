@@ -35,4 +35,5 @@
     <string name="search">Search</string>
     <string name="more">More</string>
     <string name="get_publictrips_error">Can not get public trips</string>
+    <string name="create_trips">CREATE TRIP</string>
 </resources>
