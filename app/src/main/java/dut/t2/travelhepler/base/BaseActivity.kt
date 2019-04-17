@@ -2,6 +2,8 @@ package dut.t2.travelhelper.base
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.ActionBar
@@ -99,11 +101,12 @@ abstract class BaseActivity<V : BaseView, T : BasePresenter<V>> : AppCompatActiv
                 ActionBar.LayoutParams.MATCH_PARENT,
                 Gravity.CENTER
             )
-            mActionBar!!.setCustomView(viewActionBar, params)
             mActionBar!!.setDisplayShowCustomEnabled(true)
             mActionBar!!.setDisplayShowTitleEnabled(false)
-            mActionBar!!.setDisplayHomeAsUpEnabled(true)
+            mActionBar!!.setDisplayHomeAsUpEnabled(false)
             mActionBar!!.setHomeButtonEnabled(true)
+            mActionBar!!.setDisplayHomeAsUpEnabled(false)
+            mActionBar!!.setCustomView(viewActionBar, params)
             mActionBar!!.show()
         }
     }

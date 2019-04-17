@@ -23,14 +23,8 @@ class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterIm
     }
 
     override fun afterViews() {
+        imgv_actionbar_back.setOnClickListener { finish() }
         tv_actionbar_title.text = getString(R.string.sign_up)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            android.R.id.home -> finish()
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     @TextChange(

@@ -2,6 +2,8 @@ package dut.t2.travelhepler.ui.main
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
@@ -32,8 +34,10 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     }
 
     override fun afterViews() {
-        tv_actionbar_title.setText(getString(R.string.dashboard))
-        mActionBar!!.setDisplayHomeAsUpEnabled(false)
+        imgv_actionbar_back.visibility = View.GONE
+        tv_actionbar_title.text = getString(R.string.dashboard)
+        initBottomNavigationView()
+        showLoading()
         getPublicTrips()
     }
 
@@ -43,16 +47,16 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     }
 
     override fun getPublicTripsResult(publicTrips: ArrayList<PublicTrip>?) {
-        mPublicTrips.clear()
-        if (publicTrips != null)
+        if (publicTrips != null) {
+            mPublicTrips.clear()
             mPublicTrips.addAll(publicTrips)
-        initBottomNavigationView()
+        }
+        setFragment(dashboardFragment, Constant.INDEX_FRAGMENT_DASBOARD)
         dismissLoading()
         dashboardFragment.dismissSwipeRefreshLayout()
     }
 
     fun initBottomNavigationView() {
-        setFragment(dashboardFragment, Constant.INDEX_FRAGMENT_DASBOARD)
         bottom_navigation_view.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_dashboard -> {

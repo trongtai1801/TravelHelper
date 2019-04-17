@@ -36,4 +36,5 @@
     <string name="more">More</string>
     <string name="get_publictrips_error">Can not get public trips</string>
     <string name="create_trips">CREATE TRIP</string>
+    <string name="trip_info">Trip\'s Information</string>
 </resources>

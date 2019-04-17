@@ -37,4 +37,5 @@
     <string name="more">Mở rộng</string>
     <string name="get_publictrips_error">Không thể lấy các chuyến du lịch công khai.</string>
     <string name="create_trips">TẠO CHUYẾN ĐI.</string>
+    <string name="trip_info">Thông tin chuyển đi.</string>
 </resources>

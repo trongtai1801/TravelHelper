@@ -9,6 +9,7 @@ import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.model.SearchItem
 import dut.t2.travelhepler.ui.main.MainActivity
+import dut.t2.travelhepler.ui.trips.info.InfoActivity_
 import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.androidannotations.annotations.AfterViews
@@ -25,6 +26,7 @@ class DashboardFragment : Fragment() {
 
     @AfterViews
     fun afterViews() {
+        mPublicTrips.clear()
         mPublicTrips.addAll(arguments!!.get(Constant.PUBLIC_TRIPS) as Collection<PublicTrip>)
         initSearchRcv()
         initPublicTripsRcv()
@@ -87,7 +89,7 @@ class DashboardFragment : Fragment() {
         rcv_public_trip_dashboard.setHasFixedSize(true)
         publicTripAdapter = PublicTripAdapter(context!!, mPublicTrips, object : PublicTripAdapter.ItemClickListener {
             override fun onClick(publicTrip: PublicTrip) {
-                Toast.makeText(context, publicTrip.destination, Toast.LENGTH_LONG).show()
+                InfoActivity_.intent(context).extra(Constant.PUBLIC_TRIPS, publicTrip).start()
             }
         })
         rcv_public_trip_dashboard.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
