@@ -6,6 +6,7 @@
 
     <TextView
             android:id="@+id/tv_notify"
+            android:visibility="gone"
             style="@style/TripInfoTextView"
             android:text="@string/warning_post_public_trip"
             android:layout_width="match_parent"
@@ -36,6 +37,7 @@
                 android:layout_height="@dimen/_50sdp"/>
         <ImageView
                 android:id="@+id/img_check_destination"
+                android:visibility="invisible"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/_3sdp"
                 android:padding="@dimen/_3sdp"
@@ -109,6 +111,7 @@
                 android:layout_height="@dimen/_50sdp"/>
         <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_add_sub_traveler"
+                android:visibility="invisible"
                 android:src="@drawable/ic_sub"
                 android:layout_margin="@dimen/_2sdp"
                 android:padding="@dimen/_2sdp"
@@ -117,6 +120,7 @@
                 android:layout_height="match_parent"/>
         <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_add_num_traveler"
+                android:visibility="invisible"
                 android:src="@drawable/ic_add"
                 android:layout_margin="@dimen/_2sdp"
                 android:padding="@dimen/_2sdp"

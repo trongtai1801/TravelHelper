@@ -44,4 +44,6 @@
     <string name="warning_post_public_trip">Post your trip details so that you can be discovered by local hosts or other
         travelers
     </string>
+    <string name="traveler">traveler</string>
+    <string name="travelers">travelers</string>
 </resources>

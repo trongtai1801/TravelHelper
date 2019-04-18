@@ -45,4 +45,6 @@
     <string name="warning_post_public_trip">Đăng tin chuyến đi của bạn để các Chủ nhà hay người dùng khác có thể nhìn
         thấy bạn.
     </string>
+    <string name="traveler">người</string>
+    <string name="travelers">người</string>
 </resources>

@@ -104,7 +104,7 @@ abstract class BaseActivity<V : BaseView, T : BasePresenter<V>> : AppCompatActiv
             mActionBar!!.setDisplayShowCustomEnabled(true)
             mActionBar!!.setDisplayShowTitleEnabled(false)
             mActionBar!!.setDisplayHomeAsUpEnabled(false)
-            mActionBar!!.setHomeButtonEnabled(true)
+            mActionBar!!.setHomeButtonEnabled(false)
             mActionBar!!.setDisplayHomeAsUpEnabled(false)
             mActionBar!!.setCustomView(viewActionBar, params)
             mActionBar!!.show()
