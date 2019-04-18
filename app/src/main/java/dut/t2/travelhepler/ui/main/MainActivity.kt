@@ -1,8 +1,12 @@
 package dut.t2.travelhepler.ui.main
 
+import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
+import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.ui.main.dashboard.DashboardFragment
 import dut.t2.travelhepler.ui.main.dashboard.DashboardFragment_
 import dut.t2.travelhepler.ui.main.more.MoreFragment
@@ -10,8 +14,6 @@ import dut.t2.travelhepler.ui.main.more.MoreFragment_
 import dut.t2.travelhepler.ui.main.search.SearchFragment
 import dut.t2.travelhepler.ui.main.search.SearchFragment_
 import dut.t2.travelhepler.utils.Constant
-import dut.t2.travelhepler.utils.RealmDAO
-import dut.t2.travelhepler.utils.SessionManager
 import kotlinx.android.synthetic.main.actionbar.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.androidannotations.annotations.EActivity
@@ -20,17 +22,23 @@ import org.androidannotations.annotations.EActivity
 class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     MainContract.MainView {
 
-    override var mPresenter: MainPresenterImpl = MainPresenterImpl()
     private var dashboardFragment = DashboardFragment_()
     private var searchFragment = SearchFragment_()
     private var moreFragment = MoreFragment_()
     private var index: Int = -1
+    private var mPublicTrips: ArrayList<PublicTrip> = ArrayList()
+
+
+    override fun initPresenter() {
+        mPresenter = MainPresenterImpl(this)
+    }
 
     override fun afterViews() {
-        tv_actionbar_title.setText(getString(R.string.dashboard))
-        mActionBar!!.setDisplayHomeAsUpEnabled(false)
+        imgv_actionbar_back.visibility = View.GONE
+        tv_actionbar_title.text = getString(R.string.dashboard)
         initBottomNavigationView()
-        showToast(getString(R.string.hello) + " " + RealmDAO.getProfileLogin()!!.fullName)
+        showLoading()
+        getPublicTrips()
     }
 
     override fun onBackPressed() {
@@ -38,8 +46,17 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         finish()
     }
 
-    fun initBottomNavigationView() {
+    override fun getPublicTripsResult(publicTrips: ArrayList<PublicTrip>?) {
+        if (publicTrips != null) {
+            mPublicTrips.clear()
+            mPublicTrips.addAll(publicTrips)
+        }
         setFragment(dashboardFragment, Constant.INDEX_FRAGMENT_DASBOARD)
+        dismissLoading()
+        dashboardFragment.dismissSwipeRefreshLayout()
+    }
+
+    fun initBottomNavigationView() {
         bottom_navigation_view.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_dashboard -> {
@@ -63,6 +80,9 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         if (i == index) return
         when (fragment) {
             is DashboardFragment -> {
+                val b = Bundle()
+                b.putParcelableArrayList(Constant.PUBLIC_TRIPS, mPublicTrips)
+                dashboardFragment.arguments = b
                 index = Constant.INDEX_FRAGMENT_DASBOARD
                 tv_actionbar_title.setText(getString(R.string.dashboard))
             }
@@ -79,5 +99,9 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
             .beginTransaction()
             .replace(R.id.frame_container, fragment, "fragment" + i)
             .commit()
+    }
+
+    fun getPublicTrips() {
+        mPresenter!!.getPublicTrips()
     }
 }

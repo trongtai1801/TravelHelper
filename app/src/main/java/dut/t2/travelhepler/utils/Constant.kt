@@ -8,5 +8,7 @@ class Constant {
         val INDEX_FRAGMENT_DASBOARD: Int = 0
         val INDEX_FRAGMENT_SEARCH: Int = 1
         val INDEX_FRAGMENT_MORE: Int = 2
+
+        const val PUBLIC_TRIPS = "publictrips"
     }
 }

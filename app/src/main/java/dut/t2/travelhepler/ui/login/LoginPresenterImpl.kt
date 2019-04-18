@@ -1,5 +1,6 @@
 package dut.t2.travelhepler.ui.login
 
+import android.content.Context
 import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhelper.service.model.User
@@ -9,7 +10,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LoginPresenterImpl : BasePresenter<LoginContract.LoginView>(), LoginContract.LoginPresenter {
+class LoginPresenterImpl(context: Context) : BasePresenter<LoginContract.LoginView>(context),
+    LoginContract.LoginPresenter {
     override fun login(user: User) {
         var req: Call<LoginResponse> = ApiClient.getService()!!.login(user)
         req.enqueue(object : Callback<LoginResponse> {

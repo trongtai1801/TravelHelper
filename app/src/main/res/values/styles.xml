@@ -50,4 +50,18 @@
         <item name="android:textColor">@color/colorBlueDark</item>
     </style>
 
+    <style name="TripInfoEditText">
+        <item name="android:textSize">@dimen/_15ssp</item>
+        <item name="android:paddingStart">@dimen/_5sdp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="TripInfoTextView">
+        <item name="android:textSize">@dimen/_13ssp</item>
+        <item name="android:padding">@dimen/_5sdp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:lineSpacingExtra">@dimen/_3sdp</item>
+    </style>
+
 </resources>
