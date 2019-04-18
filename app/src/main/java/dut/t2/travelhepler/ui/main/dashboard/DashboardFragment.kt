@@ -1,7 +1,6 @@
 package dut.t2.travelhepler.ui.main.dashboard
 
 import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Toast
@@ -9,6 +8,7 @@ import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.model.SearchItem
 import dut.t2.travelhepler.ui.main.MainActivity
+import dut.t2.travelhepler.ui.trips.create.CreateTripActivity_
 import dut.t2.travelhepler.ui.trips.info.InfoActivity_
 import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.fragment_dashboard.*
@@ -35,22 +35,11 @@ class DashboardFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (mPublicTrips.size <= 0) {
-            tv_no_upcoming_dashboard.visibility = View.VISIBLE
-            rcv_public_trip_dashboard.visibility = View.GONE
-        } else {
-            tv_no_upcoming_dashboard.visibility = View.GONE
-            rcv_public_trip_dashboard.visibility = View.VISIBLE
-        }
-    }
-
     @Click(R.id.tv_create_trip_dashboard)
     fun onClick(v: View) {
         when (v.id) {
             R.id.tv_create_trip_dashboard -> {
-                Toast.makeText(context!!, "Create", Toast.LENGTH_LONG).show()
+                CreateTripActivity_.intent(context).startForResult(Constant.REQUEST_CODE_CREATE_PUBLIC_TRIP)
             }
         }
     }
@@ -94,10 +83,22 @@ class DashboardFragment : Fragment() {
         })
         rcv_public_trip_dashboard.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rcv_public_trip_dashboard.adapter = publicTripAdapter
+
+        showPublicTrips()
     }
 
     fun dismissSwipeRefreshLayout() {
         if (swf_dashboard != null && swf_dashboard.isRefreshing)
             swf_dashboard.isRefreshing = false
+    }
+
+    fun showPublicTrips() {
+        if (mPublicTrips.size <= 0) {
+            tv_no_upcoming_dashboard.visibility = View.VISIBLE
+            rcv_public_trip_dashboard.visibility = View.GONE
+        } else {
+            tv_no_upcoming_dashboard.visibility = View.GONE
+            rcv_public_trip_dashboard.visibility = View.VISIBLE
+        }
     }
 }

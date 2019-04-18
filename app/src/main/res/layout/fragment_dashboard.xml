@@ -35,11 +35,10 @@
 
         <android.support.v7.widget.RecyclerView
                 android:id="@+id/rcv_public_trip_dashboard"
-                android:visibility="gone"
                 android:layout_margin="@dimen/_5sdp"
                 android:layout_below="@id/tv_dashboard_upcoming_event"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="@dimen/_200sdp"/>
 
         <TextView
                 android:id="@+id/tv_no_upcoming_dashboard"
@@ -55,7 +54,7 @@
                 android:id="@+id/tv_create_trip_dashboard"
                 android:textSize="@dimen/_12ssp"
                 android:textColor="@color/colorBlack"
-                android:text="create"
+                android:text="@string/create"
                 android:gravity="center"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_below="@id/tv_no_upcoming_dashboard"

@@ -110,7 +110,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_50sdp"/>
         <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/img_add_sub_traveler"
+                android:id="@+id/img_sub_num_traveler"
                 android:visibility="invisible"
                 android:src="@drawable/ic_sub"
                 android:layout_margin="@dimen/_2sdp"

@@ -10,5 +10,7 @@ class Constant {
         val INDEX_FRAGMENT_MORE: Int = 2
 
         const val PUBLIC_TRIPS = "publictrips"
+
+        val REQUEST_CODE_CREATE_PUBLIC_TRIP: Int = 1
     }
 }

@@ -38,7 +38,7 @@
     <string name="create_trips">CREATE TRIP</string>
     <string name="trip_info">Trip\'s Information</string>
     <string name="trip_descriptions">Trip\'s Description</string>
-    <string name="say_sth_about_trip">Say something abour your\'s trip.</string>
+    <string name="say_sth_about_trip">Say something abour your trip.</string>
     <string name="where_go">Where are you going?</string>
     <string name="when_go">When are you going?</string>
     <string name="warning_post_public_trip">Post your trip details so that you can be discovered by local hosts or other
@@ -46,4 +46,6 @@
     </string>
     <string name="traveler">traveler</string>
     <string name="travelers">travelers</string>
+    <string name="create">CREATE</string>
+    <string name="create_trip">Create public trip</string>
 </resources>

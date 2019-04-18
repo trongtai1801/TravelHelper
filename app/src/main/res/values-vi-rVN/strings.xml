@@ -47,4 +47,6 @@
     </string>
     <string name="traveler">người</string>
     <string name="travelers">người</string>
+    <string name="create">TẠO MỚI</string>
+    <string name="create_trip">Tạo chuyến đi</string>
 </resources>

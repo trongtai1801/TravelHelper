@@ -2,7 +2,6 @@ package dut.t2.travelhepler.ui.trips.info
 
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
