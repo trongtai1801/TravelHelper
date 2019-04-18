@@ -12,7 +12,10 @@ import org.androidannotations.annotations.EActivity
 
 @EActivity(R.layout.activity_splash)
 class SplashActivity : BaseActivity<SplashContract.SplashView, SplashPresenterImpl>(), SplashContract.SplashView {
-    override var mPresenter: SplashPresenterImpl = SplashPresenterImpl()
+
+    override fun initPresenter() {
+        mPresenter = SplashPresenterImpl(this)
+    }
 
     override fun afterViews() {
         mActionBar!!.hide()

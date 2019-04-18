@@ -1,5 +1,6 @@
 package dut.t2.travelhepler.ui.login
 
+import android.os.Bundle
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.User
@@ -14,7 +15,9 @@ import org.androidannotations.annotations.EActivity
 class LoginActivity : BaseActivity<LoginContract.LoginView, LoginPresenterImpl>(),
     LoginContract.LoginView {
 
-    override var mPresenter: LoginPresenterImpl = LoginPresenterImpl()
+    override fun initPresenter() {
+        mPresenter = LoginPresenterImpl(this)
+    }
 
     override fun afterViews() {
         mActionBar!!.hide()
@@ -31,7 +34,7 @@ class LoginActivity : BaseActivity<LoginContract.LoginView, LoginPresenterImpl>(
                     showLoading()
                     var userName: String = edt_login_user_name.text.toString()
                     var password: String = edt_login_password.text.toString();
-                    mPresenter.login(User.builder().userName(userName).password(password).build())
+                    mPresenter!!.login(User.builder().userName(userName).password(password).build())
                 } else showToast(getString(R.string.empty_field))
             }
         }

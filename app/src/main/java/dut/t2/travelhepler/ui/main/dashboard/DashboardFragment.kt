@@ -1,33 +1,43 @@
 package dut.t2.travelhepler.ui.main.dashboard
 
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Toast
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.model.SearchItem
+import dut.t2.travelhepler.ui.main.MainActivity
+import dut.t2.travelhepler.ui.trips.info.InfoActivity_
+import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EFragment
 
 @EFragment(R.layout.fragment_dashboard)
-class DashboardFragment :  Fragment(){
+class DashboardFragment : Fragment() {
     lateinit var searchAdapter: SearchAdapter
     lateinit var publicTripAdapter: PublicTripAdapter
     var searchItems: ArrayList<SearchItem> = ArrayList()
-    var publicTrips: ArrayList<PublicTrip> = ArrayList()
+
+    var mPublicTrips: ArrayList<PublicTrip> = ArrayList()
 
     @AfterViews
     fun afterViews() {
+        mPublicTrips.clear()
+        mPublicTrips.addAll(arguments!!.get(Constant.PUBLIC_TRIPS) as Collection<PublicTrip>)
         initSearchRcv()
         initPublicTripsRcv()
+        swf_dashboard.setOnRefreshListener {
+            (activity as MainActivity).getPublicTrips()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        if (publicTrips.size <= 0) {
+        if (mPublicTrips.size <= 0) {
             tv_no_upcoming_dashboard.visibility = View.VISIBLE
             rcv_public_trip_dashboard.visibility = View.GONE
         } else {
@@ -76,20 +86,18 @@ class DashboardFragment :  Fragment(){
     }
 
     fun initPublicTripsRcv() {
-        publicTrips.clear()
-        publicTrips.add(
-            PublicTrip("2019.04.30", "2019.01.05", "Viet Nam", 2)
-        )
-        publicTrips.add(
-            PublicTrip("2019.04.30", "2019.01.05", "Canada", 3)
-        )
         rcv_public_trip_dashboard.setHasFixedSize(true)
-        publicTripAdapter = PublicTripAdapter(context!!, publicTrips, object : PublicTripAdapter.ItemClickListener {
+        publicTripAdapter = PublicTripAdapter(context!!, mPublicTrips, object : PublicTripAdapter.ItemClickListener {
             override fun onClick(publicTrip: PublicTrip) {
-                Toast.makeText(context, publicTrip.destination, Toast.LENGTH_LONG).show()
+                InfoActivity_.intent(context).extra(Constant.PUBLIC_TRIPS, publicTrip).start()
             }
         })
         rcv_public_trip_dashboard.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rcv_public_trip_dashboard.adapter = publicTripAdapter
+    }
+
+    fun dismissSwipeRefreshLayout() {
+        if (swf_dashboard != null && swf_dashboard.isRefreshing)
+            swf_dashboard.isRefreshing = false
     }
 }

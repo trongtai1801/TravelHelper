@@ -9,8 +9,9 @@ class SessionManager {
         var Profile: Profile? = null
 
         fun setAccessToken(accessToken: String) {
-            SharedPrefs.getInstance().put(ACCESS_TOKEN, "Bearer " + accessToken)
-            AccessToken = accessToken
+            var access = "Bearer " + accessToken
+            SharedPrefs.getInstance().put(ACCESS_TOKEN, access)
+            AccessToken = access
         }
 
         fun getAccessToken(): String? {
@@ -25,9 +26,8 @@ class SessionManager {
         }
 
         fun init() {
-            var profile: Profile? = RealmDAO.getProfileLogin()
-            if (profile != null) Profile = profile
-            AccessToken = ""
+            Profile = RealmDAO.getProfileLogin()
+            AccessToken = SharedPrefs.getInstance().get(ACCESS_TOKEN, String::class.java)
         }
     }
 }

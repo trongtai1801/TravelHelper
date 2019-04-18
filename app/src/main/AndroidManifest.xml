@@ -23,6 +23,7 @@
         <activity android:name=".ui.main.MainActivity_"></activity>
         <activity android:name=".ui.login.LoginActivity_"></activity>
         <activity android:name="dut.t2.travelhelper.ui.signup.SignUpActivity_"></activity>
+        <activity android:name=".ui.trips.info.InfoActivity_"></activity>
     </application>
 
 </manifest>
