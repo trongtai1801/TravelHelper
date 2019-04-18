@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="sign_up_height_edt">@dimen/_40sdp</dimen>
+    <dimen name="trip_info_height_edt">@dimen/_50sdp</dimen>
 </resources>

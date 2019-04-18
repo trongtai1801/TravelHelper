@@ -1,6 +1,5 @@
 package dut.t2.travelhelper.ui.signup
 
-import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import dut.t2.travelhelper.base.BaseActivity
@@ -12,23 +11,18 @@ import android.util.Patterns
 import android.text.TextUtils
 import com.google.gson.JsonObject
 import dut.t2.travelhepler.R
-import kotlinx.android.synthetic.main.activity_login.*
 import org.androidannotations.annotations.Click
 
 @EActivity(R.layout.activity_sign_up)
 class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterImpl>(), SignUpContract.SignUpView {
 
-    override var mPresenter: SignUpPresenterImpl = SignUpPresenterImpl()
-
-    override fun afterViews() {
-        tv_actionbar_title.text = getString(R.string.sign_up)
+    override fun initPresenter() {
+        mPresenter = SignUpPresenterImpl(this)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            android.R.id.home -> finish()
-        }
-        return super.onOptionsItemSelected(item)
+    override fun afterViews() {
+        imgv_actionbar_back.setOnClickListener { finish() }
+        tv_actionbar_title.text = getString(R.string.sign_up)
     }
 
     @TextChange(
@@ -38,15 +32,15 @@ class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterIm
     fun onTextChange(tv: TextView, text: CharSequence) {
         when (tv.id) {
             R.id.edt_sign_up_user_name -> {
-                if (!text.isEmpty()) ic_sign_up_user_name.visibility = View.VISIBLE
+                if (text.isNotEmpty()) ic_sign_up_user_name.visibility = View.VISIBLE
                 else ic_sign_up_user_name.visibility = View.INVISIBLE
             }
             R.id.edt_sign_up_password -> {
-                if (!text.isEmpty() && (text.length >= 6)) ic_sign_up_password.visibility = View.VISIBLE
+                if (text.isNotEmpty() && (text.length >= 6)) ic_sign_up_password.visibility = View.VISIBLE
                 else ic_sign_up_password.visibility = View.INVISIBLE
             }
             R.id.edt_sign_up_full_name -> {
-                if (!text.isEmpty()) ic_sign_up_full_name.visibility = View.VISIBLE
+                if (text.isNotEmpty()) ic_sign_up_full_name.visibility = View.VISIBLE
                 else ic_sign_up_full_name.visibility = View.INVISIBLE
             }
             R.id.edt_sign_up_email -> {
@@ -74,7 +68,7 @@ class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterIm
                 signUpObject.addProperty("Fullname", edt_sign_up_full_name.text.toString())
                 signUpObject.addProperty("Email", edt_sign_up_email.text.toString())
                 showLoading()
-                mPresenter.signUp(signUpObject)
+                mPresenter!!.signUp(signUpObject)
             }
         }
     }

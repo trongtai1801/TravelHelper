@@ -76,7 +76,7 @@
 
         <EditText
                 android:id="@+id/edt_sign_up_full_name"
-                android:hint="@string/fullname"
+                android:hint="@string/full_name"
                 style="@style/SignUpActivityEditTextStyle"
                 android:layout_weight="11"
                 android:layout_width="0dp"
