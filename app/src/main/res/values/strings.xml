@@ -21,7 +21,7 @@
     <string name="join_with_us">Join with us</string>
     <string name="user_name">User Name</string>
     <string name="password">Password</string>
-    <string name="fullname">Full Name</string>
+    <string name="full_name">Full Name</string>
     <string name="email">Email</string>
     <string name="dashboard">Dashboard</string>
     <string name="require_user_name">Please input your user name</string>
@@ -34,7 +34,14 @@
     <string name="hello">Hello</string>
     <string name="search">Search</string>
     <string name="more">More</string>
-    <string name="get_publictrips_error">Can not get public trips</string>
+    <string name="get_public_trips_error">Can not get public trips</string>
     <string name="create_trips">CREATE TRIP</string>
     <string name="trip_info">Trip\'s Information</string>
+    <string name="trip_descriptions">Trip\'s Description</string>
+    <string name="say_sth_about_trip">Say something abour your\'s trip.</string>
+    <string name="where_go">Where are you going?</string>
+    <string name="when_go">When are you going?</string>
+    <string name="warning_post_public_trip">Post your trip details so that you can be discovered by local hosts or other
+        travelers
+    </string>
 </resources>

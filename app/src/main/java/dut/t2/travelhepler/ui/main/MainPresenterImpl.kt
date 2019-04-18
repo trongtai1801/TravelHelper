@@ -21,7 +21,7 @@ class MainPresenterImpl(context: Context) : BasePresenter<MainContract.MainView>
                 } else {
                     view!!.dismissLoading()
                     view!!.getPublicTripsResult(null)
-                    view!!.showMessage(context.getString(R.string.get_publictrips_error))
+                    view!!.showMessage(context.getString(R.string.get_public_trips_error))
                 }
             }
 
