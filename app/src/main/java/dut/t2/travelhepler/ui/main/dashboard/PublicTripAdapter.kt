@@ -25,7 +25,7 @@ class PublicTripAdapter(val context: Context, val publicTrips: List<PublicTrip>,
     override fun onBindViewHolder(p0: PublicTripViewHolder, p1: Int) {
         val item = publicTrips.get(p1)
         p0.tv_location.text = item.destination
-        p0.tv_previous.text = item.arrivalDate + " - " + item.departureDate
+        p0.tv_previous.text = item.arrivalDate.split("T")[0] + " - " + item.departureDate.split("T")[0]
     }
 
     inner class PublicTripViewHolder(itemView: View, var tv_location: TextView, var tv_previous: TextView) :

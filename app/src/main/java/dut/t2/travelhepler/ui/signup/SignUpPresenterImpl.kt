@@ -1,5 +1,6 @@
 package dut.t2.travelhelper.ui.signup
 
+import android.content.Context
 import com.google.gson.JsonObject
 import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
@@ -8,7 +9,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignUpPresenterImpl : BasePresenter<SignUpContract.SignUpView>(), SignUpContract.SignUpPresenter  {
+class SignUpPresenterImpl(context: Context) : BasePresenter<SignUpContract.SignUpView>(context),
+    SignUpContract.SignUpPresenter {
     override fun signUp(jsonObject: JsonObject) {
         var req: Call<SignUpResponse> = ApiClient.getService()!!.signUp(jsonObject);
         req.enqueue(object : Callback<SignUpResponse> {

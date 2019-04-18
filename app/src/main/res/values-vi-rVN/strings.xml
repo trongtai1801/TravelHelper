@@ -22,7 +22,7 @@
     <string name="join_with_us">Tham gia với chúng tôi</string>
     <string name="user_name">Tên người dùng</string>
     <string name="password">Mật khẩu</string>
-    <string name="fullname">Họ Tên</string>
+    <string name="full_name">Họ Tên</string>
     <string name="email">Email</string>
     <string name="dashboard">Trang chủ</string>
     <string name="require_user_name">Nhập tên người dùng</string>
@@ -35,4 +35,16 @@
     <string name="hello">Xin chào</string>
     <string name="search">Tìm kiếm</string>
     <string name="more">Mở rộng</string>
+    <string name="get_public_trips_error">Không thể lấy các chuyến du lịch công khai.</string>
+    <string name="create_trips">TẠO CHUYẾN ĐI.</string>
+    <string name="trip_info">Thông tin chuyển đi.</string>
+    <string name="trip_descriptions">Mô tả chuyến đi</string>
+    <string name="say_sth_about_trip">Nói gì đó về chuyến đi của bạn.</string>
+    <string name="where_go">Bạn muốn đi đâu?</string>
+    <string name="when_go">Khi nào bạn muốn đi?</string>
+    <string name="warning_post_public_trip">Đăng tin chuyến đi của bạn để các Chủ nhà hay người dùng khác có thể nhìn
+        thấy bạn.
+    </string>
+    <string name="traveler">người</string>
+    <string name="travelers">người</string>
 </resources>
