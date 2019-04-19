@@ -27,14 +27,16 @@
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"/>
-        <EditText
-                android:id="@+id/edt_destination"
+        <AutoCompleteTextView
+                android:id="@+id/atcv_destination"
                 android:hint="@string/where_go"
                 style="@style/TripInfoEditText"
                 android:background="@color/colorWhite"
                 android:layout_weight="8"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_50sdp"/>
+                android:layout_height="@dimen/_50sdp">
+            <requestFocus/>
+        </AutoCompleteTextView>
         <ImageView
                 android:id="@+id/img_check_destination"
                 android:visibility="invisible"
