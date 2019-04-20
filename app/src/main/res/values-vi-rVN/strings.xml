@@ -42,9 +42,20 @@
     <string name="say_sth_about_trip">Nói gì đó về chuyến đi của bạn.</string>
     <string name="where_go">Bạn muốn đi đâu?</string>
     <string name="when_go">Khi nào bạn muốn đi?</string>
+    <string name="when_arrival">Khi nào bạn đến?</string>
+    <string name="when_departure">Khi nào bạn đi?</string>
     <string name="warning_post_public_trip">Đăng tin chuyến đi của bạn để các Chủ nhà hay người dùng khác có thể nhìn
         thấy bạn.
     </string>
     <string name="traveler">người</string>
     <string name="travelers">người</string>
+    <string name="create">TẠO MỚI</string>
+    <string name="create_trip">Tạo chuyến đi</string>
+    <string name="addresses_empty">Danh sách địa chỉ rỗng</string>
+    <string name="warning_arrival_must_be_after_departure">Ngày đến phải trước ngày đi</string>
+    <string name="add">Thêm</string>
+    <string name="warning_input_destination">Bạn chưa nhập điểm đến</string>
+    <string name="warning_select_destination">Chọn một trong những gợi ý điểm đến</string>
+    <string name="warning_input_arrival_date">Bạn chưa chọn ngày đến</string>
+    <string name="warning_input_departure_date">Bạn chưa chọn ngày đi</string>
 </resources>
