@@ -1,8 +1,6 @@
 package dut.t2.travelhepler.ui.trips.info
 
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
@@ -28,14 +26,14 @@ class InfoActivity : BaseActivity<InfoContract.InfoView, InfoPresenterImpl>(), I
         tv_actionbar_title.text = getString(R.string.trip_info)
         imgv_actionbar_back.setOnClickListener { finish() }
 
-        edt_destination.setText(mPublicTrip!!.destination)
-        edt_destination.isFocusable = false
+        atcv_destination.setText(mPublicTrip!!.destination)
+        atcv_destination.isFocusable = false
 
-        edt_arr_dep.setText(
-            mPublicTrip!!.arrivalDate.split("T")[0]
-                    + " - " + mPublicTrip!!.departureDate.split("T")[0]
-        )
-        edt_arr_dep.isFocusable = false
+        edt_arrival.setText(mPublicTrip!!.arrivalDate.split("T")[0])
+        edt_arrival.isFocusable = false
+
+        edt_departure.setText(mPublicTrip!!.departureDate.split("T")[0])
+        edt_departure.isFocusable = false
 
         var numTravelerInt = mPublicTrip!!.travelerNumber
         var numTravelerStr = ""
