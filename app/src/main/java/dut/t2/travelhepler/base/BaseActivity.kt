@@ -102,10 +102,10 @@ abstract class BaseActivity<V : BaseView, T : BasePresenter<V>> : AppCompatActiv
                 Gravity.CENTER
             )
             mActionBar!!.setDisplayShowCustomEnabled(true)
-            mActionBar!!.setDisplayShowTitleEnabled(false)
-            mActionBar!!.setDisplayHomeAsUpEnabled(false)
-            mActionBar!!.setHomeButtonEnabled(false)
-            mActionBar!!.setDisplayHomeAsUpEnabled(false)
+//            mActionBar!!.setDisplayShowTitleEnabled(false)
+//            mActionBar!!.setDisplayHomeAsUpEnabled(false)
+//            mActionBar!!.setHomeButtonEnabled(false)
+//            mActionBar!!.setDisplayHomeAsUpEnabled(false)
             mActionBar!!.setCustomView(viewActionBar, params)
             mActionBar!!.show()
         }
