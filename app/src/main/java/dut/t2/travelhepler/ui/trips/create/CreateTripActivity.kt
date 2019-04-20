@@ -1,6 +1,8 @@
 package dut.t2.travelhepler.ui.trips.create
 
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -10,6 +12,7 @@ import android.widget.TextView
 import com.google.gson.JsonObject
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
+import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.actionbar.*
 import kotlinx.android.synthetic.main.activity_trip_info.*
@@ -58,15 +61,6 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
         return super.onOptionsItemSelected(item)
     }
 
-    override fun getSuggestAddressResult(addresses: ArrayList<String>) {
-        dismissLoading()
-        if (addresses != null) {
-            mDestinations.clear()
-            mDestinations.addAll(addresses)
-            initAutocompleteTextView()
-        }
-    }
-
     @TextChange(R.id.atcv_destination)
     fun onTextChanged(tv: TextView, text: CharSequence) {
         when (tv.id) {
@@ -98,6 +92,23 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
                 setNumTravelerTextView()
             }
         }
+    }
+
+    override fun getSuggestAddressResult(addresses: ArrayList<String>) {
+        dismissLoading()
+        if (addresses != null) {
+            mDestinations.clear()
+            mDestinations.addAll(addresses)
+            initAutocompleteTextView()
+        }
+    }
+
+    override fun createPublicTripResult(trip: PublicTrip) {
+        dismissLoading()
+        setResult(Activity.RESULT_OK, Intent().putExtra(Constant.PUBLIC_TRIPS, trip))
+        mArrival = null
+        mDeparture = null
+        finish()
     }
 
     fun setViews() {
@@ -175,7 +186,8 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
             trip.addProperty("DepartureDate", edt_departure.text.toString())
             trip.addProperty("TravelerNumber", sNumTravler)
             trip.addProperty("Description", edt_trip_description.text.toString())
-            showToast(trip.toString())
+            showLoading()
+            mPresenter!!.createPublicTrip(trip)
         }
     }
 

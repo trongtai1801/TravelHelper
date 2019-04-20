@@ -20,6 +20,11 @@ interface ApiService {
     fun getPublicTrips(@Header("Authorization") authorization: String): Call<ArrayList<PublicTrip>>
 
     @GET("address")
-    fun getSuggesstAddress(@Header("Authorization") authorization: String): Call<ArrayList<String>>
+    fun getSuggestAddress(@Header("Authorization") authorization: String): Call<ArrayList<String>>
 
+    @POST("PublicTrips")
+    fun createPublicTrip(
+        @Header("Authorization") authorization: String,
+        @Body trip: JsonObject
+    ): Call<PublicTrip>
 }

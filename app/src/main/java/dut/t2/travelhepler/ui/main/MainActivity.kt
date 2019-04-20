@@ -1,5 +1,7 @@
 package dut.t2.travelhepler.ui.main
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -44,6 +46,13 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == Constant.REQUEST_CODE_CREATE_PUBLIC_TRIP && resultCode == Activity.RESULT_OK && data != null) {
+            supportFragmentManager.findFragmentByTag("fragment0")!!.onActivityResult(requestCode, resultCode, data)
+        }
     }
 
     override fun getPublicTripsResult(publicTrips: ArrayList<PublicTrip>?) {
