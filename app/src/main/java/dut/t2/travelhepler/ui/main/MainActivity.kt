@@ -63,6 +63,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         setFragment(dashboardFragment, Constant.INDEX_FRAGMENT_DASBOARD)
         dismissLoading()
         dashboardFragment.dismissSwipeRefreshLayout()
+        dashboardFragment.notifyDataSetChanged(mPublicTrips)
     }
 
     fun initBottomNavigationView() {

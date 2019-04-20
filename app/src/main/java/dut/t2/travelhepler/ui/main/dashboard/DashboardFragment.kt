@@ -21,7 +21,7 @@ import org.androidannotations.annotations.EFragment
 @EFragment(R.layout.fragment_dashboard)
 class DashboardFragment : Fragment() {
     lateinit var mSearchAdapter: SearchAdapter
-    lateinit var mPublicTripAdapter: PublicTripAdapter
+    var mPublicTripAdapter: PublicTripAdapter? = null
     var searchItems: ArrayList<SearchItem> = ArrayList()
 
     var mPublicTrips: ArrayList<PublicTrip> = ArrayList()
@@ -51,7 +51,7 @@ class DashboardFragment : Fragment() {
         if (requestCode == Constant.REQUEST_CODE_CREATE_PUBLIC_TRIP && resultCode == Activity.RESULT_OK && data != null) {
             var trip = data.getParcelableExtra<PublicTrip>(Constant.PUBLIC_TRIPS)
             mPublicTrips.add(trip)
-            mPublicTripAdapter.notifyDataSetChanged()
+            mPublicTripAdapter!!.notifyDataSetChanged()
         }
     }
 
@@ -111,5 +111,13 @@ class DashboardFragment : Fragment() {
             tv_no_upcoming_dashboard.visibility = View.GONE
             rcv_public_trip_dashboard.visibility = View.VISIBLE
         }
+    }
+
+    fun notifyDataSetChanged(publicTrips: ArrayList<PublicTrip>) {
+        if (mPublicTrips != null) {
+            mPublicTrips.clear()
+            mPublicTrips.addAll(publicTrips)
+        }
+        if (mPublicTripAdapter != null) mPublicTripAdapter!!.notifyDataSetChanged()
     }
 }
