@@ -19,10 +19,10 @@ class MainPresenterImpl(context: Context) : BasePresenter<MainContract.MainView>
                 if (response.isSuccessful) {
                     view!!.getPublicTripsResult(response.body()!!)
                 } else {
-                    view!!.dismissLoading()
                     view!!.getPublicTripsResult(null)
                     view!!.showMessage(context.getString(R.string.get_public_trips_error))
                 }
+                view!!.dismissLoading()
             }
 
             override fun onFailure(call: Call<ArrayList<PublicTrip>>, t: Throwable) {
@@ -31,5 +31,26 @@ class MainPresenterImpl(context: Context) : BasePresenter<MainContract.MainView>
                 view!!.showMessage(t.toString())
             }
         })
+    }
+
+    override fun deletePublicTrip(id: Int) {
+        val req = ApiClient.getService()!!.deletePublicTrip(SessionManager.getAccessToken()!!, id)
+
+        req.enqueue(object : Callback<PublicTrip> {
+            override fun onResponse(call: Call<PublicTrip>, response: Response<PublicTrip>) {
+                if (response.code() == 204) {
+                    view!!.deletePublicTripResult()
+                } else {
+                    view!!.showMessage(context.getString(R.string.can_not_delete_trip))
+                }
+                view!!.dismissLoading()
+            }
+
+            override fun onFailure(call: Call<PublicTrip>, t: Throwable) {
+                view!!.dismissLoading()
+                view!!.showMessage(t.toString())
+            }
+        })
+
     }
 }
