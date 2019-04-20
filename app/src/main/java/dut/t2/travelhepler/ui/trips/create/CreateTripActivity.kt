@@ -54,7 +54,7 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-            R.id.menu_add -> {
+            R.id.item_add -> {
                 submit()
             }
         }

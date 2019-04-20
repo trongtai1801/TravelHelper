@@ -12,6 +12,7 @@ class Constant {
         const val PUBLIC_TRIPS = "publictrips"
 
         val REQUEST_CODE_CREATE_PUBLIC_TRIP: Int = 1
+        val REQUEST_CODE_UPDATE_PUBLIC_TRIP: Int = 2
 
         val DATE_FORMAT = "MM.dd.yyyy"
     }
