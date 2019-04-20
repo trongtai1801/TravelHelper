@@ -6,10 +6,7 @@ import dut.t2.travelhelper.service.response.LoginResponse
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.response.SignUpResponse
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -21,5 +18,8 @@ interface ApiService {
 
     @GET("Users/Publictrips")
     fun getPublicTrips(@Header("Authorization") authorization: String): Call<ArrayList<PublicTrip>>
+
+    @GET("address")
+    fun getSuggesstAddress(@Header("Authorization") authorization: String): Call<ArrayList<String>>
 
 }
