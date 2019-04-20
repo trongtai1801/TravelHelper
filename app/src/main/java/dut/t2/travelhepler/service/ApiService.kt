@@ -27,4 +27,11 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Body trip: JsonObject
     ): Call<PublicTrip>
+
+    @PUT("PublicTrips/{id}")
+    fun updatePublicTrip(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Int,
+        @Body trip: JsonObject
+    ): Call<PublicTrip>
 }

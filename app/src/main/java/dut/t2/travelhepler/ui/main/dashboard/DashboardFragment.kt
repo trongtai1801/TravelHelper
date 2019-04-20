@@ -51,7 +51,7 @@ class DashboardFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == Constant.REQUEST_CODE_CREATE_PUBLIC_TRIP && resultCode == Activity.RESULT_OK && data != null) {
             var trip = data.getParcelableExtra<PublicTrip>(Constant.PUBLIC_TRIPS)
-            mPublicTrips.add(trip)
+            mPublicTrips.add(0, trip)
             mPublicTripAdapter!!.notifyDataSetChanged()
         }
     }

@@ -163,6 +163,10 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
         dp.show()
     }
 
+    /**
+     * check if arrival date is after departure date
+     * */
+
     fun isValidDate(): Boolean {
         if (mArrival == null || mDeparture == null) return true
         else {
@@ -171,6 +175,10 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
         }
         return false
     }
+
+    /**
+     * check if destination is valid (match with one of address in database)
+     * */
 
     fun isInAddresses(address: String): Boolean {
         for (add in mDestinations)

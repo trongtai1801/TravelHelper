@@ -50,10 +50,31 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                Constant.REQUEST_CODE_CREATE_PUBLIC_TRIP -> {
+                    if (data != null)
+                        supportFragmentManager.findFragmentByTag("fragment0")!!.onActivityResult(
+                            requestCode,
+                            resultCode,
+                            data
+                        )
+                    else showToast(getString(R.string.data_null))
+                }
+                Constant.REQUEST_CODE_UPDATE_PUBLIC_TRIP -> {
+                    showLoading()
+                    mPresenter!!.getPublicTrips()
+                }
+            }
+        }
         if (requestCode == Constant.REQUEST_CODE_CREATE_PUBLIC_TRIP && resultCode == Activity.RESULT_OK && data != null) {
             supportFragmentManager.findFragmentByTag("fragment0")!!.onActivityResult(requestCode, resultCode, data)
         }
     }
+
+    /**
+     * function to handle result after get public trips successfully
+     * */
 
     override fun getPublicTripsResult(publicTrips: ArrayList<PublicTrip>?) {
         if (publicTrips != null) {
@@ -112,6 +133,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     }
 
     fun getPublicTrips() {
+        showLoading()
         mPresenter!!.getPublicTrips()
     }
 }

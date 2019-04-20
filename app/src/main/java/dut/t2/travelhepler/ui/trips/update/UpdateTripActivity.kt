@@ -1,6 +1,8 @@
 package dut.t2.travelhepler.ui.trips.update
 
+import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -34,8 +36,8 @@ class UpdateTripActivity : BaseActivity<UpdateTripContract.UpdateTripView, Updat
 
     companion object {
         private var sNumTraveler = 1
-        private var mArrival: Calendar? = Calendar.getInstance()
-        private var mDeparture: Calendar? = Calendar.getInstance()
+        private var mArrival: Calendar? = null
+        private var mDeparture: Calendar? = null
     }
 
     override fun initPresenter() {
@@ -71,14 +73,6 @@ class UpdateTripActivity : BaseActivity<UpdateTripContract.UpdateTripView, Updat
         return super.onOptionsItemSelected(item)
     }
 
-    override fun getSuggestAddressResult(addresses: ArrayList<String>) {
-        dismissLoading()
-        mDestinations.clear()
-        mDestinations.addAll(addresses)
-        if (mPublicTrip != null)
-            setViews()
-    }
-
     @TextChange(R.id.atcv_destination)
     fun onTextChanged(tv: TextView, text: CharSequence) {
         when (tv.id) {
@@ -112,6 +106,21 @@ class UpdateTripActivity : BaseActivity<UpdateTripContract.UpdateTripView, Updat
         }
     }
 
+    override fun getSuggestAddressResult(addresses: ArrayList<String>) {
+        dismissLoading()
+        mDestinations.clear()
+        mDestinations.addAll(addresses)
+        if (mPublicTrip != null)
+            setViews()
+    }
+
+    override fun updatePublicTripResult(trip: PublicTrip) {
+        dismissLoading()
+        setResult(Activity.RESULT_OK, Intent().putExtra(Constant.PUBLIC_TRIPS, trip))
+        clearData()
+        finish()
+    }
+
     fun setViews() {
         img_add_num_traveler.visibility = View.VISIBLE
         img_sub_num_traveler.visibility = View.VISIBLE
@@ -124,7 +133,10 @@ class UpdateTripActivity : BaseActivity<UpdateTripContract.UpdateTripView, Updat
         atcv_destination.setText(mPublicTrip!!.destination)
         atcv_destination.setSelection(mPublicTrip!!.destination.length)
 
+        mArrival = CalendarUtils.convertStringToCalendar(mPublicTrip!!.splitArrivalDate())
         edt_arrival.setText(CalendarUtils.convertStringFormat(mPublicTrip!!.splitArrivalDate()))
+
+        mDeparture = CalendarUtils.convertStringToCalendar(mPublicTrip!!.splitDepartureDate())
         edt_departure.setText(CalendarUtils.convertStringFormat(mPublicTrip!!.departureDate))
 
         sNumTraveler = mPublicTrip!!.travelerNumber
@@ -199,6 +211,8 @@ class UpdateTripActivity : BaseActivity<UpdateTripContract.UpdateTripView, Updat
             trip.addProperty("DepartureDate", edt_departure.text.toString())
             trip.addProperty("TravelerNumber", sNumTraveler)
             trip.addProperty("Description", edt_trip_description.text.toString())
+            showLoading()
+            mPresenter!!.updatePublicTrip(mPublicTrip!!.id, trip)
         }
     }
 
@@ -223,8 +237,8 @@ class UpdateTripActivity : BaseActivity<UpdateTripContract.UpdateTripView, Updat
     }
 
     fun clearData() {
-        mArrival = Calendar.getInstance()
-        mDeparture = Calendar.getInstance()
+        mArrival = null
+        mDeparture = null
         sNumTraveler = 1
     }
 }

@@ -61,4 +61,5 @@
     <string name="update">Cập nhật</string>
     <string name="delete">Xóa</string>
     <string name="update_trip">Cập nhật chuyến đi</string>
+    <string name="data_null">Dữ liệu trả về null</string>
 </resources>
