@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import android.support.v7.app.AlertDialog
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
@@ -50,10 +51,31 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                Constant.REQUEST_CODE_CREATE_PUBLIC_TRIP -> {
+                    if (data != null)
+                        supportFragmentManager.findFragmentByTag("fragment0")!!.onActivityResult(
+                            requestCode,
+                            resultCode,
+                            data
+                        )
+                    else showToast(getString(R.string.data_null))
+                }
+                Constant.REQUEST_CODE_UPDATE_PUBLIC_TRIP -> {
+                    showLoading()
+                    mPresenter!!.getPublicTrips()
+                }
+            }
+        }
         if (requestCode == Constant.REQUEST_CODE_CREATE_PUBLIC_TRIP && resultCode == Activity.RESULT_OK && data != null) {
             supportFragmentManager.findFragmentByTag("fragment0")!!.onActivityResult(requestCode, resultCode, data)
         }
     }
+
+    /**
+     * function to handle result after get public trips successfully
+     * */
 
     override fun getPublicTripsResult(publicTrips: ArrayList<PublicTrip>?) {
         if (publicTrips != null) {
@@ -64,6 +86,10 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         dismissLoading()
         dashboardFragment.dismissSwipeRefreshLayout()
         dashboardFragment.notifyDataSetChanged(mPublicTrips)
+    }
+
+    override fun deletePublicTripResult() {
+        getPublicTrips()
     }
 
     fun initBottomNavigationView() {
@@ -112,6 +138,22 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     }
 
     fun getPublicTrips() {
+        showLoading()
         mPresenter!!.getPublicTrips()
+    }
+
+    fun deletePublicTrip(id: Int) {
+        showLoading()
+        mPresenter!!.deletePublicTrip(id)
+    }
+
+    fun showConfirmDialog(id: Int) {
+        val alertDialog = AlertDialog.Builder(this)
+            .setTitle(R.string.confirm_delete_trip)
+            .setPositiveButton(R.string.yes, { dialogInterface, i -> deletePublicTrip(id) })
+            .setNegativeButton(R.string.no, null)
+            .create()
+        alertDialog.getWindow()!!.setBackgroundDrawableResource(R.drawable.background_dialog)
+        alertDialog.show()
     }
 }
