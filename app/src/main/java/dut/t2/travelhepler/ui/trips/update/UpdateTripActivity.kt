@@ -1,8 +1,9 @@
-package dut.t2.travelhepler.ui.trips.create
+package dut.t2.travelhepler.ui.trips.update
 
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
+import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -13,18 +14,22 @@ import com.google.gson.JsonObject
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
+import dut.t2.travelhepler.utils.CalendarUtils
 import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.actionbar.*
 import kotlinx.android.synthetic.main.activity_trip_info.*
-import org.androidannotations.annotations.*
+import org.androidannotations.annotations.Click
+import org.androidannotations.annotations.EActivity
+import org.androidannotations.annotations.TextChange
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
 @EActivity(R.layout.activity_trip_info)
-class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, CreateTripPresenterImpl>(),
-    CreateTripContract.CreateTripView {
+class UpdateTripActivity : BaseActivity<UpdateTripContract.UpdateTripView, UpdateTripPresenterImpl>(),
+    UpdateTripContract.UpdateTripView {
 
+    private var mPublicTrip: PublicTrip? = null
     private var mDestinations = ArrayList<String>()
     private var mDestinationAdapter: ArrayAdapter<String>? = null
     val numCharToSuggest = 3
@@ -36,28 +41,32 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
     }
 
     override fun initPresenter() {
-        mPresenter = CreateTripPresenterImpl(this)
+        mPresenter = UpdateTripPresenterImpl(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mPublicTrip = intent.getParcelableExtra(Constant.PUBLIC_TRIPS)
     }
 
     override fun afterViews() {
-        tv_actionbar_title.text = getString(R.string.create_trip)
+        tv_actionbar_title.text = getString(R.string.update_trip)
         imgv_actionbar_back.setOnClickListener {
             clearData()
             finish()
         }
-        setViews()
         showLoading()
         mPresenter!!.getSuggestAddress()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_create, menu)
+        menuInflater.inflate(R.menu.menu_update, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
-            R.id.item_add -> {
+            R.id.item_update -> {
                 submit()
             }
         }
@@ -101,10 +110,11 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
         dismissLoading()
         mDestinations.clear()
         mDestinations.addAll(addresses)
-        initAutocompleteTextView()
+        if (mPublicTrip != null)
+            setViews()
     }
 
-    override fun createPublicTripResult(trip: PublicTrip) {
+    override fun updatePublicTripResult(trip: PublicTrip) {
         dismissLoading()
         setResult(Activity.RESULT_OK, Intent().putExtra(Constant.PUBLIC_TRIPS, trip))
         clearData()
@@ -117,7 +127,21 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
         edt_arrival.isFocusable = false
         edt_departure.isFocusable = false
         edt_num_traveler.isFocusable = false
+
+        initAutocompleteTextView()
+
+        atcv_destination.setText(mPublicTrip!!.destination)
+        atcv_destination.setSelection(mPublicTrip!!.destination.length)
+
+        mArrival = CalendarUtils.convertStringToCalendar(mPublicTrip!!.splitArrivalDate())
+        edt_arrival.setText(CalendarUtils.convertStringFormat(mPublicTrip!!.splitArrivalDate()))
+
+        mDeparture = CalendarUtils.convertStringToCalendar(mPublicTrip!!.splitDepartureDate())
+        edt_departure.setText(CalendarUtils.convertStringFormat(mPublicTrip!!.departureDate))
+
+        sNumTraveler = mPublicTrip!!.travelerNumber
         setNumTravelerTextView()
+        edt_trip_description.setText(mPublicTrip!!.description)
     }
 
     fun initAutocompleteTextView() {
@@ -155,17 +179,14 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
             if (isValidDate()) {
                 val sdf = SimpleDateFormat(Constant.DATE_FORMAT_SEND, Locale.US)
                 v.setText(sdf.format(calendar.time))
-            } else showToast(getString(R.string.warning_arrival_must_be_after_departure))
+            } else
+                showToast(getString(R.string.warning_arrival_must_be_after_departure))
         }
 
-        var dp = DatePickerDialog(this@CreateTripActivity, dateSetListener, year, month, day)
+        var dp = DatePickerDialog(this@UpdateTripActivity, dateSetListener, year, month, day)
         dp.datePicker.minDate = calendar.getTimeInMillis()
         dp.show()
     }
-
-    /**
-     * check if arrival date is after departure date
-     * */
 
     fun isValidDate(): Boolean {
         if (mArrival == null || mDeparture == null) return true
@@ -175,10 +196,6 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
         }
         return false
     }
-
-    /**
-     * check if destination is valid (match with one of address in database)
-     * */
 
     fun isInAddresses(address: String): Boolean {
         for (add in mDestinations)
@@ -195,7 +212,7 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
             trip.addProperty("TravelerNumber", sNumTraveler)
             trip.addProperty("Description", edt_trip_description.text.toString())
             showLoading()
-            mPresenter!!.createPublicTrip(trip)
+            mPresenter!!.updatePublicTrip(mPublicTrip!!.id, trip)
         }
     }
 

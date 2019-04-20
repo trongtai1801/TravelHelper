@@ -25,6 +25,7 @@
         <activity android:name="dut.t2.travelhelper.ui.signup.SignUpActivity_"></activity>
         <activity android:name=".ui.trips.info.InfoActivity_"></activity>
         <activity android:name=".ui.trips.create.CreateTripActivity_"></activity>
+        <activity android:name=".ui.trips.update.UpdateTripActivity_"></activity>
     </application>
 
 </manifest>
