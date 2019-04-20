@@ -58,4 +58,12 @@
     <string name="warning_select_destination">Chọn một trong những gợi ý điểm đến</string>
     <string name="warning_input_arrival_date">Bạn chưa chọn ngày đến</string>
     <string name="warning_input_departure_date">Bạn chưa chọn ngày đi</string>
+    <string name="update">Cập nhật</string>
+    <string name="delete">Xóa</string>
+    <string name="update_trip">Cập nhật chuyến đi</string>
+    <string name="data_null">Dữ liệu trả về null</string>
+    <string name="can_not_delete_trip">Không thể xóa chuyến đi này</string>
+    <string name="confirm_delete_trip">Bạn có chắc muốn xóa chuyến đi này?</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
 </resources>

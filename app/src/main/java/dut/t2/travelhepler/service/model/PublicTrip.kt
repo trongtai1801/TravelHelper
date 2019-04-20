@@ -63,4 +63,11 @@ class PublicTrip(
         }
     }
 
+    fun splitArrivalDate(): String {
+        return this.arrivalDate.split("T")[0]
+    }
+
+    fun splitDepartureDate(): String {
+        return this.departureDate.split("T")[0]
+    }
 }

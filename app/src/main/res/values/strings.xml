@@ -57,4 +57,12 @@
     <string name="warning_select_destination">Please select one of destination suggest</string>
     <string name="warning_input_arrival_date">Please select arrival date</string>
     <string name="warning_input_departure_date">Please select departure date</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="update_trip">Update public trip</string>
+    <string name="data_null">Return is null</string>
+    <string name="can_not_delete_trip">Can not delete this public trip</string>
+    <string name="confirm_delete_trip">Are you sure want to delete this public trip?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

@@ -7,6 +7,7 @@ import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.response.SignUpResponse
 import retrofit2.Call
 import retrofit2.http.*
+import java.lang.Error
 
 interface ApiService {
 
@@ -26,5 +27,18 @@ interface ApiService {
     fun createPublicTrip(
         @Header("Authorization") authorization: String,
         @Body trip: JsonObject
+    ): Call<PublicTrip>
+
+    @PUT("PublicTrips/{id}")
+    fun updatePublicTrip(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Int,
+        @Body trip: JsonObject
+    ): Call<PublicTrip>
+
+    @DELETE("PublicTrips/{id}")
+    fun deletePublicTrip(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Int
     ): Call<PublicTrip>
 }

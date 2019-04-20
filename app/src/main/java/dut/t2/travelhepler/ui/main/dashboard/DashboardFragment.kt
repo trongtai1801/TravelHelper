@@ -12,6 +12,7 @@ import dut.t2.travelhepler.service.model.SearchItem
 import dut.t2.travelhepler.ui.main.MainActivity
 import dut.t2.travelhepler.ui.trips.create.CreateTripActivity_
 import dut.t2.travelhepler.ui.trips.info.InfoActivity_
+import dut.t2.travelhepler.ui.trips.update.UpdateTripActivity_
 import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.androidannotations.annotations.AfterViews
@@ -50,7 +51,7 @@ class DashboardFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == Constant.REQUEST_CODE_CREATE_PUBLIC_TRIP && resultCode == Activity.RESULT_OK && data != null) {
             var trip = data.getParcelableExtra<PublicTrip>(Constant.PUBLIC_TRIPS)
-            mPublicTrips.add(trip)
+            mPublicTrips.add(0, trip)
             mPublicTripAdapter!!.notifyDataSetChanged()
         }
     }
@@ -60,19 +61,19 @@ class DashboardFragment : Fragment() {
         searchItems.add(
             SearchItem(
                 "Travelers",
-                "http://travelhelperwebsite.azurewebsites.net/Images/quan.jpg?fbclid=IwAR1l7dDsXIOuc5ejMSTWvfGCkowlyjy6ztPPo4Tk_h4Lo4Nb9O9mA6m4eLw"
+                "http://travelhelperwebsite.azurewebsites.net/Images/tai1.jpg"
             )
         )
         searchItems.add(
             SearchItem(
                 "Hosts",
-                "http://travelhelperwebsite.azurewebsites.net/Images/quan.jpg?fbclid=IwAR1l7dDsXIOuc5ejMSTWvfGCkowlyjy6ztPPo4Tk_h4Lo4Nb9O9mA6m4eLw"
+                "http://travelhelperwebsite.azurewebsites.net/images/taichodien.jpg"
             )
         )
         searchItems.add(
             SearchItem(
                 "Events",
-                "http://travelhelperwebsite.azurewebsites.net/Images/quan.jpg?fbclid=IwAR1l7dDsXIOuc5ejMSTWvfGCkowlyjy6ztPPo4Tk_h4Lo4Nb9O9mA6m4eLw"
+                "http://travelhelperwebsite.azurewebsites.net/Images/tai2.jpg"
             )
         )
         rcv_search_dashboard.setHasFixedSize(true)
@@ -90,6 +91,18 @@ class DashboardFragment : Fragment() {
         mPublicTripAdapter = PublicTripAdapter(context!!, mPublicTrips, object : PublicTripAdapter.ItemClickListener {
             override fun onClick(publicTrip: PublicTrip) {
                 InfoActivity_.intent(context).extra(Constant.PUBLIC_TRIPS, publicTrip).start()
+            }
+
+            override fun onPopupItemClick(itemId: Int, trip: PublicTrip) {
+                when (itemId) {
+                    R.id.item_edit -> {
+                        UpdateTripActivity_.intent(context).extra(Constant.PUBLIC_TRIPS, trip)
+                            .startForResult(Constant.REQUEST_CODE_UPDATE_PUBLIC_TRIP)
+                    }
+                    R.id.item_delete -> {
+                        (activity as MainActivity).showConfirmDialog(trip.id)
+                    }
+                }
             }
         })
         rcv_public_trip_dashboard.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
