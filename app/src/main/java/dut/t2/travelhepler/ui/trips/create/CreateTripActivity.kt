@@ -30,7 +30,7 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
     val numCharToSuggest = 3
 
     companion object {
-        private var sNumTravler = 1
+        private var sNumTraveler = 1
         private var mArrival: Calendar? = null
         private var mDeparture: Calendar? = null
     }
@@ -41,14 +41,17 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
 
     override fun afterViews() {
         tv_actionbar_title.text = getString(R.string.create_trip)
-        imgv_actionbar_back.setOnClickListener { finish() }
+        imgv_actionbar_back.setOnClickListener {
+            clearData()
+            finish()
+        }
         setViews()
         showLoading()
         mPresenter!!.getSuggestAddress()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_add, menu)
+        menuInflater.inflate(R.menu.menu_create, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -83,12 +86,12 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
                 showCalendar(edt_departure)
             }
             R.id.img_add_num_traveler -> {
-                sNumTravler++
+                sNumTraveler++
                 setNumTravelerTextView()
             }
             R.id.img_sub_num_traveler -> {
-                sNumTravler--
-                if (sNumTravler < 0) sNumTravler = 0
+                sNumTraveler--
+                if (sNumTraveler < 0) sNumTraveler = 0
                 setNumTravelerTextView()
             }
         }
@@ -96,18 +99,15 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
 
     override fun getSuggestAddressResult(addresses: ArrayList<String>) {
         dismissLoading()
-        if (addresses != null) {
-            mDestinations.clear()
-            mDestinations.addAll(addresses)
-            initAutocompleteTextView()
-        }
+        mDestinations.clear()
+        mDestinations.addAll(addresses)
+        initAutocompleteTextView()
     }
 
     override fun createPublicTripResult(trip: PublicTrip) {
         dismissLoading()
         setResult(Activity.RESULT_OK, Intent().putExtra(Constant.PUBLIC_TRIPS, trip))
-        mArrival = null
-        mDeparture = null
+        clearData()
         finish()
     }
 
@@ -127,8 +127,8 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
     }
 
     fun setNumTravelerTextView() {
-        if (sNumTravler <= 1) edt_num_traveler.setText(sNumTravler.toString() + " " + getString(R.string.traveler))
-        else edt_num_traveler.setText(sNumTravler.toString() + " " + getString(R.string.travelers))
+        if (sNumTraveler <= 1) edt_num_traveler.setText(sNumTraveler.toString() + " " + getString(R.string.traveler))
+        else edt_num_traveler.setText(sNumTraveler.toString() + " " + getString(R.string.travelers))
     }
 
     fun showCalendar(v: EditText) {
@@ -153,7 +153,7 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
             }
 
             if (isValidDate()) {
-                val sdf = SimpleDateFormat(Constant.DATE_FORMAT, Locale.US)
+                val sdf = SimpleDateFormat(Constant.DATE_FORMAT_SEND, Locale.US)
                 v.setText(sdf.format(calendar.time))
             } else showToast(getString(R.string.warning_arrival_must_be_after_departure))
         }
@@ -184,7 +184,7 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
             trip.addProperty("Destination", atcv_destination.text.toString())
             trip.addProperty("ArrivalDate", edt_arrival.text.toString())
             trip.addProperty("DepartureDate", edt_departure.text.toString())
-            trip.addProperty("TravelerNumber", sNumTravler)
+            trip.addProperty("TravelerNumber", sNumTraveler)
             trip.addProperty("Description", edt_trip_description.text.toString())
             showLoading()
             mPresenter!!.createPublicTrip(trip)
@@ -209,5 +209,11 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
             return true
         }
         return false
+    }
+
+    fun clearData() {
+        mArrival = null
+        mDeparture = null
+        sNumTraveler = 1
     }
 }

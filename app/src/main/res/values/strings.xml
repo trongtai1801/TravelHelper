@@ -57,6 +57,7 @@
     <string name="warning_select_destination">Please select one of destination suggest</string>
     <string name="warning_input_arrival_date">Please select arrival date</string>
     <string name="warning_input_departure_date">Please select departure date</string>
-    <string name="edit">Edit</string>
+    <string name="update">Update</string>
     <string name="delete">Delete</string>
+    <string name="update_trip">Update public trip</string>
 </resources>

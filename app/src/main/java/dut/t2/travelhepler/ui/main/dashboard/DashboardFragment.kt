@@ -96,12 +96,11 @@ class DashboardFragment : Fragment() {
             override fun onPopupItemClick(itemId: Int, trip: PublicTrip) {
                 when (itemId) {
                     R.id.item_edit -> {
-                        Toast.makeText(context, "edit" + trip.destination, Toast.LENGTH_LONG).show()
                         UpdateTripActivity_.intent(context).extra(Constant.PUBLIC_TRIPS, trip)
                             .startForResult(Constant.REQUEST_CODE_UPDATE_PUBLIC_TRIP)
                     }
                     R.id.item_delete -> {
-                        Toast.makeText(context, "delete" + trip.destination, Toast.LENGTH_LONG).show()
+
                     }
                 }
             }

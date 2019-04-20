@@ -58,6 +58,7 @@
     <string name="warning_select_destination">Chọn một trong những gợi ý điểm đến</string>
     <string name="warning_input_arrival_date">Bạn chưa chọn ngày đến</string>
     <string name="warning_input_departure_date">Bạn chưa chọn ngày đi</string>
-    <string name="edit">Cập nhật</string>
+    <string name="update">Cập nhật</string>
     <string name="delete">Xóa</string>
+    <string name="update_trip">Cập nhật chuyến đi</string>
 </resources>

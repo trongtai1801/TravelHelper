@@ -1,20 +1,45 @@
 package dut.t2.travelhepler.ui.trips.update
 
+import android.app.DatePickerDialog
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.TextView
+import com.google.gson.JsonObject
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
+import dut.t2.travelhepler.utils.CalendarUtils
 import dut.t2.travelhepler.utils.Constant
+import kotlinx.android.synthetic.main.actionbar.*
+import kotlinx.android.synthetic.main.activity_trip_info.*
+import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
+import org.androidannotations.annotations.TextChange
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 @EActivity(R.layout.activity_trip_info)
 class UpdateTripActivity : BaseActivity<UpdateTripContract.UpdateTripView, UpdateTripPresenterImpl>(),
     UpdateTripContract.UpdateTripView {
 
     private var mPublicTrip: PublicTrip? = null
+    private var mDestinations = ArrayList<String>()
+    private var mDestinationAdapter: ArrayAdapter<String>? = null
+    val numCharToSuggest = 3
+
+    companion object {
+        private var sNumTraveler = 1
+        private var mArrival: Calendar? = Calendar.getInstance()
+        private var mDeparture: Calendar? = Calendar.getInstance()
+    }
 
     override fun initPresenter() {
-
+        mPresenter = UpdateTripPresenterImpl(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +48,183 @@ class UpdateTripActivity : BaseActivity<UpdateTripContract.UpdateTripView, Updat
     }
 
     override fun afterViews() {
+        tv_actionbar_title.text = getString(R.string.update_trip)
+        imgv_actionbar_back.setOnClickListener {
+            clearData()
+            finish()
+        }
+        showLoading()
+        mPresenter!!.getSuggestAddress()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_update, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            R.id.item_update -> {
+                submit()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun getSuggestAddressResult(addresses: ArrayList<String>) {
+        dismissLoading()
+        mDestinations.clear()
+        mDestinations.addAll(addresses)
         if (mPublicTrip != null)
-            showToast(mPublicTrip!!.destination)
+            setViews()
+    }
+
+    @TextChange(R.id.atcv_destination)
+    fun onTextChanged(tv: TextView, text: CharSequence) {
+        when (tv.id) {
+            R.id.atcv_destination -> {
+                if (text.length >= numCharToSuggest) {
+                    if (isInAddresses(text.toString())) img_check_destination.visibility = View.VISIBLE
+                    else img_check_destination.visibility = View.GONE
+                }
+            }
+        }
+    }
+
+    @Click(R.id.edt_arrival, R.id.edt_departure, R.id.img_add_num_traveler, R.id.img_sub_num_traveler)
+    fun onClick(v: View) {
+        when (v.id) {
+            R.id.edt_arrival -> {
+                showCalendar(edt_arrival)
+            }
+            R.id.edt_departure -> {
+                showCalendar(edt_departure)
+            }
+            R.id.img_add_num_traveler -> {
+                sNumTraveler++
+                setNumTravelerTextView()
+            }
+            R.id.img_sub_num_traveler -> {
+                sNumTraveler--
+                if (sNumTraveler < 0) sNumTraveler = 0
+                setNumTravelerTextView()
+            }
+        }
+    }
+
+    fun setViews() {
+        img_add_num_traveler.visibility = View.VISIBLE
+        img_sub_num_traveler.visibility = View.VISIBLE
+        edt_arrival.isFocusable = false
+        edt_departure.isFocusable = false
+        edt_num_traveler.isFocusable = false
+
+        initAutocompleteTextView()
+
+        atcv_destination.setText(mPublicTrip!!.destination)
+        atcv_destination.setSelection(mPublicTrip!!.destination.length)
+
+        edt_arrival.setText(CalendarUtils.convertStringFormat(mPublicTrip!!.splitArrivalDate()))
+        edt_departure.setText(CalendarUtils.convertStringFormat(mPublicTrip!!.departureDate))
+
+        sNumTraveler = mPublicTrip!!.travelerNumber
+        setNumTravelerTextView()
+        edt_trip_description.setText(mPublicTrip!!.description)
+    }
+
+    fun initAutocompleteTextView() {
+        mDestinationAdapter = ArrayAdapter(this, android.R.layout.select_dialog_item, mDestinations)
+        atcv_destination.threshold = numCharToSuggest
+        atcv_destination.setAdapter(mDestinationAdapter)
+    }
+
+    fun setNumTravelerTextView() {
+        if (sNumTraveler <= 1) edt_num_traveler.setText(sNumTraveler.toString() + " " + getString(R.string.traveler))
+        else edt_num_traveler.setText(sNumTraveler.toString() + " " + getString(R.string.travelers))
+    }
+
+    fun showCalendar(v: EditText) {
+        val calendar = Calendar.getInstance()
+
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            calendar.set(Calendar.YEAR, year)
+            calendar.set(Calendar.MONTH, monthOfYear)
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+            when (v.id) {
+                R.id.edt_arrival -> {
+                    mArrival = calendar
+                }
+                R.id.edt_departure -> {
+                    mDeparture = calendar
+                }
+            }
+
+            if (isValidDate()) {
+                val sdf = SimpleDateFormat(Constant.DATE_FORMAT_SEND, Locale.US)
+                v.setText(sdf.format(calendar.time))
+            } else
+                showToast(getString(R.string.warning_arrival_must_be_after_departure))
+        }
+
+        var dp = DatePickerDialog(this@UpdateTripActivity, dateSetListener, year, month, day)
+        dp.datePicker.minDate = calendar.getTimeInMillis()
+        dp.show()
+    }
+
+    fun isValidDate(): Boolean {
+        if (mArrival == null || mDeparture == null) return true
+        else {
+            if (mArrival!!.after(mDeparture)) return false
+            return true
+        }
+        return false
+    }
+
+    fun isInAddresses(address: String): Boolean {
+        for (add in mDestinations)
+            if (add.equals(address)) return true
+        return false
+    }
+
+    fun submit() {
+        var trip = JsonObject()
+        if (!invalidField()) {
+            trip.addProperty("Destination", atcv_destination.text.toString())
+            trip.addProperty("ArrivalDate", edt_arrival.text.toString())
+            trip.addProperty("DepartureDate", edt_departure.text.toString())
+            trip.addProperty("TravelerNumber", sNumTraveler)
+            trip.addProperty("Description", edt_trip_description.text.toString())
+        }
+    }
+
+    fun invalidField(): Boolean {
+        if (atcv_destination.text.isEmpty()) {
+            showToast(getString(R.string.warning_input_destination))
+            return true
+        }
+        if (img_check_destination.visibility == View.GONE) {
+            showToast(getString(R.string.warning_select_destination))
+            return true
+        }
+        if (edt_arrival.text.isEmpty()) {
+            showToast(getString(R.string.warning_input_arrival_date))
+            return true
+        }
+        if (edt_departure.text.isEmpty()) {
+            showToast(getString(R.string.warning_input_departure_date))
+            return true
+        }
+        return false
+    }
+
+    fun clearData() {
+        mArrival = Calendar.getInstance()
+        mDeparture = Calendar.getInstance()
+        sNumTraveler = 1
     }
 }
