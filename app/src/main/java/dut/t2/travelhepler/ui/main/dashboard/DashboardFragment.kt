@@ -100,7 +100,7 @@ class DashboardFragment : Fragment() {
                             .startForResult(Constant.REQUEST_CODE_UPDATE_PUBLIC_TRIP)
                     }
                     R.id.item_delete -> {
-
+                        (activity as MainActivity).showConfirmDialog(trip.id)
                     }
                 }
             }

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import android.support.v7.app.AlertDialog
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
@@ -87,6 +88,10 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         dashboardFragment.notifyDataSetChanged(mPublicTrips)
     }
 
+    override fun deletePublicTripResult() {
+        getPublicTrips()
+    }
+
     fun initBottomNavigationView() {
         bottom_navigation_view.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
@@ -135,5 +140,20 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     fun getPublicTrips() {
         showLoading()
         mPresenter!!.getPublicTrips()
+    }
+
+    fun deletePublicTrip(id: Int) {
+        showLoading()
+        mPresenter!!.deletePublicTrip(id)
+    }
+
+    fun showConfirmDialog(id: Int) {
+        val alertDialog = AlertDialog.Builder(this)
+            .setTitle(R.string.confirm_delete_trip)
+            .setPositiveButton(R.string.yes, { dialogInterface, i -> deletePublicTrip(id) })
+            .setNegativeButton(R.string.no, null)
+            .create()
+        alertDialog.getWindow()!!.setBackgroundDrawableResource(R.drawable.background_dialog)
+        alertDialog.show()
     }
 }
