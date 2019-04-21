@@ -52,9 +52,13 @@ open class  Profile constructor(
 
     @SerializedName("phoneNumber")
     @Expose
-    var phoneNumber: String
+    var phoneNumber: String,
+
+    @SerializedName("avatarLocation")
+    @Expose
+    var avatar: String
 ) : RealmModel {
-    public constructor() : this("", "", "", true, "", "", "", "", "")
+    public constructor() : this("", "", "", true, "", "", "", "", "", "")
 
     fun setDefaultValue() {
         if (id == null) id = ""
@@ -66,5 +70,6 @@ open class  Profile constructor(
         if (fluentLanguage == null) fluentLanguage = ""
         if (email == null) email = ""
         if (phoneNumber == null) phoneNumber = ""
+        if (phoneNumber == null) avatar = ""
     }
 }
