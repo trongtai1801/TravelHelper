@@ -44,7 +44,7 @@
                     android:background="@drawable/background_icon_airplane"
                     android:padding="@dimen/_7sdp"
                     android:src="@drawable/ic_airplane"
-                    android:layout_weight="1.1"
+                    android:layout_weight="1.3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"/>
             <LinearLayout
