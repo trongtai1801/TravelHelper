@@ -60,18 +60,21 @@ class DashboardFragment : Fragment() {
         searchItems.clear()
         searchItems.add(
             SearchItem(
-                "Travelers",
-                "http://travelhelperwebsite.azurewebsites.net/Images/tai1.jpg"
-            )
-        )
-        searchItems.add(
-            SearchItem(
+                Constant.ID_SEARCH_ITEM_HOST,
                 "Hosts",
                 "http://travelhelperwebsite.azurewebsites.net/images/taichodien.jpg"
             )
         )
         searchItems.add(
             SearchItem(
+                Constant.ID_SEARCH_ITEM_TRAVELERS,
+                "Travelers",
+                "http://travelhelperwebsite.azurewebsites.net/Images/tai1.jpg"
+            )
+        )
+        searchItems.add(
+            SearchItem(
+                Constant.ID_SEARCH_ITEM_EVENT,
                 "Events",
                 "http://travelhelperwebsite.azurewebsites.net/Images/tai2.jpg"
             )
