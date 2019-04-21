@@ -66,4 +66,11 @@
     <string name="confirm_delete_trip">Bạn có chắc muốn xóa chuyến đi này?</string>
     <string name="yes">Có</string>
     <string name="no">Không</string>
+    <string name="host">Chủ nhà</string>
+    <string name="my_public_trip">Chuyến đi của tôi</string>
+    <string name="friend">Bạn bè</string>
+    <string name="setting">Cài đặt</string>
+    <string name="inbox">Hộ thư</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="confirm_logout">Bạn có chắc muốn đăng xuất?</string>
 </resources>

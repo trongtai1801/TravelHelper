@@ -16,5 +16,9 @@ class Constant {
 
         const val DATE_FORMAT_SEND = "MM.dd.yyyy"
         const val DATE_FORMAT_RECEIVE = "yyyy-MM-dd"
+
+        const val ID_SEARCH_ITEM_HOST = 1
+        const val ID_SEARCH_ITEM_TRAVELERS = 2
+        const val ID_SEARCH_ITEM_EVENT = 3
     }
 }

@@ -96,14 +96,17 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         bottom_navigation_view.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_dashboard -> {
+                    mActionBar!!.show()
                     setFragment(dashboardFragment, Constant.INDEX_FRAGMENT_DASBOARD)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.menu_search -> {
+                    mActionBar!!.show()
                     setFragment(searchFragment, Constant.INDEX_FRAGMENT_SEARCH)
                     return@setOnNavigationItemSelectedListener true
                 }
                 R.id.menu_more -> {
+                    mActionBar!!.hide()
                     setFragment(moreFragment, Constant.INDEX_FRAGMENT_MORE)
                     return@setOnNavigationItemSelectedListener true
                 }

@@ -65,4 +65,11 @@
     <string name="confirm_delete_trip">Are you sure want to delete this public trip?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="host">Hosting</string>
+    <string name="my_public_trip">My public trips</string>
+    <string name="friend">Friend</string>
+    <string name="setting">Setting</string>
+    <string name="inbox">Inbox</string>
+    <string name="logout">Logout</string>
+    <string name="confirm_logout">Are you sure want to logout?</string>
 </resources>
