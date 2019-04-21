@@ -70,6 +70,6 @@ open class  Profile constructor(
         if (fluentLanguage == null) fluentLanguage = ""
         if (email == null) email = ""
         if (phoneNumber == null) phoneNumber = ""
-        if (phoneNumber == null) avatar = ""
+        if (avatar == null) avatar = ""
     }
 }
