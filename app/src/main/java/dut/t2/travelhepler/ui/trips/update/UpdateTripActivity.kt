@@ -50,11 +50,7 @@ class UpdateTripActivity : BaseActivity<UpdateTripContract.UpdateTripView, Updat
     }
 
     override fun afterViews() {
-        tv_actionbar_title.text = getString(R.string.update_trip)
-        imgv_actionbar_back.setOnClickListener {
-            clearData()
-            finish()
-        }
+        initToolbar()
         showLoading()
         mPresenter!!.getSuggestAddress()
     }
@@ -119,6 +115,17 @@ class UpdateTripActivity : BaseActivity<UpdateTripContract.UpdateTripView, Updat
         setResult(Activity.RESULT_OK, Intent().putExtra(Constant.PUBLIC_TRIPS, trip))
         clearData()
         finish()
+    }
+
+    fun initToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        tv_actionbar_title.text = getString(R.string.update_trip)
+        imgv_actionbar_back.setOnClickListener {
+            clearData()
+            finish()
+        }
     }
 
     fun setViews() {

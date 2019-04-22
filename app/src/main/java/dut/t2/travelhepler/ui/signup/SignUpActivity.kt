@@ -21,8 +21,7 @@ class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterIm
     }
 
     override fun afterViews() {
-        imgv_actionbar_back.setOnClickListener { finish() }
-        tv_actionbar_title.text = getString(R.string.sign_up)
+        initToolbar()
     }
 
     @TextChange(
@@ -77,6 +76,15 @@ class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterIm
         dismissLoading()
         showToast(getString(R.string.register_success))
         finish()
+    }
+
+    fun initToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        imgv_actionbar_back.setOnClickListener { finish() }
+        tv_actionbar_title.text = getString(R.string.sign_up)
+
     }
 
     fun isValidEmail(target: CharSequence): Boolean {

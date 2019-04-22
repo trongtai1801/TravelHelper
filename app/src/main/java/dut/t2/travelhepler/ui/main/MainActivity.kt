@@ -37,8 +37,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     }
 
     override fun afterViews() {
-        imgv_actionbar_back.visibility = View.GONE
-        tv_actionbar_title.text = getString(R.string.dashboard)
+        initToolbar()
         initBottomNavigationView()
         showLoading()
         getPublicTrips()
@@ -90,6 +89,15 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
 
     override fun deletePublicTripResult() {
         getPublicTrips()
+    }
+
+    fun initToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        imgv_actionbar_back.visibility = View.GONE
+        tv_actionbar_title.text = getString(R.string.dashboard)
+
     }
 
     fun initBottomNavigationView() {

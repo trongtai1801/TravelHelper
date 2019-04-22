@@ -40,11 +40,7 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
     }
 
     override fun afterViews() {
-        tv_actionbar_title.text = getString(R.string.create_trip)
-        imgv_actionbar_back.setOnClickListener {
-            clearData()
-            finish()
-        }
+        initToolbar()
         setViews()
         showLoading()
         mPresenter!!.getSuggestAddress()
@@ -109,6 +105,18 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
         setResult(Activity.RESULT_OK, Intent().putExtra(Constant.PUBLIC_TRIPS, trip))
         clearData()
         finish()
+    }
+
+    fun initToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        tv_actionbar_title.text = getString(R.string.create_trip)
+        imgv_actionbar_back.setOnClickListener {
+            clearData()
+            finish()
+        }
+
     }
 
     fun setViews() {

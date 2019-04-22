@@ -30,11 +30,7 @@ class InfoActivity : BaseActivity<InfoContract.InfoView, InfoPresenterImpl>(), I
     }
 
     override fun afterViews() {
-        tv_actionbar_title.text = getString(R.string.trip_info)
-        imgv_actionbar_back.setOnClickListener {
-            clearData()
-            finish()
-        }
+        initToolbar()
 
         getArrDepDate()
 
@@ -53,6 +49,17 @@ class InfoActivity : BaseActivity<InfoContract.InfoView, InfoPresenterImpl>(), I
 
         edt_trip_description.setText(mPublicTrip!!.description)
         edt_trip_description.isFocusable = false
+    }
+
+    fun initToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        tv_actionbar_title.text = getString(R.string.trip_info)
+        imgv_actionbar_back.setOnClickListener {
+            clearData()
+            finish()
+        }
     }
 
     fun setNumTravelerTextView() {
