@@ -19,6 +19,7 @@ import dut.t2.travelhepler.ui.main.search.SearchFragment_
 import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.actionbar.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.androidannotations.annotations.EActivity
 
 @EActivity(R.layout.activity_main)
@@ -41,6 +42,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         initBottomNavigationView()
         showLoading()
         getPublicTrips()
+        setFragment(dashboardFragment, Constant.INDEX_FRAGMENT_DASBOARD)
     }
 
     override fun onBackPressed() {
@@ -53,22 +55,12 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         if (resultCode == Activity.RESULT_OK) {
             when (requestCode) {
                 Constant.REQUEST_CODE_CREATE_PUBLIC_TRIP -> {
-                    if (data != null)
-                        supportFragmentManager.findFragmentByTag("fragment0")!!.onActivityResult(
-                            requestCode,
-                            resultCode,
-                            data
-                        )
-                    else showToast(getString(R.string.data_null))
+                    getPublicTrips()
                 }
                 Constant.REQUEST_CODE_UPDATE_PUBLIC_TRIP -> {
-                    showLoading()
-                    mPresenter!!.getPublicTrips()
+                    getPublicTrips()
                 }
             }
-        }
-        if (requestCode == Constant.REQUEST_CODE_CREATE_PUBLIC_TRIP && resultCode == Activity.RESULT_OK && data != null) {
-            supportFragmentManager.findFragmentByTag("fragment0")!!.onActivityResult(requestCode, resultCode, data)
         }
     }
 
@@ -78,10 +70,21 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
 
     override fun getPublicTripsResult(publicTrips: ArrayList<PublicTrip>?) {
         if (publicTrips != null) {
-            mPublicTrips.clear()
-            mPublicTrips.addAll(publicTrips)
+            if (publicTrips.size <= 0) {
+                if (tv_no_upcoming_dashboard != null)
+                    tv_no_upcoming_dashboard.visibility = View.VISIBLE
+                if (rcv_public_trip_dashboard != null)
+                    rcv_public_trip_dashboard.visibility = View.GONE
+            } else {
+                if (tv_no_upcoming_dashboard != null)
+                    tv_no_upcoming_dashboard.visibility = View.GONE
+                if (rcv_public_trip_dashboard != null)
+                    rcv_public_trip_dashboard.visibility = View.VISIBLE
+                mPublicTrips.clear()
+                mPublicTrips.addAll(publicTrips)
+            }
         }
-        setFragment(dashboardFragment, Constant.INDEX_FRAGMENT_DASBOARD)
+//        setFragment(dashboardFragment, Constant.INDEX_FRAGMENT_DASBOARD)
         dismissLoading()
         dashboardFragment.dismissSwipeRefreshLayout()
         dashboardFragment.notifyDataSetChanged(mPublicTrips)
@@ -104,6 +107,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         bottom_navigation_view.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_dashboard -> {
+//                    getPublicTrips()
                     setFragment(dashboardFragment, Constant.INDEX_FRAGMENT_DASBOARD)
                     return@setOnNavigationItemSelectedListener true
                 }
@@ -121,7 +125,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     }
 
     fun setFragment(fragment: Fragment, i: Int) {
-        if (i == index) return
+//        if (i == index) return
         when (fragment) {
             is DashboardFragment -> {
                 val b = Bundle()
