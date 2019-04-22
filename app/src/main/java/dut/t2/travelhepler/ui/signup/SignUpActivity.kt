@@ -3,7 +3,7 @@ package dut.t2.travelhelper.ui.signup
 import android.view.View
 import android.widget.TextView
 import dut.t2.travelhelper.base.BaseActivity
-import kotlinx.android.synthetic.main.actionbar.*
+import kotlinx.android.synthetic.main.custom_toolbar.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.androidannotations.annotations.EActivity
 import org.androidannotations.annotations.TextChange

@@ -8,7 +8,7 @@
     <include
             app:layout_constraintBottom_toTopOf="@id/ln_user_name"
             app:layout_constraintTop_toTopOf="parent"
-            layout="@layout/actionbar"/>
+            layout="@layout/custom_toolbar"/>
 
     <LinearLayout
             android:id="@+id/ln_user_name"

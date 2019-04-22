@@ -13,7 +13,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import dut.t2.travelhepler.R
-import kotlinx.android.synthetic.main.actionbar.*
+import kotlinx.android.synthetic.main.custom_toolbar.*
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.EActivity
 import java.lang.Exception

@@ -72,4 +72,21 @@
         <item name="android:textColor">@color/colorBlack</item>
     </style>
 
+    <style name="ProfileTextViewLable">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginStart">@dimen/_5sdp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ProfileTextViewContent">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginStart">@dimen/_10sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_5sdp</item>
+        <item name="android:textColor">@color/colorGrayDark</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
 </resources>

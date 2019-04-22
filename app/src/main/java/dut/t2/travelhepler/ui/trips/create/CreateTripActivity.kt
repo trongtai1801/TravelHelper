@@ -14,7 +14,7 @@ import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.utils.Constant
-import kotlinx.android.synthetic.main.actionbar.*
+import kotlinx.android.synthetic.main.custom_toolbar.*
 import kotlinx.android.synthetic.main.activity_trip_info.*
 import org.androidannotations.annotations.*
 import java.text.SimpleDateFormat

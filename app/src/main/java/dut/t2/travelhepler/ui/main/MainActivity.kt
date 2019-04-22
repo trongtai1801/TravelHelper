@@ -17,7 +17,7 @@ import dut.t2.travelhepler.ui.main.more.MoreFragment_
 import dut.t2.travelhepler.ui.main.search.SearchFragment
 import dut.t2.travelhepler.ui.main.search.SearchFragment_
 import dut.t2.travelhepler.utils.Constant
-import kotlinx.android.synthetic.main.actionbar.*
+import kotlinx.android.synthetic.main.custom_toolbar.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.androidannotations.annotations.EActivity
