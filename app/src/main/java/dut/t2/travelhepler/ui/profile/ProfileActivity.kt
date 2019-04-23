@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.provider.MediaStore
+import android.support.design.widget.CollapsingToolbarLayout
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
@@ -65,51 +66,49 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Constant.REQUEST_CODE_PICK_IMAGE) {
-            if (resultCode == Activity.RESULT_OK) {
-
-                val selectedImageUri = data!!.data
-                val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-                val cursor = contentResolver.query(selectedImageUri, filePathColumn, null, null, null) ?: return
-
-                cursor.moveToFirst()
-
-                val columnIndex = cursor.getColumnIndex(filePathColumn[0])
-                val filePath = cursor.getString(columnIndex)
-                val file = File(filePath)
-
-                val requestBody = RequestBody.create(MediaType.parse(contentResolver.getType(selectedImageUri)), file)
-                val avatar = MultipartBody.Part.createFormData("file", file.getName(), requestBody)
-                showLoading()
-                mPresenter!!.updateAvatar(avatar)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                Constant.REQUEST_CODE_PICK_IMAGE -> {
+                    updateAvatar(data)
+                }
+                Constant.REQUEST_CODE_UPDATE_USER_PROFILE -> {
+                    initToolbar()
+                    setupViews()
+                    setResult(Activity.RESULT_OK)
+                }
             }
         }
     }
+
 
     override fun updateAvatarResult(profile: Profile) {
         SessionManager.Profile = profile
         RealmDAO.setProfileLogin(profile)
         Glide.with(this).load(profile!!.avatar)
-            .placeholder(this.getDrawable(R.drawable.profile_cover))
+            .placeholder(this.getDrawable(R.drawable.ic_user_circle))
             .into(img_avatar_toolbar)
         setResult(Activity.RESULT_OK)
         dismissLoading()
     }
 
     fun initToolbar() {
-        setSupportActionBar(toolbar_profile)
+        setSupportActionBar(toolbar_show_profile)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(true)
         title = RealmDAO.getProfileLogin()!!.fullName
+        var tmp = title
         Glide.with(this).load(RealmDAO.getProfileLogin()!!.avatar)
-            .placeholder(this.getDrawable(R.drawable.profile_cover))
+            .placeholder(this.getDrawable(R.drawable.ic_avatar_default))
             .into(img_avatar_toolbar)
-        toolbar_profile.setNavigationOnClickListener { view -> onBackPressed() }
+        toolbar_show_profile.setNavigationOnClickListener { view -> onBackPressed() }
     }
 
     fun setupViews() {
         tv_content_address_profile.text = SessionManager.Profile?.address
-        tv_content_birthday_profile.text = CalendarUtils.convertStringFormat(SessionManager.Profile?.splitBirthday()!!)
+        if (!SessionManager.Profile?.splitBirthday()!!.equals(""))
+            tv_content_birthday_profile.text =
+                CalendarUtils.convertStringFormat(SessionManager.Profile?.splitBirthday()!!)
+        else tv_content_birthday_profile.text = ""
         if (SessionManager.Profile!!.gender) {
             tv_content_gender_profile.text = getString(R.string.male)
         } else
@@ -125,5 +124,25 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
         val photoPickerIntent = Intent(Intent.ACTION_PICK)
         photoPickerIntent.type = "image/*"
         startActivityForResult(photoPickerIntent, Constant.REQUEST_CODE_PICK_IMAGE)
+    }
+
+    fun updateAvatar(data: Intent?) {
+        if (data != null) {
+            val selectedImageUri = data!!.data
+            val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+            val cursor = contentResolver.query(selectedImageUri, filePathColumn, null, null, null) ?: return
+
+            cursor.moveToFirst()
+
+            val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+            val filePath = cursor.getString(columnIndex)
+            val file = File(filePath)
+
+            val requestBody =
+                RequestBody.create(MediaType.parse(contentResolver.getType(selectedImageUri)), file)
+            val avatar = MultipartBody.Part.createFormData("file", file.getName(), requestBody)
+            showLoading()
+            mPresenter!!.updateAvatar(avatar)
+        }
     }
 }

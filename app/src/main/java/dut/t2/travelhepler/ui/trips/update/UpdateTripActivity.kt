@@ -56,7 +56,7 @@ class UpdateTripActivity : BaseActivity<UpdateTripContract.UpdateTripView, Updat
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_update, menu)
+        menuInflater.inflate(R.menu.menu_update_dark, menu)
         return super.onCreateOptionsMenu(menu)
     }
 

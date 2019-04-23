@@ -1,5 +1,6 @@
 package dut.t2.travelhepler.ui.profile.update
 
+import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.view.Menu
@@ -8,10 +9,11 @@ import android.view.View
 import android.widget.EditText
 import com.google.gson.JsonObject
 import dut.t2.travelhelper.base.BaseActivity
+import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
-import dut.t2.travelhepler.ui.trips.create.CreateTripActivity
 import dut.t2.travelhepler.utils.CalendarUtils
 import dut.t2.travelhepler.utils.Constant
+import dut.t2.travelhepler.utils.RealmDAO
 import dut.t2.travelhepler.utils.SessionManager
 import kotlinx.android.synthetic.main.activity_update_profile.*
 import kotlinx.android.synthetic.main.custom_appbar_layout.toolbar_appbar
@@ -33,14 +35,15 @@ class UpdateProfileActivity : BaseActivity<UpdateProfileContract.UpdateProfileVi
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_update, menu)
+        menuInflater.inflate(R.menu.menu_update_light, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.item_update -> {
-                showToast("Update")
+                showLoading()
+                mPresenter!!.updateProfile(createJsonObject())
             }
         }
         return super.onOptionsItemSelected(item)
@@ -58,6 +61,16 @@ class UpdateProfileActivity : BaseActivity<UpdateProfileContract.UpdateProfileVi
         }
     }
 
+    override fun updateProfileResult(profile: Profile) {
+        profile.setDefaultValue()
+        SessionManager.Profile = profile
+        RealmDAO.setProfileLogin(profile)
+        setupViews()
+        showToast(getString(R.string.updated))
+        setResult(Activity.RESULT_OK)
+        dismissLoading()
+    }
+
     fun initToolbar() {
         setSupportActionBar(toolbar_appbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -69,7 +82,9 @@ class UpdateProfileActivity : BaseActivity<UpdateProfileContract.UpdateProfileVi
     fun setupViews() {
         edt_content_full_name_profile.setText(SessionManager.Profile!!.fullName)
         edt_content_address_profile.setText(SessionManager.Profile?.address)
-        edt_content_birthday_profile.setText(CalendarUtils.convertStringFormat(SessionManager.Profile?.splitBirthday()!!))
+        if (!SessionManager.Profile?.splitBirthday()!!.equals(""))
+            edt_content_birthday_profile.setText(CalendarUtils.convertStringFormat(SessionManager.Profile?.splitBirthday()!!))
+        else edt_content_birthday_profile.setText("")
         if (SessionManager.Profile!!.gender) {
             edt_content_gender_profile.setText(getString(R.string.male))
         } else
@@ -119,11 +134,12 @@ class UpdateProfileActivity : BaseActivity<UpdateProfileContract.UpdateProfileVi
         dp.show()
     }
 
-    fun CreateJsonObject(): JsonObject {
+    fun createJsonObject(): JsonObject {
         var jsonObject = JsonObject()
         jsonObject.addProperty("FullName", edt_content_full_name_profile.text.toString())
-        jsonObject.addProperty("Gender", edt_content_gender_profile.text.toString())
+        jsonObject.addProperty("Gender", edt_content_gender_profile.text.toString().equals(getString(R.string.male)))
         jsonObject.addProperty("Birthday", edt_content_birthday_profile.text.toString())
+        jsonObject.addProperty("Address", edt_content_address_profile.text.toString())
         jsonObject.addProperty("Occupation", edt_content_occupation_profile.text.toString())
         jsonObject.addProperty("FluentLanguage", edt_content_fluence_profile.text.toString())
         jsonObject.addProperty("LearningLanguage", edt_content_learning_profile.text.toString())

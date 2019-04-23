@@ -42,7 +42,7 @@
                 <EditText
                         android:id="@+id/edt_content_full_name_profile"
                         android:background="@null"
-                        android:hint="@string/address"
+                        android:hint="@string/full_name"
                         style="@style/MoreTextView"
                         android:layout_weight="6"
                         android:layout_width="0dp"

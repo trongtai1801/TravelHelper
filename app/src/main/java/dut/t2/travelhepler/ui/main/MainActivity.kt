@@ -60,7 +60,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
                     getPublicTrips()
                 }
                 Constant.REQUEST_CODE_UPDATE_USER_AVATAR -> {
-                    moreFragment.loadAvatar()
+                    moreFragment.setupViews()
                 }
             }
         }

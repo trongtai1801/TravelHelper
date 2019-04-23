@@ -75,19 +75,19 @@ open class  Profile constructor(
     public constructor() : this("", "", "", true, "", "", "", "", "", "", "", "", "")
 
     fun setDefaultValue() {
-        if (id == null) id = ""
-        if (fullName == null) fullName = ""
-        if (address == null) address = ""
-        if (gender == null) gender = false
-        if (birthday == null) birthday = ""
-        if (occupation == null) occupation = ""
-        if (fluentLanguage == null) fluentLanguage = ""
-        if (learningLanguage == null) learningLanguage = ""
-        if (about == null) about = ""
-        if (interest == null) interest = ""
-        if (email == null) email = ""
-        if (phoneNumber == null) phoneNumber = ""
-        if (avatar == null) avatar = ""
+        this.id = this.id ?: ""
+        this.fullName = this.fullName ?: ""
+        this.address = this.address ?: ""
+        this.gender = this.gender ?: false
+        this.birthday = this.birthday ?: ""
+        this.occupation = this.occupation ?: ""
+        this.fluentLanguage = this.fluentLanguage ?: ""
+        this.learningLanguage = this.learningLanguage ?: ""
+        this.about = this.about ?: ""
+        this.interest = this.interest ?: ""
+        this.email = this.email ?: ""
+        this.phoneNumber = this.phoneNumber ?: ""
+        this.avatar = this.avatar ?: ""
     }
 
     fun splitBirthday(): String {

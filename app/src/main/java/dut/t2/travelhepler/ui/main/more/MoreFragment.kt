@@ -21,8 +21,7 @@ class MoreFragment : Fragment() {
 
     @AfterViews
     fun afterViews() {
-        loadAvatar()
-        tv_user_name_more.text = RealmDAO.getProfileLogin()!!.fullName
+        setupViews()
     }
 
     @Click(
@@ -68,7 +67,8 @@ class MoreFragment : Fragment() {
         activity!!.finish()
     }
 
-    fun loadAvatar() {
+    fun setupViews() {
+        tv_user_name_more.text = RealmDAO.getProfileLogin()!!.fullName
         Glide.with(context!!).load(RealmDAO.getProfileLogin()!!.avatar)
             .placeholder(context!!.getDrawable(R.drawable.ic_user_circle))
             .into(cir_img_avatar_more)

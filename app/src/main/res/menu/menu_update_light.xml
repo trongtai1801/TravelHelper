@@ -3,6 +3,7 @@
 
     <item
             android:id="@+id/item_update"
+            android:icon="@drawable/ic_update_white"
             android:title="@string/update"
             app:showAsAction="always">
     </item>

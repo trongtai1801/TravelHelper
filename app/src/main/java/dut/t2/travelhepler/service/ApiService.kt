@@ -10,6 +10,8 @@ import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 import java.lang.Error
+import java.util.*
+import kotlin.collections.ArrayList
 
 interface ApiService {
 
@@ -49,5 +51,11 @@ interface ApiService {
     fun updateAvatar(
         @Header("Authorization") authorization: String,
         @Part avatar: MultipartBody.Part
+    ): Call<Profile>
+
+    @PUT("Users")
+    fun updateUserProfile(
+        @Header("Authorization") authorization: String,
+        @Body jsonObjects: JsonObject
     ): Call<Profile>
 }
