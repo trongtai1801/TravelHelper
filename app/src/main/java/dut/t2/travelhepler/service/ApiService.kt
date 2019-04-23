@@ -1,10 +1,12 @@
 package dut.t2.travelhelper.service
 
 import com.google.gson.JsonObject
+import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhelper.service.model.User
 import dut.t2.travelhelper.service.response.LoginResponse
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.response.SignUpResponse
+import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
 import java.lang.Error
@@ -41,4 +43,11 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Path("id") id: Int
     ): Call<PublicTrip>
+
+    @Multipart
+    @POST("Users/Avatar")
+    fun updateAvatar(
+        @Header("Authorization") authorization: String,
+        @Part avatar: MultipartBody.Part
+    ): Call<Profile>
 }
