@@ -86,4 +86,5 @@
     <string name="male">Nam</string>
     <string name="female">Nữ</string>
     <string name="updated">Đã cập nhật</string>
+    <string name="no_photo">Không có ảnh nào để hiển thị</string>
 </resources>

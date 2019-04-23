@@ -4,6 +4,7 @@ import com.google.gson.JsonObject
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhelper.service.model.User
 import dut.t2.travelhelper.service.response.LoginResponse
+import dut.t2.travelhepler.service.model.Photo
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.response.SignUpResponse
 import okhttp3.MultipartBody
@@ -58,4 +59,7 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Body jsonObjects: JsonObject
     ): Call<Profile>
+
+    @GET("users/images")
+    fun getPhotos(@Header("Authorization") authorization: String): Call<ArrayList<Photo>>
 }

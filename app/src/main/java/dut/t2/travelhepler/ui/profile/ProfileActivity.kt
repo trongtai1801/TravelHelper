@@ -14,6 +14,7 @@ import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.main.MainActivity
+import dut.t2.travelhepler.ui.profile.photos.PhotoActivity_
 import dut.t2.travelhepler.ui.profile.update.DialogIOSSheet
 import dut.t2.travelhepler.ui.profile.update.UpdateProfileActivity_
 import dut.t2.travelhepler.utils.*
@@ -40,7 +41,7 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
         setupViews()
     }
 
-    @Click(R.id.fab_avatar, R.id.fab_edit_profile)
+    @Click(R.id.fab_avatar, R.id.fab_edit_profile, R.id.tv_lb_photos_profile)
     fun onClick(v: View) {
         when (v.id) {
             R.id.fab_avatar -> {
@@ -51,6 +52,9 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
             }
             R.id.fab_edit_profile -> {
                 UpdateProfileActivity_.intent(this).startForResult(Constant.REQUEST_CODE_UPDATE_USER_PROFILE)
+            }
+            R.id.tv_lb_photos_profile -> {
+                PhotoActivity_.intent(this).start()
             }
         }
     }

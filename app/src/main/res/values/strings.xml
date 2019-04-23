@@ -85,4 +85,5 @@
     <string name="male">Male</string>
     <string name="female">Female</string>
     <string name="updated">Updated</string>
+    <string name="no_photo">No photos to display</string>
 </resources>
