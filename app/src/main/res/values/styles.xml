@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorWhite</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
@@ -70,6 +70,23 @@
         <item name="android:layout_gravity">center_vertical</item>
         <item name="android:textSize">@dimen/_13ssp</item>
         <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="ProfileTextViewLable">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginStart">@dimen/_5sdp</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/_15ssp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ProfileTextViewContent">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginStart">@dimen/_10sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_5sdp</item>
+        <item name="android:textColor">@color/colorGrayDark</item>
+        <item name="android:textSize">@dimen/_11ssp</item>
+        <item name="android:textStyle">italic</item>
     </style>
 
 </resources>

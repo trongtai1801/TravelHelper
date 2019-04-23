@@ -72,4 +72,16 @@
     <string name="inbox">Inbox</string>
     <string name="logout">Logout</string>
     <string name="confirm_logout">Are you sure want to logout?</string>
+    <string name="about_me">About me</string>
+    <string name="overview">Overview</string>
+    <string name="address">Address</string>
+    <string name="fluence_language">Fluence language</string>
+    <string name="learning_language">Learning language</string>
+    <string name="birthday">Birthday</string>
+    <string name="gender">Gender</string>
+    <string name="occupation">Occupation</string>
+    <string name="photos">Photos</string>
+    <string name="interest">Interest</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 </resources>

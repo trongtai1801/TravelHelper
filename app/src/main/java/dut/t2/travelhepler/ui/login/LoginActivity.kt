@@ -20,7 +20,6 @@ class LoginActivity : BaseActivity<LoginContract.LoginView, LoginPresenterImpl>(
     }
 
     override fun afterViews() {
-        mActionBar!!.hide()
     }
 
     @Click(R.id.tv_login_sign_up, R.id.btn_login_submit)
