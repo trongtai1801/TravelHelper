@@ -82,4 +82,6 @@
     <string name="occupation">Occupation</string>
     <string name="photos">Photos</string>
     <string name="interest">Interest</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
 </resources>

@@ -18,6 +18,7 @@
             <TextView
                     android:id="@+id/tv_lb_overview_profile"
                     android:text="@string/overview"
+                    android:layout_marginTop="@dimen/_15sdp"
                     style="@style/ProfileTextViewLable"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -185,7 +186,8 @@
             <TextView
                     android:id="@+id/tv_content_about_me_profile"
                     style="@style/ProfileTextViewContent"
-                    android:text="a\na\na\na\na\na\n"
+                    android:hint="@string/interest"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_below="@id/tv_lb_about_me_profile"
                     android:layout_width="match_parent"
@@ -225,8 +227,9 @@
                     android:layout_height="wrap_content"/>
 
             <TextView
-                    android:id="@+id/tv_content_photos_profile"
+                    android:id="@+id/tv_content_interest_profile"
                     style="@style/ProfileTextViewContent"
+                    android:layout_marginBottom="@dimen/_10sdp"
                     android:hint="@string/interest"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_below="@id/tv_lb_interest_profile"
@@ -278,11 +281,11 @@
     <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_edit_profile"
             android:src="@drawable/ic_pen_white"
-            android:layout_marginEnd="@dimen/_7sdp"
-            android:layout_marginBottom="@dimen/_7sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            app:layout_anchor="@id/tv_content_photos_profile"
+            app:layout_anchor="@id/tv_content_interest_profile"
             app:layout_anchorGravity="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

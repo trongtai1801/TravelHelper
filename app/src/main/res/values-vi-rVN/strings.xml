@@ -83,4 +83,6 @@
     <string name="occupation">Nghề nghiệp</string>
     <string name="photos">Ảnh</string>
     <string name="interest">Sở thích</string>
+    <string name="male">Nam</string>
+    <string name="female">Nữ</string>
 </resources>
