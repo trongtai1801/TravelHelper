@@ -1,23 +1,38 @@
 package dut.t2.travelhepler.ui.profile
 
-import android.support.v7.app.AppCompatActivity
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
+import dut.t2.travelhepler.ui.main.MainActivity
+import dut.t2.travelhepler.utils.Constant
+import dut.t2.travelhepler.utils.Permission
 import dut.t2.travelhepler.utils.RealmDAO
 import dut.t2.travelhepler.utils.SessionManager
 import kotlinx.android.synthetic.main.activity_profile.*
-import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
+import okhttp3.RequestBody
+import okhttp3.MultipartBody
+import okhttp3.MediaType
+import java.io.File
+
 
 @EActivity(R.layout.activity_profile)
-class ProfileActivity : AppCompatActivity() {
+class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresenterImpl>(), ProfileContract.ProfileView {
 
-    @AfterViews
-    fun afterViews() {
+    override fun initPresenter() {
+        mPresenter = ProfilePresenterImpl(this)
+    }
+
+    override fun afterViews() {
         initToolbar()
         setupViews()
     }
@@ -26,12 +41,57 @@ class ProfileActivity : AppCompatActivity() {
     fun onClick(v: View) {
         when (v.id) {
             R.id.fab_avatar -> {
-                Toast.makeText(this, "Update avatar", Toast.LENGTH_LONG).show()
+                if (Permission.checkPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE))
+                    startPickerImage()
+                else
+                    Permission.initPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
             }
             R.id.fab_edit_profile -> {
                 Toast.makeText(this, "Edit profile", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        for (grant in grantResults) {
+            if (grant == PackageManager.PERMISSION_GRANTED) {
+                startPickerImage()
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == Constant.REQUEST_CODE_PICK_IMAGE) {
+            if (resultCode == Activity.RESULT_OK) {
+
+                val selectedImageUri = data!!.data
+                val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+                val cursor = contentResolver.query(selectedImageUri, filePathColumn, null, null, null) ?: return
+
+                cursor.moveToFirst()
+
+                val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+                val filePath = cursor.getString(columnIndex)
+                val file = File(filePath)
+
+                val requestBody = RequestBody.create(MediaType.parse(contentResolver.getType(selectedImageUri)), file)
+                val avatar = MultipartBody.Part.createFormData("file", file.getName(), requestBody)
+                showLoading()
+                mPresenter!!.updateAvatar(avatar)
+            }
+        }
+    }
+
+    override fun updateAvatarResult(profile: Profile) {
+        SessionManager.Profile = profile
+        RealmDAO.setProfileLogin(profile)
+        Glide.with(this).load(profile!!.avatar)
+            .placeholder(this.getDrawable(R.drawable.profile_cover))
+            .into(img_avatar_toolbar)
+        setResult(Activity.RESULT_OK)
+        dismissLoading()
     }
 
     fun initToolbar() {
@@ -57,5 +117,11 @@ class ProfileActivity : AppCompatActivity() {
         tv_content_learning_profile.text = SessionManager.Profile?.learningLanguage
         tv_content_about_me_profile.text = SessionManager.Profile?.about
         tv_content_interest_profile.text = SessionManager.Profile?.interest
+    }
+
+    fun startPickerImage() {
+        val photoPickerIntent = Intent(Intent.ACTION_PICK)
+        photoPickerIntent.type = "image/*"
+        startActivityForResult(photoPickerIntent, Constant.REQUEST_CODE_PICK_IMAGE)
     }
 }
