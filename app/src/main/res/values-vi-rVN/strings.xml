@@ -73,4 +73,16 @@
     <string name="inbox">Hộ thư</string>
     <string name="logout">Đăng xuất</string>
     <string name="confirm_logout">Bạn có chắc muốn đăng xuất?</string>
+    <string name="about_me">Bản thân</string>
+    <string name="overview">Tổng quan</string>
+    <string name="address">Địa chỉ</string>
+    <string name="fluence_language">Ngôn ngữ chính</string>
+    <string name="learning_language">Ngôn ngữ cần học</string>
+    <string name="birthday">Ngày sinh</string>
+    <string name="gender">Giới tinh</string>
+    <string name="occupation">Nghề nghiệp</string>
+    <string name="photos">Ảnh</string>
+    <string name="interest">Sở thích</string>
+    <string name="male">Nam</string>
+    <string name="female">Nữ</string>
 </resources>
