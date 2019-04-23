@@ -3,6 +3,7 @@
           package="dut.t2.travelhepler">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
             android:name="dut.t2.travelhepler.App"

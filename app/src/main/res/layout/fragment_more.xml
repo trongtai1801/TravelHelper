@@ -36,17 +36,10 @@
 
     </android.support.constraint.ConstraintLayout>
 
-    <View
-            android:id="@+id/view1_more"
-            android:layout_below="@id/csl_profile_more"
-            android:background="@color/colorGrayDark"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"/>
-
     <LinearLayout
             android:id="@+id/ln_hosting_more"
             android:orientation="horizontal"
-            android:layout_below="@id/view1_more"
+            android:layout_below="@id/csl_profile_more"
             android:layout_width="match_parent"
             android:layout_height="@dimen/more_csl_height">
 
