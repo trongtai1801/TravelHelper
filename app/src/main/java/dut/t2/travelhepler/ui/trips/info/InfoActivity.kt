@@ -52,7 +52,7 @@ class InfoActivity : BaseActivity<InfoContract.InfoView, InfoPresenterImpl>(), I
     }
 
     fun initToolbar() {
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar_appbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         tv_actionbar_title.text = getString(R.string.trip_info)

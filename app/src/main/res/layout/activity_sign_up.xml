@@ -17,7 +17,7 @@
             android:layout_marginTop="@dimen/_20sdp"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_appbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/sign_up_height_edt">
 

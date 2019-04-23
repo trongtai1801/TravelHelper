@@ -5,4 +5,11 @@
     <dimen name="more_csl_height">@dimen/_50sdp</dimen>
     <dimen name="profile_height_content_textview">@dimen/_40sdp</dimen>
     <dimen name="profile_padding_icon">@dimen/_10sdp</dimen>
+
+    //ios sheet
+    <dimen name="dialog_ios_sheet_width_height_btn_cancel">@dimen/_50sdp</dimen>
+    <dimen name="dialog_ios_sheet_margin_top_bottom_btn_cancel">@dimen/_13sdp</dimen>
+    <dimen name="dialog_ios_sheet_text_size">@dimen/_15ssp</dimen>
+    <dimen name="dialog_ios_sheet_height_item">@dimen/_40sdp</dimen>
+
 </resources>

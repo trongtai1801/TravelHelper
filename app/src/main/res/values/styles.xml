@@ -3,10 +3,10 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorWhite</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@android:color/darker_gray</item>
         <item name="colorAccent">@color/colorPrimary</item>
-        <item name="android:actionMenuTextColor">@color/colorBlack</item>
+        <item name="android:actionMenuTextColor">@android:color/white</item>
     </style>
 
     <style name="SplashActivityTexViewStyle">
@@ -88,5 +88,4 @@
         <item name="android:textSize">@dimen/_11ssp</item>
         <item name="android:textStyle">italic</item>
     </style>
-
 </resources>

@@ -79,7 +79,7 @@ class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterIm
     }
 
     fun initToolbar() {
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar_appbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         imgv_actionbar_back.setOnClickListener { finish() }

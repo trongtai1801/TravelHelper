@@ -2,7 +2,7 @@
 <android.support.v7.widget.Toolbar
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:background="@color/colorWhite"
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar_appbar"
         android:layout_marginBottom="@dimen/_1sdp"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">

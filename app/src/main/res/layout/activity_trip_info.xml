@@ -9,7 +9,7 @@
 
     <TextView
             android:id="@+id/tv_notify"
-            android:layout_below="@+id/toolbar"
+            android:layout_below="@+id/toolbar_appbar"
             android:visibility="gone"
             style="@style/TripInfoTextView"
             android:text="@string/warning_post_public_trip"

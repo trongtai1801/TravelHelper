@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.support.v7.app.AlertDialog
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
@@ -60,7 +59,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
                 Constant.REQUEST_CODE_UPDATE_PUBLIC_TRIP -> {
                     getPublicTrips()
                 }
-                Constant.REQUEST_CODE_UPDATE_UPDATE_AVATAR -> {
+                Constant.REQUEST_CODE_UPDATE_USER_AVATAR -> {
                     moreFragment.loadAvatar()
                 }
             }
@@ -98,7 +97,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     }
 
     fun initToolbar() {
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar_appbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         imgv_actionbar_back.visibility = View.GONE

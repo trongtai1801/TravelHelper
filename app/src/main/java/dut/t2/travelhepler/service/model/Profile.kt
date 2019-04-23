@@ -89,4 +89,8 @@ open class  Profile constructor(
         if (phoneNumber == null) phoneNumber = ""
         if (avatar == null) avatar = ""
     }
+
+    fun splitBirthday(): String {
+        return this.birthday.split("T")[0]
+    }
 }

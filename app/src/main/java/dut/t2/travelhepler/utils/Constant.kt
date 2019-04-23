@@ -13,7 +13,8 @@ class Constant {
 
         const val REQUEST_CODE_CREATE_PUBLIC_TRIP: Int = 1
         const val REQUEST_CODE_UPDATE_PUBLIC_TRIP: Int = 2
-        const val REQUEST_CODE_UPDATE_UPDATE_AVATAR: Int = 3
+        const val REQUEST_CODE_UPDATE_USER_AVATAR: Int = 3
+        const val REQUEST_CODE_UPDATE_USER_PROFILE: Int = 4
 
         const val DATE_FORMAT_SEND = "MM.dd.yyyy"
         const val DATE_FORMAT_RECEIVE = "yyyy-MM-dd"

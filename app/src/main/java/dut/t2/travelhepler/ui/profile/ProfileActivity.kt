@@ -2,6 +2,7 @@ package dut.t2.travelhepler.ui.profile
 
 import android.Manifest
 import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.provider.MediaStore
@@ -12,17 +13,18 @@ import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.main.MainActivity
-import dut.t2.travelhepler.utils.Constant
-import dut.t2.travelhepler.utils.Permission
-import dut.t2.travelhepler.utils.RealmDAO
-import dut.t2.travelhepler.utils.SessionManager
+import dut.t2.travelhepler.ui.profile.update.DialogIOSSheet
+import dut.t2.travelhepler.ui.profile.update.UpdateProfileActivity_
+import dut.t2.travelhepler.utils.*
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.activity_update_profile.*
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
 import okhttp3.RequestBody
 import okhttp3.MultipartBody
 import okhttp3.MediaType
 import java.io.File
+import java.util.ArrayList
 
 
 @EActivity(R.layout.activity_profile)
@@ -47,7 +49,7 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
                     Permission.initPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
             }
             R.id.fab_edit_profile -> {
-                Toast.makeText(this, "Edit profile", Toast.LENGTH_LONG).show()
+                UpdateProfileActivity_.intent(this).startForResult(Constant.REQUEST_CODE_UPDATE_USER_PROFILE)
             }
         }
     }
@@ -107,7 +109,7 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
 
     fun setupViews() {
         tv_content_address_profile.text = SessionManager.Profile?.address
-        tv_content_birthday_profile.text = SessionManager.Profile?.birthday
+        tv_content_birthday_profile.text = CalendarUtils.convertStringFormat(SessionManager.Profile?.splitBirthday()!!)
         if (SessionManager.Profile!!.gender) {
             tv_content_gender_profile.text = getString(R.string.male)
         } else
