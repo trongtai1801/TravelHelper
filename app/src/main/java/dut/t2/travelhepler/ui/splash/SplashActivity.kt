@@ -8,6 +8,7 @@ import dut.t2.travelhepler.ui.main.MainActivity_
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.RealmDAO
 import dut.t2.travelhepler.utils.SharedPrefs
+import kotlinx.android.synthetic.main.activity_profile.*
 import org.androidannotations.annotations.EActivity
 
 @EActivity(R.layout.activity_splash)
@@ -18,8 +19,6 @@ class SplashActivity : BaseActivity<SplashContract.SplashView, SplashPresenterIm
     }
 
     override fun afterViews() {
-        mActionBar!!.hide()
-
         Handler().postDelayed({
             if (SharedPrefs.getInstance().get(Constant.ACCESS_TOKEN, String::class.java) == null ||
                 SharedPrefs.getInstance().get(Constant.ACCESS_TOKEN, String::class.java).equals("")

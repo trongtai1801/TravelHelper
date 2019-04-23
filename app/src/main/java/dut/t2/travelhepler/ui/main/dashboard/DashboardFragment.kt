@@ -47,15 +47,6 @@ class DashboardFragment : Fragment() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Constant.REQUEST_CODE_CREATE_PUBLIC_TRIP && resultCode == Activity.RESULT_OK && data != null) {
-            var trip = data.getParcelableExtra<PublicTrip>(Constant.PUBLIC_TRIPS)
-            mPublicTrips.add(0, trip)
-            mPublicTripAdapter!!.notifyDataSetChanged()
-        }
-    }
-
     fun initSearchRcv() {
         searchItems.clear()
         searchItems.add(
