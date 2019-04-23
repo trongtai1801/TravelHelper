@@ -13,6 +13,7 @@ import android.view.Gravity
 import android.view.View
 import android.widget.Toast
 import dut.t2.travelhepler.R
+import kotlinx.android.synthetic.main.custom_toolbar.*
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.EActivity
 import java.lang.Exception
@@ -22,7 +23,6 @@ abstract class BaseActivity<V : BaseView, T : BasePresenter<V>> : AppCompatActiv
 
     private val TAG = this.javaClass.simpleName
     protected var mPresenter: T? = null
-    protected var mActionBar: ActionBar? = null
 
     lateinit var mProgressDialog: ProgressDialog
 
@@ -39,7 +39,6 @@ abstract class BaseActivity<V : BaseView, T : BasePresenter<V>> : AppCompatActiv
 
     @AfterViews
     protected fun initViews() {
-        initActionBar()
         this.afterViews()
     }
 
@@ -89,25 +88,6 @@ abstract class BaseActivity<V : BaseView, T : BasePresenter<V>> : AppCompatActiv
                 .show()
         } catch (e: Exception) {
             e.printStackTrace()
-        }
-    }
-
-    fun initActionBar() {
-        mActionBar = supportActionBar
-        if (mActionBar != null) {
-            val viewActionBar = layoutInflater.inflate(R.layout.actionbar, null)
-            val params = ActionBar.LayoutParams(
-                ActionBar.LayoutParams.WRAP_CONTENT,
-                ActionBar.LayoutParams.MATCH_PARENT,
-                Gravity.CENTER
-            )
-            mActionBar!!.setDisplayShowCustomEnabled(true)
-//            mActionBar!!.setDisplayShowTitleEnabled(false)
-//            mActionBar!!.setDisplayHomeAsUpEnabled(false)
-//            mActionBar!!.setHomeButtonEnabled(false)
-//            mActionBar!!.setDisplayHomeAsUpEnabled(false)
-            mActionBar!!.setCustomView(viewActionBar, params)
-            mActionBar!!.show()
         }
     }
 }

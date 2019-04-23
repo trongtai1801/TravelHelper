@@ -46,6 +46,20 @@ open class  Profile constructor(
     @Nullable
     var fluentLanguage: String,
 
+    @Ignore
+    @SerializedName("learningLanguage")
+    @Expose
+    @Nullable
+    var learningLanguage: String,
+
+    @SerializedName("about")
+    @Expose
+    var about: String,
+
+    @SerializedName("interest")
+    @Expose
+    var interest: String,
+
     @SerializedName("email")
     @Expose
     var email: String,
@@ -58,7 +72,7 @@ open class  Profile constructor(
     @Expose
     var avatar: String
 ) : RealmModel {
-    public constructor() : this("", "", "", true, "", "", "", "", "", "")
+    public constructor() : this("", "", "", true, "", "", "", "", "", "", "", "", "")
 
     fun setDefaultValue() {
         if (id == null) id = ""
@@ -68,6 +82,9 @@ open class  Profile constructor(
         if (birthday == null) birthday = ""
         if (occupation == null) occupation = ""
         if (fluentLanguage == null) fluentLanguage = ""
+        if (learningLanguage == null) learningLanguage = ""
+        if (about == null) about = ""
+        if (interest == null) interest = ""
         if (email == null) email = ""
         if (phoneNumber == null) phoneNumber = ""
         if (avatar == null) avatar = ""

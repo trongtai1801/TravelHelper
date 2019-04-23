@@ -6,6 +6,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.main.MainActivity
+import dut.t2.travelhepler.ui.profile.ProfileActivity_
 import dut.t2.travelhepler.ui.splash.SplashActivity_
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.RealmDAO
@@ -33,7 +34,7 @@ class MoreFragment : Fragment() {
     fun onClick(v: View) {
         when (v.id) {
             R.id.csl_profile_more -> {
-                (activity as MainActivity).showToast("profile")
+                ProfileActivity_.intent(context).start()
             }
             R.id.ln_hosting_more -> {
                 (activity as MainActivity).showToast("hosting")

@@ -3,4 +3,6 @@
     <dimen name="sign_up_height_edt">@dimen/_40sdp</dimen>
     <dimen name="trip_info_height_edt">@dimen/_50sdp</dimen>
     <dimen name="more_csl_height">@dimen/_50sdp</dimen>
+    <dimen name="profile_height_content_textview">@dimen/_40sdp</dimen>
+    <dimen name="profile_padding_icon">@dimen/_10sdp</dimen>
 </resources>
