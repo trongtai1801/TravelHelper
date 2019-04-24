@@ -86,4 +86,5 @@
     <string name="female">Female</string>
     <string name="updated">Updated</string>
     <string name="no_photo">No photos to display</string>
+    <string name="response_body_null">Response body is null</string>
 </resources>

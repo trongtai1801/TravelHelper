@@ -66,4 +66,11 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Path("id") id: Int
     ): Call<Photo>
+
+    @Multipart
+    @POST("Images")
+    fun uploadImage(
+        @Header("Authorization") authorization: String,
+        @Part photo: MultipartBody.Part
+    ): Call<Photo>
 }

@@ -283,8 +283,6 @@
             android:src="@drawable/ic_pen_white"
             android:layout_marginEnd="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_15sdp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
             app:layout_anchor="@id/tv_content_interest_profile"
             app:layout_anchorGravity="end"
             android:layout_width="wrap_content"

@@ -5,6 +5,7 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
+
 class Photo(
     @SerializedName("photoId")
     @Expose
@@ -14,6 +15,9 @@ class Photo(
     @Expose
     var link: String
 ) : Parcelable {
+
+    fun Photo() {}
+
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString()

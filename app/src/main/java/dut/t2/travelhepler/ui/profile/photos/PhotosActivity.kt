@@ -1,14 +1,25 @@
 package dut.t2.travelhepler.ui.profile.photos
 
+import android.Manifest
+import android.app.Activity
+import android.content.Intent
+import android.provider.MediaStore
 import android.support.v7.widget.GridLayoutManager
+import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Photo
 import dut.t2.travelhepler.utils.Constant
+import dut.t2.travelhepler.utils.Permission
 import dut.t2.travelhepler.utils.SessionManager
 import kotlinx.android.synthetic.main.activity_photos.*
 import kotlinx.android.synthetic.main.custom_appbar_layout.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
+import java.io.File
 
 @EActivity(R.layout.activity_photos)
 class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotoPresenterImpl>(), PhotosContract.PhotosViews {
@@ -31,6 +42,29 @@ class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotoPresenterIm
         mPresenter!!.getPhotos()
     }
 
+    @Click(R.id.fab_add_photo)
+    fun onClick(v: View) {
+        when (v.id) {
+            R.id.fab_add_photo -> {
+                if (Permission.checkPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE))
+                    startPickerImage()
+                else
+                    Permission.initPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                Constant.REQUEST_CODE_PICK_IMAGE -> {
+                    updateAvatar(data)
+                }
+            }
+        }
+    }
+
     override fun getPhotosResult(photos: ArrayList<Photo>) {
         dismissSwipeRefreshLayout()
         if (photos != null) {
@@ -46,6 +80,13 @@ class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotoPresenterIm
     override fun deletePhotoResult() {
         showLoading()
         mPresenter!!.getPhotos()
+    }
+
+    override fun updateImageResult(photo: Photo) {
+        if (photo != null)
+            mPhotos.add(0, photo)
+        mAdapter.notifyDataSetChanged()
+        dismissLoading()
     }
 
     fun initToolbar() {
@@ -80,5 +121,31 @@ class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotoPresenterIm
     fun dismissSwipeRefreshLayout() {
         if (swf_photos != null && swf_photos.isRefreshing)
             swf_photos.isRefreshing = false
+    }
+
+    fun startPickerImage() {
+        val photoPickerIntent = Intent(Intent.ACTION_PICK)
+        photoPickerIntent.type = "image/*"
+        startActivityForResult(photoPickerIntent, Constant.REQUEST_CODE_PICK_IMAGE)
+    }
+
+    fun updateAvatar(data: Intent?) {
+        if (data != null) {
+            val selectedImageUri = data!!.data
+            val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+            val cursor = contentResolver.query(selectedImageUri, filePathColumn, null, null, null) ?: return
+
+            cursor.moveToFirst()
+
+            val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+            val filePath = cursor.getString(columnIndex)
+            val file = File(filePath)
+
+            val requestBody =
+                RequestBody.create(MediaType.parse(contentResolver.getType(selectedImageUri)), file)
+            val photo = MultipartBody.Part.createFormData("file", file.getName(), requestBody)
+            showLoading()
+            mPresenter!!.uploadImage(photo)
+        }
     }
 }
