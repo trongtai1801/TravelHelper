@@ -11,6 +11,7 @@ import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.profile.photos.PhotosActivity_
+import dut.t2.travelhepler.ui.profile.references.ReferencesActivity_
 import dut.t2.travelhepler.ui.profile.update.UpdateProfileActivity_
 import dut.t2.travelhepler.utils.*
 import kotlinx.android.synthetic.main.activity_profile.*
@@ -33,7 +34,7 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
         setupViews()
     }
 
-    @Click(R.id.fab_avatar, R.id.fab_edit_profile, R.id.tv_lb_photos_profile)
+    @Click(R.id.fab_avatar, R.id.fab_edit_profile, R.id.tv_lb_photos_profile, R.id.tv_lb_reference_profile)
     fun onClick(v: View) {
         when (v.id) {
             R.id.fab_avatar -> {
@@ -47,6 +48,9 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
             }
             R.id.tv_lb_photos_profile -> {
                 PhotosActivity_.intent(this).start()
+            }
+            R.id.tv_lb_reference_profile -> {
+                ReferencesActivity_.intent(this).start()
             }
         }
     }
@@ -75,7 +79,6 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
             }
         }
     }
-
 
     override fun updateAvatarResult(profile: Profile) {
         SessionManager.Profile = profile

@@ -31,6 +31,7 @@
         <activity android:name=".ui.profile.update.UpdateProfileActivity_"></activity>
         <activity android:name=".ui.profile.photos.PhotosActivity_"></activity>
         <activity android:name=".ui.profile.photos.PhotoActivity_"></activity>
+        <activity android:name=".ui.profile.references.ReferencesActivity_"></activity>
     </application>
 
 </manifest>

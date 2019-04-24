@@ -90,4 +90,5 @@
     <string name="response_body_null">Thân phản hồi trống</string>
     <string name="title">Tiêu đề</string>
     <string name="no_name">Không tên</string>
+    <string name="reference">Đánh giá</string>
 </resources>
