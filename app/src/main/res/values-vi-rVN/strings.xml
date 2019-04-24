@@ -88,4 +88,6 @@
     <string name="updated">Đã cập nhật</string>
     <string name="no_photo">Không có ảnh nào để hiển thị</string>
     <string name="response_body_null">Thân phản hồi trống</string>
+    <string name="title">Tiêu đề</string>
+    <string name="no_name">Không tên</string>
 </resources>

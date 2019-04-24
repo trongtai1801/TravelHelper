@@ -16,7 +16,7 @@ import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.RealmDAO
 import dut.t2.travelhepler.utils.SessionManager
 import kotlinx.android.synthetic.main.activity_update_profile.*
-import kotlinx.android.synthetic.main.custom_appbar_layout.toolbar_appbar
+import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
 import java.text.SimpleDateFormat
@@ -35,7 +35,7 @@ class UpdateProfileActivity : BaseActivity<UpdateProfileContract.UpdateProfileVi
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_update_light, menu)
+        menuInflater.inflate(R.menu.menu_update, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -67,16 +67,19 @@ class UpdateProfileActivity : BaseActivity<UpdateProfileContract.UpdateProfileVi
         RealmDAO.setProfileLogin(profile)
         setupViews()
         showToast(getString(R.string.updated))
+        tv_title_appbar.text = profile.fullName
         setResult(Activity.RESULT_OK)
         dismissLoading()
     }
 
     fun initToolbar() {
-        setSupportActionBar(toolbar_appbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowTitleEnabled(true)
-        title = SessionManager.Profile!!.fullName
-        toolbar_appbar.setNavigationOnClickListener { view -> onBackPressed() }
+        setSupportActionBar(toolbar_appbar_dark)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        tv_title_appbar.visibility = View.VISIBLE
+        img_back_appbar.visibility = View.VISIBLE
+        tv_title_appbar.text = SessionManager.Profile!!.fullName
+        img_back_appbar.setOnClickListener { onBackPressed() }
     }
 
     fun setupViews() {

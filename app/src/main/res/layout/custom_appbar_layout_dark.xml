@@ -12,11 +12,27 @@
             app:layout_scrollFlags="scroll">
 
         <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar_appbar"
+                android:id="@+id/toolbar_appbar_dark"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="parallax"/>
+                app:layout_collapseMode="parallax">
+
+            <ImageView
+                    android:id="@+id/img_back_appbar"
+                    android:src="@drawable/ic_back_white"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="wrap_content"/>
+
+            <TextView
+                    android:id="@+id/tv_title_appbar"
+                    android:textSize="@dimen/_17ssp"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    android:text="@string/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.CollapsingToolbarLayout>
 </android.support.design.widget.AppBarLayout>

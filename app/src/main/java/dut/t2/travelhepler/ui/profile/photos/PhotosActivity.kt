@@ -13,7 +13,10 @@ import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.Permission
 import dut.t2.travelhepler.utils.SessionManager
 import kotlinx.android.synthetic.main.activity_photos.*
-import kotlinx.android.synthetic.main.custom_appbar_layout.*
+import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
+import kotlinx.android.synthetic.main.custom_appbar_layout_dark.img_back_appbar
+import kotlinx.android.synthetic.main.custom_appbar_layout_dark.tv_title_appbar
+import kotlinx.android.synthetic.main.custom_appbar_layout_light.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -90,11 +93,12 @@ class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotoPresenterIm
     }
 
     fun initToolbar() {
-        setSupportActionBar(toolbar_appbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowTitleEnabled(true)
-        title = SessionManager.Profile!!.fullName
-        toolbar_appbar.setNavigationOnClickListener { view -> onBackPressed() }
+        setSupportActionBar(toolbar_appbar_dark)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        tv_title_appbar.visibility = View.GONE
+        img_back_appbar.visibility = View.VISIBLE
+        img_back_appbar.setOnClickListener { onBackPressed() }
     }
 
     fun initRcv() {

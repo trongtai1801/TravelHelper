@@ -1,13 +1,14 @@
 package dut.t2.travelhepler.ui.trips.info
 
 import android.os.Bundle
+import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.utils.CalendarUtils
 import dut.t2.travelhepler.utils.Constant
-import kotlinx.android.synthetic.main.custom_toolbar.*
 import kotlinx.android.synthetic.main.activity_trip_info.*
+import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
 import org.androidannotations.annotations.EActivity
 import java.util.*
 
@@ -52,11 +53,13 @@ class InfoActivity : BaseActivity<InfoContract.InfoView, InfoPresenterImpl>(), I
     }
 
     fun initToolbar() {
-        setSupportActionBar(toolbar_appbar)
+        setSupportActionBar(toolbar_appbar_dark)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        tv_actionbar_title.text = getString(R.string.trip_info)
-        imgv_actionbar_back.setOnClickListener {
+        tv_title_appbar.visibility = View.VISIBLE
+        img_back_appbar.visibility = View.VISIBLE
+        tv_title_appbar.text = getString(R.string.trip_info)
+        img_back_appbar.setOnClickListener {
             clearData()
             finish()
         }

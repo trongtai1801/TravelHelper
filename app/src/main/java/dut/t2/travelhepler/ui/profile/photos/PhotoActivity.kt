@@ -1,13 +1,17 @@
 package dut.t2.travelhepler.ui.profile.photos
 
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.bumptech.glide.Glide
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Photo
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.SessionManager
 import kotlinx.android.synthetic.main.activity_photo.*
-import kotlinx.android.synthetic.main.custom_appbar_layout.*
+import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
+import kotlinx.android.synthetic.main.custom_appbar_layout_dark.img_back_appbar
+import kotlinx.android.synthetic.main.custom_appbar_layout_dark.tv_title_appbar
+import kotlinx.android.synthetic.main.custom_appbar_layout_light.*
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.EActivity
 
@@ -29,9 +33,11 @@ class PhotoActivity : AppCompatActivity() {
     }
 
     fun initToolbar() {
-        setSupportActionBar(toolbar_appbar)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.setDisplayShowTitleEnabled(true)
-        toolbar_appbar.setNavigationOnClickListener { view -> onBackPressed() }
+        setSupportActionBar(toolbar_appbar_light)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(false)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+        tv_title_appbar.visibility = View.VISIBLE
+        img_back_appbar.visibility = View.VISIBLE
+        img_back_appbar.setOnClickListener { onBackPressed() }
     }
 }

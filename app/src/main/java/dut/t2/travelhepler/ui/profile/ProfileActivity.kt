@@ -21,7 +21,6 @@ import okhttp3.MultipartBody
 import okhttp3.MediaType
 import java.io.File
 
-
 @EActivity(R.layout.activity_profile)
 class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresenterImpl>(), ProfileContract.ProfileView {
 
@@ -95,7 +94,7 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
         title = RealmDAO.getProfileLogin()!!.fullName
         var tmp = title
         Glide.with(this).load(RealmDAO.getProfileLogin()!!.avatar)
-            .placeholder(this.getDrawable(R.drawable.ic_avatar_default))
+            .placeholder(this.getDrawable(R.drawable.ic_user_circle))
             .into(img_avatar_toolbar)
         toolbar_show_profile.setNavigationOnClickListener { view -> onBackPressed() }
     }

@@ -260,6 +260,6 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <include layout="@layout/custom_appbar_layout"></include>
+    <include layout="@layout/custom_appbar_layout_dark"></include>
 
 </android.support.design.widget.CoordinatorLayout>

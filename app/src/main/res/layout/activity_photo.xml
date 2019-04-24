@@ -5,7 +5,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <include layout="@layout/custom_appbar_layout"></include>
+    <include layout="@layout/custom_appbar_layout_dark"></include>
 
     <ScrollView
             android:layout_width="match_parent"
