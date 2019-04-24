@@ -2,31 +2,24 @@ package dut.t2.travelhepler.ui.profile
 
 import android.Manifest
 import android.app.Activity
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.provider.MediaStore
-import android.support.design.widget.CollapsingToolbarLayout
 import android.view.View
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
-import dut.t2.travelhepler.ui.main.MainActivity
-import dut.t2.travelhepler.ui.profile.photos.PhotoActivity_
-import dut.t2.travelhepler.ui.profile.update.DialogIOSSheet
+import dut.t2.travelhepler.ui.profile.photos.PhotosActivity_
 import dut.t2.travelhepler.ui.profile.update.UpdateProfileActivity_
 import dut.t2.travelhepler.utils.*
 import kotlinx.android.synthetic.main.activity_profile.*
-import kotlinx.android.synthetic.main.activity_update_profile.*
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
 import okhttp3.RequestBody
 import okhttp3.MultipartBody
 import okhttp3.MediaType
 import java.io.File
-import java.util.ArrayList
 
 
 @EActivity(R.layout.activity_profile)
@@ -54,7 +47,7 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
                 UpdateProfileActivity_.intent(this).startForResult(Constant.REQUEST_CODE_UPDATE_USER_PROFILE)
             }
             R.id.tv_lb_photos_profile -> {
-                PhotoActivity_.intent(this).start()
+                PhotosActivity_.intent(this).start()
             }
         }
     }

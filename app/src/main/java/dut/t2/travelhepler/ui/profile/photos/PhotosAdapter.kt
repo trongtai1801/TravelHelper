@@ -30,6 +30,8 @@ class PhotosAdapter(val mContext: Context, val mPhotos: List<Photo>, var mCallba
         val item = mPhotos.get(p1)
         Glide.with(mContext).load(item.link)
             .placeholder(mContext.getDrawable(R.drawable.ic_user_circle))
+            .override(100, 100)
+            .centerCrop()
             .into(p0.photo)
     }
 

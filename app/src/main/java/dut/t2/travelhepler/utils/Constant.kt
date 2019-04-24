@@ -10,6 +10,7 @@ class Constant {
         const val INDEX_FRAGMENT_MORE: Int = 2
 
         const val PUBLIC_TRIPS = "publictrips"
+        const val PHOTO = "photo"
 
         const val REQUEST_CODE_CREATE_PUBLIC_TRIP: Int = 1
         const val REQUEST_CODE_UPDATE_PUBLIC_TRIP: Int = 2

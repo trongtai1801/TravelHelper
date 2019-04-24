@@ -29,6 +29,7 @@
         <activity android:name=".ui.trips.update.UpdateTripActivity_"></activity>
         <activity android:name=".ui.profile.ProfileActivity_"></activity>
         <activity android:name=".ui.profile.update.UpdateProfileActivity_"></activity>
+        <activity android:name=".ui.profile.photos.PhotosActivity_"></activity>
         <activity android:name=".ui.profile.photos.PhotoActivity_"></activity>
     </application>
 
