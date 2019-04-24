@@ -7,9 +7,13 @@ interface PhotosContract {
 
     interface PhotosViews : BaseView {
         fun getPhotosResult(photos: ArrayList<Photo>)
+
+        fun deletePhotoResult()
     }
 
     interface PhotoPresenter {
         fun getPhotos()
+
+        fun deletePhoto(id: Int)
     }
 }

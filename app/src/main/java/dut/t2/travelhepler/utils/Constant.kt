@@ -25,5 +25,7 @@ class Constant {
         const val ID_SEARCH_ITEM_EVENT = 3
 
         const val REQUEST_CODE_PICK_IMAGE = 101
+
+        const val REQUEST_DELETE_SUCCESS = 204
     }
 }

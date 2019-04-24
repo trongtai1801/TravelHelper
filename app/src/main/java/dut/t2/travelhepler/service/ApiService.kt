@@ -10,8 +10,6 @@ import dut.t2.travelhepler.service.response.SignUpResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
-import java.lang.Error
-import java.util.*
 import kotlin.collections.ArrayList
 
 interface ApiService {
@@ -62,4 +60,10 @@ interface ApiService {
 
     @GET("users/images")
     fun getPhotos(@Header("Authorization") authorization: String): Call<ArrayList<Photo>>
+
+    @DELETE("Images/{id}")
+    fun deletePhoto(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Int
+    ): Call<Photo>
 }

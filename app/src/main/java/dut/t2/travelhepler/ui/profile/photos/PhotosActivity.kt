@@ -43,6 +43,11 @@ class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotoPresenterIm
         dismissLoading()
     }
 
+    override fun deletePhotoResult() {
+        showLoading()
+        mPresenter!!.getPhotos()
+    }
+
     fun initToolbar() {
         setSupportActionBar(toolbar_appbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -62,7 +67,8 @@ class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotoPresenterIm
             override fun onPopupItemClick(itemId: Int, photo: Photo) {
                 when (itemId) {
                     R.id.item_delete -> {
-                        showToast("Delete" + photo.link)
+                        showLoading()
+                        mPresenter!!.deletePhoto(photo.id)
                     }
                 }
             }
