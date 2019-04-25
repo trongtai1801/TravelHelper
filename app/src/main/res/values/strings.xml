@@ -90,4 +90,7 @@
     <string name="title">Title</string>
     <string name="no_name">No name</string>
     <string name="reference">Reference</string>
+    <string name="positive">Positive</string>
+    <string name="negative">Negative</string>
+    <string name="content">Content</string>
 </resources>

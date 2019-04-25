@@ -6,6 +6,7 @@ import dut.t2.travelhelper.service.model.User
 import dut.t2.travelhelper.service.response.LoginResponse
 import dut.t2.travelhepler.service.model.Photo
 import dut.t2.travelhepler.service.model.PublicTrip
+import dut.t2.travelhepler.service.model.Reference
 import dut.t2.travelhepler.service.response.SignUpResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -73,4 +74,7 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Part photo: MultipartBody.Part
     ): Call<Photo>
+
+    @GET("users/References")
+    fun getReferences(@Header("Authorization") authorization: String): Call<ArrayList<Reference>>
 }

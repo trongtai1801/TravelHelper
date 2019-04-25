@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_flex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardPreventCornerOverlap="false">
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout
+                android:id="@+id/ln_title_item_references"
+                android:orientation="horizontal"
+                android:layout_width="match_parent" android:layout_height="@dimen/_40sdp">
+            <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/cir_img_item_references"
+                    android:src="@drawable/ic_user_circle"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"/>
+
+            <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_weight="4"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:id="@+id/tv_sender_name_item_references"
+                        android:text="@string/full_name"
+                        android:gravity="center_vertical"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/_15ssp"
+                        android:textStyle="bold"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent" android:layout_height="0dp"/>
+                <TextView
+                        android:id="@+id/tv_sender_address_item_references"
+                        android:textSize="@dimen/_12ssp"
+                        android:text="@string/address"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/colorGrayDark"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent" android:layout_height="0dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+                android:id="@+id/tv_positive_negative_item_references"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginStart="@dimen/_64sdp"
+                android:maxLines="1"
+                android:layout_below="@+id/ln_title_item_references"
+                android:textSize="@dimen/_12ssp"
+                android:text="@string/positive"
+                android:gravity="center_vertical"
+                android:textColor="@color/colorGreen"
+                android:layout_weight="1"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/tv_content_item_references"
+                android:layout_marginStart="@dimen/_64sdp"
+                android:maxLines="100"
+                android:text="@string/content"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/colorGrayDark"
+                android:layout_below="@+id/tv_positive_negative_item_references"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

@@ -1,5 +1,7 @@
 package dut.t2.travelhelper.service.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import android.support.annotation.Nullable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -71,7 +73,45 @@ open class  Profile constructor(
     @SerializedName("avatarLocation")
     @Expose
     var avatar: String
-) : RealmModel {
+) : RealmModel, Parcelable {
+
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readByte() != 0.toByte(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()
+    )
+
+    override fun writeToParcel(dest: Parcel?, flags: Int) {
+        dest!!.writeString(id)
+        dest!!.writeString(fullName)
+        dest!!.writeString(address)
+        if (gender != null)
+            dest.writeInt(if (gender) 1 else 0)
+        dest!!.writeString(birthday)
+        dest!!.writeString(occupation)
+        dest!!.writeString(fluentLanguage)
+        dest!!.writeString(learningLanguage)
+        dest!!.writeString(about)
+        dest!!.writeString(interest)
+        dest!!.writeString(email)
+        dest!!.writeString(phoneNumber)
+        dest!!.writeString(avatar)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
     public constructor() : this("", "", "", true, "", "", "", "", "", "", "", "", "")
 
     fun setDefaultValue() {
@@ -92,5 +132,15 @@ open class  Profile constructor(
 
     fun splitBirthday(): String {
         return this.birthday.split("T")[0]
+    }
+
+    companion object CREATOR : Parcelable.Creator<Profile> {
+        override fun createFromParcel(parcel: Parcel): Profile {
+            return Profile(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Profile?> {
+            return arrayOfNulls(size)
+        }
     }
 }
