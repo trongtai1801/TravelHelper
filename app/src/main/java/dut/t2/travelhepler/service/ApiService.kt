@@ -4,12 +4,15 @@ import com.google.gson.JsonObject
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhelper.service.model.User
 import dut.t2.travelhelper.service.response.LoginResponse
+import dut.t2.travelhepler.service.model.Home
+import dut.t2.travelhepler.service.model.Photo
 import dut.t2.travelhepler.service.model.PublicTrip
+import dut.t2.travelhepler.service.model.Reference
 import dut.t2.travelhepler.service.response.SignUpResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
-import java.lang.Error
+import kotlin.collections.ArrayList
 
 interface ApiService {
 
@@ -50,4 +53,32 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Part avatar: MultipartBody.Part
     ): Call<Profile>
+
+    @PUT("Users")
+    fun updateUserProfile(
+        @Header("Authorization") authorization: String,
+        @Body jsonObjects: JsonObject
+    ): Call<Profile>
+
+    @GET("users/images")
+    fun getPhotos(@Header("Authorization") authorization: String): Call<ArrayList<Photo>>
+
+    @DELETE("Images/{id}")
+    fun deletePhoto(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Int
+    ): Call<Photo>
+
+    @Multipart
+    @POST("Images")
+    fun uploadImage(
+        @Header("Authorization") authorization: String,
+        @Part photo: MultipartBody.Part
+    ): Call<Photo>
+
+    @GET("users/References")
+    fun getReferences(@Header("Authorization") authorization: String): Call<ArrayList<Reference>>
+
+    @GET("Users/Homes")
+    fun getHomeInfo(@Header("Authorization") authorization: String): Call<ArrayList<Home>>
 }

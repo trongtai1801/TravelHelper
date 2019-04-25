@@ -85,4 +85,24 @@
     <string name="interest">Sở thích</string>
     <string name="male">Nam</string>
     <string name="female">Nữ</string>
+    <string name="updated">Đã cập nhật</string>
+    <string name="no_photo">Không có ảnh nào để hiển thị</string>
+    <string name="response_body_null">Thân phản hồi trống</string>
+    <string name="title">Tiêu đề</string>
+    <string name="no_name">Không tên</string>
+    <string name="references">Đánh giá</string>
+    <string name="positive">Tích cực</string>
+    <string name="negative">Tiêu cực</string>
+    <string name="content">Nội dung</string>
+    <string name="home">Nhà</string>
+    <string name="max_guest">Số khách tối đa</string>
+    <string name="preferred_gender_host">Giới tính yêu cầu</string>
+    <string name="sleeping_arrangements">Phòng ngủ</string>
+    <string name="description_arrangement">Mô tả phòng ngủ</string>
+    <string name="transportation_access">Phương tiện di chuyển</string>
+    <string name="allow_thing">Cho phép</string>
+    <string name="stuff">Vật dụng</string>
+    <string name="add_info">Thông tin thêm</string>
+    <string name="dont_have_home">Bạn chưa có thông tin nào về nhà của bạn</string>
+    <string name="dont_have_reference">Bạn chưa có đánh giá nào</string>
 </resources>

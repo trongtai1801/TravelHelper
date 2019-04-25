@@ -10,7 +10,6 @@ import dut.t2.travelhepler.ui.profile.ProfileActivity_
 import dut.t2.travelhepler.ui.splash.SplashActivity_
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.RealmDAO
-import dut.t2.travelhepler.utils.SessionManager
 import dut.t2.travelhepler.utils.SharedPrefs
 import kotlinx.android.synthetic.main.fragment_more.*
 import org.androidannotations.annotations.AfterViews
@@ -22,8 +21,7 @@ class MoreFragment : Fragment() {
 
     @AfterViews
     fun afterViews() {
-        loadAvatar()
-        tv_user_name_more.text = RealmDAO.getProfileLogin()!!.fullName
+        setupViews()
     }
 
     @Click(
@@ -33,7 +31,7 @@ class MoreFragment : Fragment() {
     fun onClick(v: View) {
         when (v.id) {
             R.id.csl_profile_more -> {
-                ProfileActivity_.intent(context).startForResult(Constant.REQUEST_CODE_UPDATE_UPDATE_AVATAR)
+                ProfileActivity_.intent(context).startForResult(Constant.REQUEST_CODE_UPDATE_USER_AVATAR)
             }
             R.id.ln_hosting_more -> {
                 (activity as MainActivity).showToast("hosting")
@@ -69,7 +67,8 @@ class MoreFragment : Fragment() {
         activity!!.finish()
     }
 
-    fun loadAvatar() {
+    fun setupViews() {
+        tv_user_name_more.text = RealmDAO.getProfileLogin()!!.fullName
         Glide.with(context!!).load(RealmDAO.getProfileLogin()!!.avatar)
             .placeholder(context!!.getDrawable(R.drawable.ic_user_circle))
             .into(cir_img_avatar_more)

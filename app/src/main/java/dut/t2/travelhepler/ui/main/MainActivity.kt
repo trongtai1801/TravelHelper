@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.support.v7.app.AlertDialog
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
@@ -17,8 +16,10 @@ import dut.t2.travelhepler.ui.main.more.MoreFragment_
 import dut.t2.travelhepler.ui.main.search.SearchFragment
 import dut.t2.travelhepler.ui.main.search.SearchFragment_
 import dut.t2.travelhepler.utils.Constant
-import kotlinx.android.synthetic.main.custom_toolbar.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
+import kotlinx.android.synthetic.main.custom_appbar_layout_light.img_back_appbar
+import kotlinx.android.synthetic.main.custom_appbar_layout_light.tv_title_appbar
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.androidannotations.annotations.EActivity
 
@@ -60,8 +61,8 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
                 Constant.REQUEST_CODE_UPDATE_PUBLIC_TRIP -> {
                     getPublicTrips()
                 }
-                Constant.REQUEST_CODE_UPDATE_UPDATE_AVATAR -> {
-                    moreFragment.loadAvatar()
+                Constant.REQUEST_CODE_UPDATE_USER_AVATAR -> {
+                    moreFragment.setupViews()
                 }
             }
         }
@@ -98,12 +99,12 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     }
 
     fun initToolbar() {
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar_appbar_dark)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        imgv_actionbar_back.visibility = View.GONE
-        tv_actionbar_title.text = getString(R.string.dashboard)
-
+        tv_title_appbar.visibility = View.VISIBLE
+        img_back_appbar.visibility = View.GONE
+        tv_title_appbar.text = getString(R.string.dashboard)
     }
 
     fun initBottomNavigationView() {
@@ -135,15 +136,15 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
                 b.putParcelableArrayList(Constant.PUBLIC_TRIPS, mPublicTrips)
                 dashboardFragment.arguments = b
                 index = Constant.INDEX_FRAGMENT_DASBOARD
-                tv_actionbar_title.setText(getString(R.string.dashboard))
+                tv_title_appbar.setText(getString(R.string.dashboard))
             }
             is SearchFragment -> {
                 index = Constant.INDEX_FRAGMENT_SEARCH
-                tv_actionbar_title.setText(getString(R.string.search))
+                tv_title_appbar.setText(getString(R.string.search))
             }
             is MoreFragment -> {
                 index = Constant.INDEX_FRAGMENT_MORE
-                tv_actionbar_title.setText(getString(R.string.more))
+                tv_title_appbar.setText(getString(R.string.more))
             }
         }
         supportFragmentManager

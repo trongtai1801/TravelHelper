@@ -16,7 +16,7 @@ class PublicTripAdapter(val mContext: Context, val mPublicTrips: List<PublicTrip
     RecyclerView.Adapter<PublicTripAdapter.PublicTripViewHolder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): PublicTripViewHolder {
-        var view = LayoutInflater.from(this.mContext).inflate(R.layout.item_rcv_upcoming_travel_dashboard, p0, false);
+        var view = LayoutInflater.from(this.mContext).inflate(R.layout.item_rcv_upcoming_travel_dashboard, p0, false)
         return PublicTripViewHolder(
             view,
             view.tv_item_upcoming_trip_location,

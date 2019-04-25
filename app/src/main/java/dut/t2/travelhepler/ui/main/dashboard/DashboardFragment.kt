@@ -1,7 +1,5 @@
 package dut.t2.travelhepler.ui.main.dashboard
 
-import android.app.Activity
-import android.content.Intent
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View

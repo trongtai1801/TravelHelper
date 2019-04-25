@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/custom_appbar_layout_dark"/>
+
+    <android.support.v4.widget.NestedScrollView
+            android:layout_marginBottom="@dimen/_10sdp"
+            app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <RelativeLayout
+                android:id="@+id/rll_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:id="@+id/tv_max_guests_home"
+                    android:text="@string/max_guest"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    style="@style/HomeLabelTexView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                    android:id="@+id/ln_max_guests_home"
+                    android:orientation="horizontal"
+                    style="@style/HomeLinearLayout"
+                    android:layout_below="@id/tv_max_guests_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/home_height_edit_text">
+
+                <EditText
+                        android:id="@+id/edt_max_guest_home"
+                        android:hint="@string/max_guest"
+                        android:focusable="false"
+                        android:layout_weight="11"
+                        style="@style/HomeEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+                <ImageView
+                        android:id="@+id/ic_max_guest_home"
+                        app:srcCompat="@drawable/ic_check"
+                        android:visibility="invisible"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tv_preferred_gender_to_host"
+                    android:layout_below="@id/ln_max_guests_home"
+                    android:text="@string/preferred_gender_host"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    style="@style/HomeLabelTexView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                    android:id="@+id/ln_preferred_gender_host"
+                    android:orientation="horizontal"
+                    style="@style/HomeLinearLayout"
+                    android:layout_below="@id/tv_preferred_gender_to_host"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/home_height_edit_text">
+
+                <EditText
+                        android:id="@+id/edt_preferred_gender_home"
+                        android:hint="@string/preferred_gender_host"
+                        android:focusable="false"
+                        android:singleLine="true"
+                        android:layout_weight="11"
+                        style="@style/HomeEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+                <ImageView
+                        android:id="@+id/ic_preferred_gender_host"
+                        app:srcCompat="@drawable/ic_check"
+                        android:visibility="invisible"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tv_sleeping_arrangements"
+                    android:layout_below="@id/ln_preferred_gender_host"
+                    android:text="@string/sleeping_arrangements"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    style="@style/HomeLabelTexView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                    android:id="@+id/ln_sleeping_arrangements"
+                    android:orientation="horizontal"
+                    style="@style/HomeLinearLayout"
+                    android:layout_below="@id/tv_sleeping_arrangements"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/home_height_edit_text">
+
+                <EditText
+                        android:id="@+id/edt_sleeping_arrangements_home"
+                        android:hint="@string/sleeping_arrangements"
+                        android:focusable="false"
+                        android:maxLines="4"
+                        android:layout_weight="11"
+                        style="@style/HomeEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+                <ImageView
+                        android:id="@+id/ic_sleeping_arrangements_home"
+                        app:srcCompat="@drawable/ic_check"
+                        android:visibility="invisible"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tv_description_arrangement"
+                    android:layout_below="@id/ln_sleeping_arrangements"
+                    android:text="@string/description_arrangement"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    style="@style/HomeLabelTexView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                    android:id="@+id/ln_description_arrangement"
+                    android:orientation="horizontal"
+                    style="@style/HomeLinearLayout"
+                    android:layout_below="@id/tv_description_arrangement"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/home_height_double_edit_text">
+
+                <EditText
+                        android:id="@+id/edt_description_sleeping_arrangement_home"
+                        android:hint="@string/description_arrangement"
+                        android:focusable="false"
+                        android:maxLines="4"
+                        android:layout_weight="11"
+                        style="@style/HomeEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+                <ImageView
+                        android:id="@+id/ic_description_arrangement"
+                        app:srcCompat="@drawable/ic_check"
+                        android:visibility="invisible"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tv_transportation_access"
+                    android:layout_below="@id/ln_description_arrangement"
+                    android:text="@string/transportation_access"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    style="@style/HomeLabelTexView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                    android:id="@+id/ln_transportation_access"
+                    android:orientation="horizontal"
+                    style="@style/HomeLinearLayout"
+                    android:layout_below="@id/tv_transportation_access"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/home_height_edit_text">
+
+                <EditText
+                        android:id="@+id/edt_transportation_access_home"
+                        android:hint="@string/transportation_access"
+                        android:focusable="false"
+                        android:layout_weight="11"
+                        style="@style/HomeEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+                <ImageView
+                        android:id="@+id/ic_transportation_access"
+                        app:srcCompat="@drawable/ic_check"
+                        android:visibility="invisible"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tv_allow_thing"
+                    android:layout_below="@id/ln_transportation_access"
+                    android:text="@string/allow_thing"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    style="@style/HomeLabelTexView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                    android:id="@+id/ln_allow_thing"
+                    android:orientation="horizontal"
+                    style="@style/HomeLinearLayout"
+                    android:layout_below="@id/tv_allow_thing"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/home_height_double_edit_text">
+
+                <EditText
+                        android:id="@+id/edt_allow_thing_home"
+                        android:hint="@string/allow_thing"
+                        android:focusable="false"
+                        android:maxLines="4"
+                        android:layout_weight="11"
+                        style="@style/HomeEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+                <ImageView
+                        android:id="@+id/ic_allow_thing"
+                        app:srcCompat="@drawable/ic_check"
+                        android:visibility="invisible"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tv_stuff"
+                    android:layout_below="@id/ln_allow_thing"
+                    android:text="@string/stuff"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    style="@style/HomeLabelTexView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                    android:id="@+id/ln_stuff"
+                    android:orientation="horizontal"
+                    style="@style/HomeLinearLayout"
+                    android:layout_below="@id/tv_stuff"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/home_height_double_edit_text">
+
+                <EditText
+                        android:id="@+id/edt_stuff_home"
+                        android:hint="@string/stuff"
+                        android:focusable="false"
+                        android:maxLines="4"
+                        android:layout_weight="11"
+                        style="@style/HomeEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+                <ImageView
+                        android:id="@+id/ic_stuff"
+                        app:srcCompat="@drawable/ic_check"
+                        android:visibility="invisible"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+            </LinearLayout>
+
+            <TextView
+                    android:id="@+id/tv_add_info"
+                    android:layout_below="@id/ln_stuff"
+                    android:text="@string/add_info"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    style="@style/HomeLabelTexView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                    android:id="@+id/ln_add_info"
+                    android:orientation="horizontal"
+                    style="@style/HomeLinearLayout"
+                    android:layout_below="@id/tv_add_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/home_height_double_edit_text">
+
+                <EditText
+                        android:id="@+id/edt_add_info_home"
+                        android:hint="@string/add_info"
+                        android:focusable="false"
+                        android:maxLines="4"
+                        android:layout_weight="11"
+                        style="@style/HomeEditText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+                <ImageView
+                        android:id="@+id/ic_add_info"
+                        app:srcCompat="@drawable/ic_check"
+                        android:visibility="invisible"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+
+</android.support.design.widget.CoordinatorLayout>
