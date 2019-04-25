@@ -87,4 +87,8 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Query("address") address: String
     ): Call<ArrayList<Profile>>
+
+
+    @GET("Users/{id}/Homes")
+    fun getHomeInfoOfOtherUser(@Path("id") userId: String): Call<ArrayList<Home>>
 }

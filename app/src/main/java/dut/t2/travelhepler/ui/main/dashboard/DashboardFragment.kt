@@ -72,7 +72,6 @@ class DashboardFragment : Fragment() {
         rcv_search_dashboard.setHasFixedSize(true)
         mSearchAdapter = SearchAdapter(context!!, searchItems, object : SearchAdapter.ItemClickListener {
             override fun onClick(searchItem: SearchItem) {
-                Toast.makeText(context, searchItem.name, Toast.LENGTH_LONG).show()
                 when (searchItem.id) {
                     Constant.ID_SEARCH_ITEM_HOST -> {
                         HostsActivity_.intent(context).start()

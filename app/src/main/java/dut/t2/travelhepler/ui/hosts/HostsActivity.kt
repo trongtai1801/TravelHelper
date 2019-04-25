@@ -5,6 +5,8 @@ import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
+import dut.t2.travelhepler.ui.hosts.info.HostInfoActivity_
+import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.RealmDAO
 import kotlinx.android.synthetic.main.activity_hosts.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
@@ -58,7 +60,7 @@ class HostsActivity : BaseActivity<HostsContrct.HostsView, HostsPresenterImpl>()
         rcv_hosts.setHasFixedSize(true)
         mAdapter = HostsAdapter(this, mHosts, object : HostsAdapter.HostClickListener {
             override fun onClick(host: Profile) {
-
+                HostInfoActivity_.intent(this@HostsActivity).extra(Constant.HOST, host).start()
             }
         })
         rcv_hosts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

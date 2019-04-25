@@ -22,6 +22,9 @@ class HostsPresenterImpl(context: Context) : BasePresenter<HostsContrct.HostsVie
                     if (response.body() != null) {
                         if ((response.body() as ArrayList<Profile>).size > 0) {
                             var result: ArrayList<Profile> = response.body() as ArrayList<Profile>
+                            for (profile in result) {
+                                profile.setDefaultValue()
+                            }
                             view!!.getHostsResult(result)
                         } else view!!.showToast(context.getString(R.string.no_host))
                     } else view!!.showMessage(context.getString(R.string.data_null))

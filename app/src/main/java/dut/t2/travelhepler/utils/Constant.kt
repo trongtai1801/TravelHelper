@@ -12,6 +12,7 @@ class Constant {
         const val PUBLIC_TRIPS = "publictrips"
         const val PHOTO = "photo"
         const val HOME = "home"
+        const val HOST = "host"
 
         const val REQUEST_CODE_CREATE_PUBLIC_TRIP: Int = 1
         const val REQUEST_CODE_UPDATE_PUBLIC_TRIP: Int = 2

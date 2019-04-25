@@ -110,7 +110,6 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(true)
         title = RealmDAO.getProfileLogin()!!.fullName
-        var tmp = title
         Glide.with(this).load(RealmDAO.getProfileLogin()!!.avatar)
             .placeholder(this.getDrawable(R.drawable.ic_user_circle))
             .into(img_avatar_toolbar)
