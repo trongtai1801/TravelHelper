@@ -324,7 +324,7 @@
             android:src="@drawable/ic_pen_white"
             android:layout_marginEnd="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_15sdp"
-            app:layout_anchor="@id/tv_lb_reference_profile"
+            app:layout_anchor="@id/tv_lb_home_profile"
             app:layout_anchorGravity="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

@@ -34,6 +34,10 @@ class ReferencesActivity : BaseActivity<ReferencesContract.ReferencesView, Refer
 
     override fun getReferencesResult(references: ArrayList<Reference>) {
         if (references != null) {
+            if (references.size <= 0) {
+                showToast(getString(R.string.dont_have_reference))
+                return
+            }
             mReferences.clear()
             mReferences.addAll(references)
             mAdapter!!.notifyDataSetChanged()

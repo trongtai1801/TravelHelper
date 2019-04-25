@@ -38,7 +38,6 @@ class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotoPresenterIm
         initToolbar()
         initRcv()
         swf_photos.setOnRefreshListener {
-            showLoading()
             mPresenter!!.getPhotos()
         }
         showLoading()
