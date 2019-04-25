@@ -33,10 +33,10 @@ class PhotoActivity : AppCompatActivity() {
     }
 
     fun initToolbar() {
-        setSupportActionBar(toolbar_appbar_light)
+        setSupportActionBar(toolbar_appbar_dark)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        tv_title_appbar.visibility = View.VISIBLE
+        tv_title_appbar.visibility = View.GONE
         img_back_appbar.visibility = View.VISIBLE
         img_back_appbar.setOnClickListener { onBackPressed() }
     }
