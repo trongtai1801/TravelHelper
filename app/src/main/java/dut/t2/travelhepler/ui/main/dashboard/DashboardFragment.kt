@@ -7,6 +7,7 @@ import android.widget.Toast
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.model.SearchItem
+import dut.t2.travelhepler.ui.hosts.HostsACtivity_
 import dut.t2.travelhepler.ui.main.MainActivity
 import dut.t2.travelhepler.ui.trips.create.CreateTripActivity_
 import dut.t2.travelhepler.ui.trips.info.InfoActivity_
@@ -72,6 +73,14 @@ class DashboardFragment : Fragment() {
         mSearchAdapter = SearchAdapter(context!!, searchItems, object : SearchAdapter.ItemClickListener {
             override fun onClick(searchItem: SearchItem) {
                 Toast.makeText(context, searchItem.name, Toast.LENGTH_LONG).show()
+                when (searchItem.id) {
+                    Constant.ID_SEARCH_ITEM_HOST -> {
+                        HostsACtivity_.intent(context).start()
+                    }
+                    Constant.ID_SEARCH_ITEM_TRAVELERS -> {
+
+                    }
+                }
             }
         })
         rcv_search_dashboard.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
