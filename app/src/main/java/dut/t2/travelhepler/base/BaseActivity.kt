@@ -2,18 +2,11 @@ package dut.t2.travelhelper.base
 
 import android.app.AlertDialog
 import android.app.ProgressDialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
-import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.Gravity
-import android.view.View
 import android.widget.Toast
 import dut.t2.travelhepler.R
-import kotlinx.android.synthetic.main.custom_toolbar.*
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.EActivity
 import java.lang.Exception

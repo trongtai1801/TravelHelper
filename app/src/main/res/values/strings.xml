@@ -84,4 +84,24 @@
     <string name="interest">Interest</string>
     <string name="male">Male</string>
     <string name="female">Female</string>
+    <string name="updated">Updated</string>
+    <string name="no_photo">No photos to display</string>
+    <string name="response_body_null">Response body is null</string>
+    <string name="title">Title</string>
+    <string name="no_name">No name</string>
+    <string name="references">References</string>
+    <string name="positive">Positive</string>
+    <string name="negative">Negative</string>
+    <string name="content">Content</string>
+    <string name="home">Home</string>
+    <string name="max_guest">Max number of guests</string>
+    <string name="preferred_gender_host">Preferred Gender to Host</string>
+    <string name="sleeping_arrangements">Sleeping Arrangements</string>
+    <string name="description_arrangement">Description of Sleeping Arrangement</string>
+    <string name="transportation_access">Public Transportation Access</string>
+    <string name="allow_thing">Allowed Thing</string>
+    <string name="stuff">Stuff</string>
+    <string name="add_info">Additional Information</string>
+    <string name="dont_have_home">You don\'t have any home info</string>
+    <string name="dont_have_reference">You don\'t have any home reference</string>
 </resources>

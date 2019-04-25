@@ -4,12 +4,13 @@ import android.content.Context
 import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhelper.service.model.Profile
+import dut.t2.travelhepler.R
+import dut.t2.travelhepler.service.model.Home
 import dut.t2.travelhepler.utils.SessionManager
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.security.AccessController.getContext
 
 class ProfilePresenterImpl(context: Context) : BasePresenter<ProfileContract.ProfileView>(context),
     ProfileContract.ProfilePresenter {
@@ -36,6 +37,29 @@ class ProfilePresenterImpl(context: Context) : BasePresenter<ProfileContract.Pro
             }
         })
 
+    }
+
+    override fun getHomeInfo() {
+        val req = ApiClient.getService()!!.getHomeInfo(SessionManager.getAccessToken()!!)
+
+        req.enqueue(object : Callback<ArrayList<Home>> {
+            override fun onResponse(call: Call<ArrayList<Home>>, response: Response<ArrayList<Home>>) {
+                if (response.isSuccessful) {
+                    if (response.body() != null && (response.body() as ArrayList<Home>).size > 0) {
+                        var home = (response.body() as ArrayList<Home>).get(0)
+                        home.setDefaultValue()
+                        view!!.getHomeInfoResult(home)
+                    }
+                    else view!!.showToast(context.getString(R.string.dont_have_home))
+                    view!!.dismissLoading()
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<Home>>, t: Throwable) {
+                view!!.showMessage(t.toString())
+                view!!.dismissLoading()
+            }
+        })
     }
 
 }

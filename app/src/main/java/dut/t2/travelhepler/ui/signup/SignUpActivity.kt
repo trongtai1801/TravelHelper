@@ -3,7 +3,6 @@ package dut.t2.travelhelper.ui.signup
 import android.view.View
 import android.widget.TextView
 import dut.t2.travelhelper.base.BaseActivity
-import kotlinx.android.synthetic.main.custom_toolbar.*
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import org.androidannotations.annotations.EActivity
 import org.androidannotations.annotations.TextChange
@@ -11,6 +10,7 @@ import android.util.Patterns
 import android.text.TextUtils
 import com.google.gson.JsonObject
 import dut.t2.travelhepler.R
+import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
 import org.androidannotations.annotations.Click
 
 @EActivity(R.layout.activity_sign_up)
@@ -79,11 +79,13 @@ class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterIm
     }
 
     fun initToolbar() {
-        setSupportActionBar(toolbar)
+        setSupportActionBar(toolbar_appbar_dark)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        imgv_actionbar_back.setOnClickListener { finish() }
-        tv_actionbar_title.text = getString(R.string.sign_up)
+        tv_title_appbar.visibility = View.VISIBLE
+        img_back_appbar.visibility = View.VISIBLE
+        tv_title_appbar.text = getString(R.string.sign_up)
+        img_back_appbar.setOnClickListener { finish() }
 
     }
 
