@@ -34,7 +34,6 @@ class ReferencesAdapter(
         return 0
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(p0: ReferencesViewHolder, p1: Int) {
         val item = mReferences.get(p1)
         Glide.with(mContext).load(item.sender.avatar)

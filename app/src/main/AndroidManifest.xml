@@ -33,7 +33,7 @@
         <activity android:name=".ui.profile.photos.PhotoActivity_"></activity>
         <activity android:name=".ui.profile.references.ReferencesActivity_"></activity>
         <activity android:name=".ui.profile.home.HomeActivity_"></activity>
-        <activity android:name=".ui.hosts.HostsACtivity_"></activity>
+        <activity android:name=".ui.hosts.HostsActivity_"></activity>
     </application>
 
 </manifest>

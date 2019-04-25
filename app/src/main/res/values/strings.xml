@@ -104,4 +104,5 @@
     <string name="add_info">Additional Information</string>
     <string name="dont_have_home">You don\'t have any home info</string>
     <string name="dont_have_reference">You don\'t have any home reference</string>
+    <string name="no_host">No host was found out</string>
 </resources>

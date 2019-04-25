@@ -81,4 +81,10 @@ interface ApiService {
 
     @GET("Users/Homes")
     fun getHomeInfo(@Header("Authorization") authorization: String): Call<ArrayList<Home>>
+
+    @GET("Users/Search")
+    fun getHosts(
+        @Header("Authorization") authorization: String,
+        @Query("address") address: String
+    ): Call<ArrayList<Profile>>
 }

@@ -58,7 +58,6 @@ class ReferencesActivity : BaseActivity<ReferencesContract.ReferencesView, Refer
 
     fun initRcv() {
         mReferences.clear()
-//        mReferences.add(Reference(0, "aaaaa", true, RealmDAO.getProfileLogin()!!))
         rcv_references.setHasFixedSize(true)
         mAdapter = ReferencesAdapter(this, mReferences, object : ReferencesAdapter.ReferencesClickListener {
             override fun onClick(reference: Reference) {
