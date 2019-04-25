@@ -53,7 +53,7 @@
         <TextView
                 android:id="@+id/tv_positive_negative_item_references"
                 android:layout_marginTop="@dimen/_4sdp"
-                android:layout_marginStart="@dimen/_64sdp"
+                android:layout_marginStart="@dimen/_63sdp"
                 android:maxLines="1"
                 android:layout_below="@+id/ln_title_item_references"
                 android:textSize="@dimen/_12ssp"
@@ -65,7 +65,7 @@
 
         <TextView
                 android:id="@+id/tv_content_item_references"
-                android:layout_marginStart="@dimen/_64sdp"
+                android:layout_marginStart="@dimen/_63sdp"
                 android:maxLines="100"
                 android:text="@string/content"
                 android:textSize="@dimen/_12ssp"
