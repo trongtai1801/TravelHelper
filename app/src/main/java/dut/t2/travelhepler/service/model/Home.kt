@@ -36,11 +36,16 @@ class Home(
 
     @SerializedName("stuff")
     @Expose
-    var stuff: String
+    var stuff: String,
+
+    @SerializedName("additionInfo")
+    @Expose
+    var additionInfo: String
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readInt(),
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -58,6 +63,7 @@ class Home(
         dest.writeString(transportationAccess)
         dest.writeString(allowedThing)
         dest.writeString(stuff)
+        dest.writeString(additionInfo)
     }
 
     override fun describeContents(): Int {
@@ -72,5 +78,17 @@ class Home(
         override fun newArray(size: Int): Array<Home?> {
             return arrayOfNulls(size)
         }
+    }
+
+    fun setDefaultValue() {
+        this.id = this.id ?: 0
+        this.maxGuest = this.maxGuest ?: 0
+        this.preferedGender = this.preferedGender ?: ""
+        this.sleepingArrangement = this.sleepingArrangement ?: ""
+        this.sleepingDescription = this.sleepingDescription ?: ""
+        this.transportationAccess = this.transportationAccess ?: ""
+        this.allowedThing = this.allowedThing ?: ""
+        this.stuff = this.stuff ?: ""
+        this.additionInfo = this.additionInfo ?: ""
     }
 }

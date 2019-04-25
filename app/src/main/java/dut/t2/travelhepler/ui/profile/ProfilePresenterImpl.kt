@@ -45,7 +45,11 @@ class ProfilePresenterImpl(context: Context) : BasePresenter<ProfileContract.Pro
         req.enqueue(object : Callback<ArrayList<Home>> {
             override fun onResponse(call: Call<ArrayList<Home>>, response: Response<ArrayList<Home>>) {
                 if (response.isSuccessful) {
-                    if (response.body() != null) view!!.getHomeInfoResult((response.body() as ArrayList<Home>).get(0))
+                    if (response.body() != null) {
+                        var home = (response.body() as ArrayList<Home>).get(0)
+                        home.setDefaultValue()
+                        view!!.getHomeInfoResult(home)
+                    }
                     else view!!.showToast(context.getString(R.string.dont_have_home))
                     view!!.dismissLoading()
                 }

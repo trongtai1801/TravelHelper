@@ -11,7 +11,7 @@ import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Home
-import dut.t2.travelhepler.ui.profile.home.HomeActivityity_
+import dut.t2.travelhepler.ui.profile.home.HomeActivity_
 import dut.t2.travelhepler.ui.profile.photos.PhotosActivity_
 import dut.t2.travelhepler.ui.profile.references.ReferencesActivity_
 import dut.t2.travelhepler.ui.profile.update.UpdateProfileActivity_
@@ -100,7 +100,7 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
     }
 
     override fun getHomeInfoResult(home: Home) {
-        if (home != null) HomeActivityity_.intent(this).extra(Constant.HOME, home).start()
+        if (home != null) HomeActivity_.intent(this).extra(Constant.HOME, home).start()
         else showToast(getString(R.string.dont_have_home))
         dismissLoading()
     }
