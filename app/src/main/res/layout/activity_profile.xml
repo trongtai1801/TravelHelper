@@ -201,26 +201,9 @@
                     android:layout_height="0.5dp"/>
 
             <TextView
-                    android:id="@+id/tv_lb_photos_profile"
-                    android:text="@string/photos"
-                    android:layout_below="@id/view_about_me"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    style="@style/ProfileTextViewLable"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            <View
-                    android:id="@+id/view_photos"
-                    android:layout_marginTop="@dimen/_7sdp"
-                    android:layout_below="@id/tv_lb_photos_profile"
-                    android:background="@color/colorGrayDark"
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"/>
-
-            <TextView
                     android:id="@+id/tv_lb_interest_profile"
                     android:text="@string/interest"
-                    android:layout_below="@id/view_photos"
+                    android:layout_below="@id/view_about_me"
                     android:layout_marginTop="@dimen/_10sdp"
                     style="@style/ProfileTextViewLable"
                     android:layout_width="match_parent"
@@ -235,6 +218,64 @@
                     android:layout_below="@id/tv_lb_interest_profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
+
+            <View
+                    android:id="@+id/view_interest"
+                    android:layout_below="@id/tv_content_interest_profile"
+                    android:background="@color/colorGrayDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+            <TextView
+                    android:id="@+id/tv_lb_photos_profile"
+                    android:text="@string/photos"
+                    android:layout_below="@id/view_interest"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    style="@style/ProfileTextViewLable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <View
+                    android:id="@+id/view_photos"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_below="@id/tv_lb_photos_profile"
+                    android:background="@color/colorGrayDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+            <TextView
+                    android:id="@+id/tv_lb_reference_profile"
+                    android:text="@string/references"
+                    android:layout_below="@id/view_photos"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    style="@style/ProfileTextViewLable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <View
+                    android:id="@+id/view_reference"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_below="@id/tv_lb_reference_profile"
+                    android:background="@color/colorGrayDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+            <TextView
+                    android:id="@+id/tv_lb_home_profile"
+                    android:text="@string/home"
+                    android:layout_below="@id/view_reference"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    style="@style/ProfileTextViewLable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <View
+                    android:id="@+id/view_home"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:layout_below="@id/tv_lb_home_profile"
+                    android:background="@color/colorGrayDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
 
         </RelativeLayout>
 
@@ -260,7 +301,7 @@
                     app:layout_collapseMode="parallax"/>
 
             <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar_profile"
+                    android:id="@+id/toolbar_show_profile"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:layout_collapseMode="pin"
@@ -283,9 +324,7 @@
             android:src="@drawable/ic_pen_white"
             android:layout_marginEnd="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_15sdp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            app:layout_anchor="@id/tv_content_interest_profile"
+            app:layout_anchor="@id/tv_lb_home_profile"
             app:layout_anchorGravity="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

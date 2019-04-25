@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/ios_grey"/>
+
+    <Button
+            android:id="@+id/btn_item"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dialog_ios_sheet_height_item"
+            android:background="@drawable/iossheet_middle_btn_selector"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textAllCaps="false"/>
+
+</LinearLayout>

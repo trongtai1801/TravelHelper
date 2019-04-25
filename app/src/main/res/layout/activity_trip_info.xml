@@ -5,11 +5,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <include layout="@layout/custom_toolbar"></include>
+    <include layout="@layout/custom_appbar_layout_dark"></include>
 
     <TextView
             android:id="@+id/tv_notify"
-            android:layout_below="@+id/toolbar"
+            android:layout_below="@+id/app_bar_layout"
             android:visibility="gone"
             style="@style/TripInfoTextView"
             android:text="@string/warning_post_public_trip"

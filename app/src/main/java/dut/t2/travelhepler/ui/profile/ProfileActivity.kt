@@ -6,16 +6,16 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.provider.MediaStore
 import android.view.View
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
-import dut.t2.travelhepler.ui.main.MainActivity
-import dut.t2.travelhepler.utils.Constant
-import dut.t2.travelhepler.utils.Permission
-import dut.t2.travelhepler.utils.RealmDAO
-import dut.t2.travelhepler.utils.SessionManager
+import dut.t2.travelhepler.service.model.Home
+import dut.t2.travelhepler.ui.profile.home.HomeActivity_
+import dut.t2.travelhepler.ui.profile.photos.PhotosActivity_
+import dut.t2.travelhepler.ui.profile.references.ReferencesActivity_
+import dut.t2.travelhepler.ui.profile.update.UpdateProfileActivity_
+import dut.t2.travelhepler.utils.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
@@ -23,7 +23,6 @@ import okhttp3.RequestBody
 import okhttp3.MultipartBody
 import okhttp3.MediaType
 import java.io.File
-
 
 @EActivity(R.layout.activity_profile)
 class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresenterImpl>(), ProfileContract.ProfileView {
@@ -37,7 +36,10 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
         setupViews()
     }
 
-    @Click(R.id.fab_avatar, R.id.fab_edit_profile)
+    @Click(
+        R.id.fab_avatar, R.id.fab_edit_profile, R.id.tv_lb_photos_profile, R.id.tv_lb_reference_profile,
+        R.id.tv_lb_home_profile
+    )
     fun onClick(v: View) {
         when (v.id) {
             R.id.fab_avatar -> {
@@ -47,7 +49,17 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
                     Permission.initPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
             }
             R.id.fab_edit_profile -> {
-                Toast.makeText(this, "Edit profile", Toast.LENGTH_LONG).show()
+                UpdateProfileActivity_.intent(this).startForResult(Constant.REQUEST_CODE_UPDATE_USER_PROFILE)
+            }
+            R.id.tv_lb_photos_profile -> {
+                PhotosActivity_.intent(this).start()
+            }
+            R.id.tv_lb_reference_profile -> {
+                ReferencesActivity_.intent(this).start()
+            }
+            R.id.tv_lb_home_profile -> {
+                showLoading()
+                mPresenter!!.getHomeInfo()
             }
         }
     }
@@ -63,23 +75,16 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == Constant.REQUEST_CODE_PICK_IMAGE) {
-            if (resultCode == Activity.RESULT_OK) {
-
-                val selectedImageUri = data!!.data
-                val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-                val cursor = contentResolver.query(selectedImageUri, filePathColumn, null, null, null) ?: return
-
-                cursor.moveToFirst()
-
-                val columnIndex = cursor.getColumnIndex(filePathColumn[0])
-                val filePath = cursor.getString(columnIndex)
-                val file = File(filePath)
-
-                val requestBody = RequestBody.create(MediaType.parse(contentResolver.getType(selectedImageUri)), file)
-                val avatar = MultipartBody.Part.createFormData("file", file.getName(), requestBody)
-                showLoading()
-                mPresenter!!.updateAvatar(avatar)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                Constant.REQUEST_CODE_PICK_IMAGE -> {
+                    updateAvatar(data)
+                }
+                Constant.REQUEST_CODE_UPDATE_USER_PROFILE -> {
+                    initToolbar()
+                    setupViews()
+                    setResult(Activity.RESULT_OK)
+                }
             }
         }
     }
@@ -88,26 +93,36 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
         SessionManager.Profile = profile
         RealmDAO.setProfileLogin(profile)
         Glide.with(this).load(profile!!.avatar)
-            .placeholder(this.getDrawable(R.drawable.profile_cover))
+            .placeholder(this.getDrawable(R.drawable.ic_user_circle))
             .into(img_avatar_toolbar)
         setResult(Activity.RESULT_OK)
         dismissLoading()
     }
 
+    override fun getHomeInfoResult(home: Home) {
+        if (home != null) HomeActivity_.intent(this).extra(Constant.HOME, home).start()
+        else showToast(getString(R.string.dont_have_home))
+        dismissLoading()
+    }
+
     fun initToolbar() {
-        setSupportActionBar(toolbar_profile)
+        setSupportActionBar(toolbar_show_profile)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(true)
         title = RealmDAO.getProfileLogin()!!.fullName
+        var tmp = title
         Glide.with(this).load(RealmDAO.getProfileLogin()!!.avatar)
-            .placeholder(this.getDrawable(R.drawable.profile_cover))
+            .placeholder(this.getDrawable(R.drawable.ic_user_circle))
             .into(img_avatar_toolbar)
-        toolbar_profile.setNavigationOnClickListener { view -> onBackPressed() }
+        toolbar_show_profile.setNavigationOnClickListener { view -> onBackPressed() }
     }
 
     fun setupViews() {
         tv_content_address_profile.text = SessionManager.Profile?.address
-        tv_content_birthday_profile.text = SessionManager.Profile?.birthday
+        if (!SessionManager.Profile?.splitBirthday()!!.equals(""))
+            tv_content_birthday_profile.text =
+                CalendarUtils.convertStringFormat(SessionManager.Profile?.splitBirthday()!!)
+        else tv_content_birthday_profile.text = ""
         if (SessionManager.Profile!!.gender) {
             tv_content_gender_profile.text = getString(R.string.male)
         } else
@@ -123,5 +138,25 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
         val photoPickerIntent = Intent(Intent.ACTION_PICK)
         photoPickerIntent.type = "image/*"
         startActivityForResult(photoPickerIntent, Constant.REQUEST_CODE_PICK_IMAGE)
+    }
+
+    fun updateAvatar(data: Intent?) {
+        if (data != null) {
+            val selectedImageUri = data!!.data
+            val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
+            val cursor = contentResolver.query(selectedImageUri, filePathColumn, null, null, null) ?: return
+
+            cursor.moveToFirst()
+
+            val columnIndex = cursor.getColumnIndex(filePathColumn[0])
+            val filePath = cursor.getString(columnIndex)
+            val file = File(filePath)
+
+            val requestBody =
+                RequestBody.create(MediaType.parse(contentResolver.getType(selectedImageUri)), file)
+            val avatar = MultipartBody.Part.createFormData("file", file.getName(), requestBody)
+            showLoading()
+            mPresenter!!.updateAvatar(avatar)
+        }
     }
 }
