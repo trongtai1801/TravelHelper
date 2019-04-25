@@ -7,7 +7,7 @@
               android:orientation="vertical"
               tools:context=".ui.main.MainActivity">
 
-    <include layout="@layout/custom_toolbar"></include>
+    <include layout="@layout/custom_appbar_layout_dark"></include>
 
     <FrameLayout
             android:id="@+id/frame_container"

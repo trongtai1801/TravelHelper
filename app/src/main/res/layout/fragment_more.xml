@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-        android:layout_marginTop="@dimen/_1sdp"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent" android:layout_height="match_parent">
+        android:layout_marginTop="@dimen/_1sdp"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
             android:id="@+id/csl_profile_more"
-            android:background="@color/colorPrimary"
+            android:layout_marginTop="@dimen/_1sdp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_70sdp">
 
@@ -25,7 +27,7 @@
                 android:id="@+id/tv_user_name_more"
                 android:textSize="@dimen/_15ssp"
                 android:layout_marginStart="@dimen/_7sdp"
-                android:textColor="@color/colorWhite"
+                android:textColor="@android:color/black"
                 android:textStyle="bold"
                 android:text="@string/user_name"
                 app:layout_constraintLeft_toRightOf="@id/cir_img_avatar_more"
@@ -36,10 +38,17 @@
 
     </android.support.constraint.ConstraintLayout>
 
+    <View
+            android:id="@+id/view1_more"
+            android:layout_below="@id/csl_profile_more"
+            android:background="@color/colorGrayDark"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"/>
+
     <LinearLayout
             android:id="@+id/ln_hosting_more"
             android:orientation="horizontal"
-            android:layout_below="@id/csl_profile_more"
+            android:layout_below="@id/view1_more"
             android:layout_width="match_parent"
             android:layout_height="@dimen/more_csl_height">
 

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.v4.widget.NestedScrollView
+            app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:id="@+id/tv_lb_overview_profile"
+                    android:text="@string/overview"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    style="@style/ProfileTextViewLable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                    android:id="@+id/ln_full_name_profile"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/tv_lb_overview_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/profile_height_content_textview">
+
+                <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_user"
+                        android:padding="@dimen/profile_padding_icon"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                <EditText
+                        android:id="@+id/edt_content_full_name_profile"
+                        android:background="@null"
+                        android:hint="@string/full_name"
+                        style="@style/MoreTextView"
+                        android:layout_weight="6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ln_address_profile"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/ln_full_name_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/profile_height_content_textview">
+
+                <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_maker"
+                        android:padding="@dimen/profile_padding_icon"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                <EditText
+                        android:id="@+id/edt_content_address_profile"
+                        android:background="@null"
+                        android:hint="@string/address"
+                        style="@style/MoreTextView"
+                        android:layout_weight="6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ln_birthday_profile"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/ln_address_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/profile_height_content_textview">
+
+                <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_calendar"
+                        android:padding="@dimen/profile_padding_icon"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                <EditText
+                        android:id="@+id/edt_content_birthday_profile"
+                        android:focusable="false"
+                        android:background="@null"
+                        android:hint="@string/birthday"
+                        style="@style/MoreTextView"
+                        android:layout_weight="6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ln_gender_profile"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/ln_birthday_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/profile_height_content_textview">
+
+                <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_gender"
+                        android:padding="@dimen/profile_padding_icon"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                <EditText
+                        android:id="@+id/edt_content_gender_profile"
+                        android:focusable="false"
+                        android:background="@null"
+                        style="@style/MoreTextView"
+                        android:hint="@string/gender"
+                        android:layout_weight="6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ln_occupation_profile"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/ln_gender_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/profile_height_content_textview">
+
+                <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_occupation"
+                        android:padding="@dimen/profile_padding_icon"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                <EditText
+                        android:id="@+id/edt_content_occupation_profile"
+                        android:background="@null"
+                        style="@style/MoreTextView"
+                        android:hint="@string/occupation"
+                        android:layout_weight="6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ln_fluence_profile"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/ln_occupation_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/profile_height_content_textview">
+
+                <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_fluence_language"
+                        android:padding="@dimen/profile_padding_icon"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                <EditText
+                        android:id="@+id/edt_content_fluence_profile"
+                        android:background="@null"
+                        style="@style/MoreTextView"
+                        android:hint="@string/fluence_language"
+                        android:layout_weight="6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/ln_learning_profile"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/ln_fluence_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/profile_height_content_textview">
+
+                <ImageView
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_learning_language"
+                        android:padding="@dimen/profile_padding_icon"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                <EditText
+                        android:id="@+id/edt_content_learning_profile"
+                        android:background="@null"
+                        style="@style/MoreTextView"
+                        android:hint="@string/learning_language"
+                        android:layout_weight="6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <View
+                    android:id="@+id/view_overview"
+                    android:layout_below="@id/ln_learning_profile"
+                    android:background="@color/colorGrayDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+            <TextView
+                    android:id="@+id/tv_lb_about_me_profile"
+                    android:text="@string/about_me"
+                    android:layout_below="@id/view_overview"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    style="@style/ProfileTextViewLable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <EditText
+                    android:id="@+id/edt_content_about_me_profile"
+                    android:background="@null"
+                    style="@style/ProfileTextViewContent"
+                    android:hint="@string/interest"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_below="@id/tv_lb_about_me_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <View
+                    android:id="@+id/view_about_me"
+                    android:layout_below="@id/edt_content_about_me_profile"
+                    android:background="@color/colorGrayDark"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"/>
+
+            <TextView
+                    android:id="@+id/tv_lb_interest_profile"
+                    android:text="@string/interest"
+                    android:layout_below="@id/view_about_me"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    style="@style/ProfileTextViewLable"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            <EditText
+                    android:id="@+id/edt_content_interest_profile"
+                    android:background="@null"
+                    style="@style/ProfileTextViewContent"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:hint="@string/interest"
+                    android:text="a\na\na\na\na\na\na\na"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_below="@id/tv_lb_interest_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <include layout="@layout/custom_appbar_layout_dark"></include>
+
+</android.support.design.widget.CoordinatorLayout>
