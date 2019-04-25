@@ -35,6 +35,7 @@
         <activity android:name=".ui.profile.home.HomeActivity_"></activity>
         <activity android:name=".ui.hosts.HostsActivity_"></activity>
         <activity android:name=".ui.hosts.info.HostInfoActivity_"></activity>
+        <activity android:name=".ui.search.SearchActivity_"></activity>
     </application>
 
 </manifest>

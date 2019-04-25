@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
@@ -15,6 +17,7 @@ import dut.t2.travelhepler.ui.main.more.MoreFragment
 import dut.t2.travelhepler.ui.main.more.MoreFragment_
 import dut.t2.travelhepler.ui.main.search.SearchFragment
 import dut.t2.travelhepler.ui.main.search.SearchFragment_
+import dut.t2.travelhepler.ui.search.SearchActivity_
 import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
@@ -30,8 +33,11 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     private var dashboardFragment = DashboardFragment_()
     private var searchFragment = SearchFragment_()
     private var moreFragment = MoreFragment_()
-    private var index: Int = -1
     private var mPublicTrips: ArrayList<PublicTrip> = ArrayList()
+
+    companion object {
+        private var index: Int = -1
+    }
 
 
     override fun initPresenter() {
@@ -49,6 +55,22 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     override fun onBackPressed() {
         super.onBackPressed()
         finish()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        if (index == Constant.INDEX_FRAGMENT_SEARCH) {
+            menuInflater.inflate(R.menu.menu_search, menu)
+        }
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            R.id.item_search -> {
+                SearchActivity_.intent(this).start()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -88,7 +110,6 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
                 mPublicTrips.addAll(publicTrips)
             }
         }
-//        setFragment(dashboardFragment, Constant.INDEX_FRAGMENT_DASBOARD)
         dismissLoading()
         dashboardFragment.dismissSwipeRefreshLayout()
         dashboardFragment.notifyDataSetChanged(mPublicTrips)
@@ -111,7 +132,6 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         bottom_navigation_view.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_dashboard -> {
-//                    getPublicTrips()
                     setFragment(dashboardFragment, Constant.INDEX_FRAGMENT_DASBOARD)
                     return@setOnNavigationItemSelectedListener true
                 }
@@ -129,7 +149,6 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     }
 
     fun setFragment(fragment: Fragment, i: Int) {
-//        if (i == index) return
         when (fragment) {
             is DashboardFragment -> {
                 val b = Bundle()

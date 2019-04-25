@@ -41,8 +41,11 @@ class HostsActivity : BaseActivity<HostsContrct.HostsView, HostsPresenterImpl>()
                 mAdapter!!.notifyDataSetChanged()
             } else showToast(getString(R.string.data_null))
         }
-        tv_total_result_hosts.text = mHosts.size.toString() + " " + getString(R.string.host)
+        tv_total_result_hosts.text = mHosts.size.toString() + " " + getString(R.string.host) + " " +
+                getString(R.string.from) + " " +
+                RealmDAO.getProfileLogin()!!.address.split(",")[1].trim()
         dismissLoading()
+        if (swf_hosts.isRefreshing) swf_hosts.isRefreshing = false
     }
 
     fun initToolbar() {
@@ -51,7 +54,7 @@ class HostsActivity : BaseActivity<HostsContrct.HostsView, HostsPresenterImpl>()
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         tv_title_appbar.visibility = View.VISIBLE
         img_back_appbar.visibility = View.VISIBLE
-        tv_title_appbar.text = getString(R.string.references)
+        tv_title_appbar.text = getString(R.string.host)
         img_back_appbar.setOnClickListener { onBackPressed() }
     }
 
