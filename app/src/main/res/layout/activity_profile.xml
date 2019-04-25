@@ -245,7 +245,7 @@
 
             <TextView
                     android:id="@+id/tv_lb_reference_profile"
-                    android:text="@string/reference"
+                    android:text="@string/references"
                     android:layout_below="@id/view_photos"
                     android:layout_marginTop="@dimen/_10sdp"
                     style="@style/ProfileTextViewLable"

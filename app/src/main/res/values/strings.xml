@@ -89,7 +89,7 @@
     <string name="response_body_null">Response body is null</string>
     <string name="title">Title</string>
     <string name="no_name">No name</string>
-    <string name="reference">Reference</string>
+    <string name="references">References</string>
     <string name="positive">Positive</string>
     <string name="negative">Negative</string>
     <string name="content">Content</string>

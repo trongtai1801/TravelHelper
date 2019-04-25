@@ -6,6 +6,7 @@
 
     <include layout="@layout/custom_appbar_layout_dark"/>
     <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swf_references"
             app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior"
             android:layout_width="match_parent"
             android:layout_height="match_parent">

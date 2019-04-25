@@ -5,10 +5,8 @@ import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Reference
-import dut.t2.travelhepler.utils.RealmDAO
 import kotlinx.android.synthetic.main.activity_references.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
-import kotlinx.android.synthetic.main.custom_appbar_layout_light.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_light.img_back_appbar
 import kotlinx.android.synthetic.main.custom_appbar_layout_light.tv_title_appbar
 import org.androidannotations.annotations.EActivity
@@ -27,6 +25,21 @@ class ReferencesActivity : BaseActivity<ReferencesContract.ReferencesView, Refer
     override fun afterViews() {
         initToolbar()
         initRcv()
+        swf_references.setOnRefreshListener {
+            mPresenter!!.getReferences()
+        }
+        showLoading()
+        mPresenter!!.getReferences()
+    }
+
+    override fun getReferencesResult(references: ArrayList<Reference>) {
+        if (references != null) {
+            mReferences.clear()
+            mReferences.addAll(references)
+            mAdapter!!.notifyDataSetChanged()
+        } else showMessage(getString(R.string.data_null))
+        dismissLoading()
+        if (swf_references.isRefreshing) swf_references.isRefreshing = false
     }
 
     fun initToolbar() {
@@ -35,13 +48,13 @@ class ReferencesActivity : BaseActivity<ReferencesContract.ReferencesView, Refer
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         tv_title_appbar.visibility = View.VISIBLE
         img_back_appbar.visibility = View.VISIBLE
-        tv_title_appbar.text = getString(R.string.reference)
+        tv_title_appbar.text = getString(R.string.references)
         img_back_appbar.setOnClickListener { onBackPressed() }
     }
 
     fun initRcv() {
         mReferences.clear()
-        mReferences.add(Reference(0, "aaaaa", true, RealmDAO.getProfileLogin()!!))
+//        mReferences.add(Reference(0, "aaaaa", true, RealmDAO.getProfileLogin()!!))
         rcv_references.setHasFixedSize(true)
         mAdapter = ReferencesAdapter(this, mReferences, object : ReferencesAdapter.ReferencesClickListener {
             override fun onClick(reference: Reference) {
