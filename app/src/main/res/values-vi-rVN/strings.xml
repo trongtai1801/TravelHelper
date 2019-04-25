@@ -96,11 +96,12 @@
     <string name="content">Nội dung</string>
     <string name="home">Nhà</string>
     <string name="max_guest">Số khách tối đa</string>
-    <string name="preferred_gender_host">Preferred Gender to Host</string>
+    <string name="preferred_gender_host">Giới tính yêu cầu</string>
     <string name="sleeping_arrangements">Phòng ngủ</string>
     <string name="description_arrangement">Mô tả phòng ngủ</string>
     <string name="transportation_access">Phương tiện di chuyển</string>
     <string name="allow_thing">Cho phép</string>
     <string name="stuff">Vật dụng</string>
     <string name="add_info">Thông tin thêm</string>
+    <string name="dont_have_home">Bạn chưa có thông tin nào về nhà của bạn</string>
 </resources>

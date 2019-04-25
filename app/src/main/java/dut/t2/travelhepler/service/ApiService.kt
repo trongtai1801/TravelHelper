@@ -4,6 +4,7 @@ import com.google.gson.JsonObject
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhelper.service.model.User
 import dut.t2.travelhelper.service.response.LoginResponse
+import dut.t2.travelhepler.service.model.Home
 import dut.t2.travelhepler.service.model.Photo
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.model.Reference
@@ -77,4 +78,7 @@ interface ApiService {
 
     @GET("users/References")
     fun getReferences(@Header("Authorization") authorization: String): Call<ArrayList<Reference>>
+
+    @GET("Users/Homes")
+    fun getHomeInfo(@Header("Authorization") authorization: String): Call<ArrayList<Home>>
 }

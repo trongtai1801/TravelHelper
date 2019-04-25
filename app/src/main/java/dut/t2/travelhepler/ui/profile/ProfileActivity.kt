@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
+import dut.t2.travelhepler.service.model.Home
 import dut.t2.travelhepler.ui.profile.home.HomeActivityity_
 import dut.t2.travelhepler.ui.profile.photos.PhotosActivity_
 import dut.t2.travelhepler.ui.profile.references.ReferencesActivity_
@@ -57,7 +58,8 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
                 ReferencesActivity_.intent(this).start()
             }
             R.id.tv_lb_home_profile -> {
-                HomeActivityity_.intent(this).start()
+                showLoading()
+                mPresenter!!.getHomeInfo()
             }
         }
     }
@@ -94,6 +96,12 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
             .placeholder(this.getDrawable(R.drawable.ic_user_circle))
             .into(img_avatar_toolbar)
         setResult(Activity.RESULT_OK)
+        dismissLoading()
+    }
+
+    override fun getHomeInfoResult(home: Home) {
+        if (home != null) HomeActivityity_.intent(this).extra(Constant.HOME, home).start()
+        else showToast(getString(R.string.dont_have_home))
         dismissLoading()
     }
 
