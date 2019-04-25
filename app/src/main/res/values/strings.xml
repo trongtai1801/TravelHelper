@@ -94,4 +94,12 @@
     <string name="negative">Negative</string>
     <string name="content">Content</string>
     <string name="home">Home</string>
+    <string name="max_guest">Max number of guests</string>
+    <string name="preferred_gender_host">Preferred Gender to Host</string>
+    <string name="sleeping_arrangements">Sleeping Arrangements</string>
+    <string name="description_arrangement">Description of Sleeping Arrangement</string>
+    <string name="transportation_access">Public Transportation Access</string>
+    <string name="allow_thing">Allowed Thing</string>
+    <string name="stuff">Stuff</string>
+    <string name="add_info">Additional Information</string>
 </resources>

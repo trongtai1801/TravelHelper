@@ -12,4 +12,10 @@
     <dimen name="dialog_ios_sheet_text_size">@dimen/_15ssp</dimen>
     <dimen name="dialog_ios_sheet_height_item">@dimen/_40sdp</dimen>
 
+    //home
+    <dimen name="home_margin_start">@dimen/_7ssp</dimen>
+    <dimen name="home_margin_end">@dimen/_7ssp</dimen>
+    <dimen name="home_height_edit_text">@dimen/_40ssp</dimen>
+    <dimen name="home_height_double_edit_text">@dimen/_80ssp</dimen>
+
 </resources>
