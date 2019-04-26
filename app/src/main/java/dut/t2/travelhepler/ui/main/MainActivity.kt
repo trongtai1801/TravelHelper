@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
+import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.ui.main.dashboard.DashboardFragment
@@ -19,6 +20,8 @@ import dut.t2.travelhepler.ui.main.search.SearchFragment
 import dut.t2.travelhepler.ui.main.search.SearchFragment_
 import dut.t2.travelhepler.ui.search.SearchActivity_
 import dut.t2.travelhepler.utils.Constant
+import dut.t2.travelhepler.utils.RealmDAO
+import kotlinx.android.synthetic.main.activity_hosts.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_light.img_back_appbar
@@ -57,20 +60,6 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         finish()
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//        menuInflater.inflate(R.menu.menu_search, menu)
-//        return super.onCreateOptionsMenu(menu)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//        when (item!!.itemId) {
-//            R.id.item_search -> {
-//                SearchActivity_.intent(this).start()
-//            }
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
@@ -83,6 +72,11 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
                 }
                 Constant.REQUEST_CODE_UPDATE_USER_AVATAR -> {
                     moreFragment.setupViews()
+                }
+                Constant.REQUEST_CODE_GET_SEARCH_HOST_STRING -> {
+                    var searchString = data!!.getStringExtra(Constant.SEARCH_HOST_STRING)
+                    showLoading()
+                    mPresenter!!.getHosts(searchString)
                 }
             }
         }
@@ -115,6 +109,14 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
 
     override fun deletePublicTripResult() {
         getPublicTrips()
+    }
+
+    override fun getHostsResult(hosts: ArrayList<Profile>) {
+        if (hosts != null) {
+            if (hosts.size > 0) {
+                searchFragment.setHosts(hosts)
+            } else showToast(getString(R.string.data_null))
+        }
     }
 
     fun initToolbar() {
