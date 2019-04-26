@@ -1,5 +1,6 @@
 package dut.t2.travelhepler.ui.hosts
 
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
@@ -21,6 +22,12 @@ class HostsActivity : BaseActivity<HostsContrct.HostsView, HostsPresenterImpl>()
     private var mHosts = ArrayList<Profile>()
     private var mAdapter: HostsAdapter? = null
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mHosts.clear()
+        mHosts.addAll(intent.getParcelableArrayListExtra(Constant.HOSTS))
+    }
+
     override fun initPresenter() {
         mPresenter = HostsPresenterImpl(this)
     }
@@ -29,8 +36,6 @@ class HostsActivity : BaseActivity<HostsContrct.HostsView, HostsPresenterImpl>()
         initToolbar()
         initRcv()
         swf_hosts.setOnRefreshListener { mPresenter!!.getHosts(RealmDAO.getProfileLogin()!!.address.split(",")[1].trim()) }
-        showLoading()
-        mPresenter!!.getHosts(RealmDAO.getProfileLogin()!!.address.split(",")[1].trim())
     }
 
     override fun getHostsResult(hosts: ArrayList<Profile>) {
@@ -41,9 +46,7 @@ class HostsActivity : BaseActivity<HostsContrct.HostsView, HostsPresenterImpl>()
                 mAdapter!!.notifyDataSetChanged()
             } else showToast(getString(R.string.data_null))
         }
-        tv_total_result_hosts.text = mHosts.size.toString() + " " + getString(R.string.host) + " " +
-                getString(R.string.from) + " " +
-                RealmDAO.getProfileLogin()!!.address.split(",")[1].trim()
+        tv_total_result_hosts.text = mHosts.size.toString() + " " + getString(R.string.host)
         dismissLoading()
         if (swf_hosts.isRefreshing) swf_hosts.isRefreshing = false
     }
@@ -59,7 +62,7 @@ class HostsActivity : BaseActivity<HostsContrct.HostsView, HostsPresenterImpl>()
     }
 
     fun initRcv() {
-        mHosts.clear()
+        tv_total_result_hosts.text = mHosts.size.toString() + " " + getString(R.string.host)
         rcv_hosts.setHasFixedSize(true)
         mAdapter = HostsAdapter(this, mHosts, object : HostsAdapter.HostClickListener {
             override fun onClick(host: Profile) {

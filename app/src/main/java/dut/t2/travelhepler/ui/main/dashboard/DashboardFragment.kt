@@ -3,16 +3,15 @@ package dut.t2.travelhepler.ui.main.dashboard
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
-import android.widget.Toast
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.model.SearchItem
-import dut.t2.travelhepler.ui.hosts.HostsActivity_
 import dut.t2.travelhepler.ui.main.MainActivity
 import dut.t2.travelhepler.ui.trips.create.CreateTripActivity_
 import dut.t2.travelhepler.ui.trips.info.InfoActivity_
 import dut.t2.travelhepler.ui.trips.update.UpdateTripActivity_
 import dut.t2.travelhepler.utils.Constant
+import dut.t2.travelhepler.utils.SessionManager
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
@@ -74,7 +73,11 @@ class DashboardFragment : Fragment() {
             override fun onClick(searchItem: SearchItem) {
                 when (searchItem.id) {
                     Constant.ID_SEARCH_ITEM_HOST -> {
-                        HostsActivity_.intent(context).start()
+//                        HostsActivity_.intent(context).start()
+                        (activity as MainActivity).getHosts(
+                            Constant.HOST_FLAG_SHOW_LIST_HOST,
+                            SessionManager.Profile!!.address.split(",")[1].trim()
+                        )
                     }
                     Constant.ID_SEARCH_ITEM_TRAVELERS -> {
 

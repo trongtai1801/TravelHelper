@@ -13,6 +13,7 @@ class Constant {
         const val PHOTO = "photo"
         const val HOME = "home"
         const val HOST = "host"
+        const val HOSTS = "hosts"
         const val SEARCH_HOST_STRING = "search_host"
 
         const val REQUEST_CODE_CREATE_PUBLIC_TRIP: Int = 1
@@ -31,5 +32,8 @@ class Constant {
         const val REQUEST_CODE_PICK_IMAGE = 101
 
         const val REQUEST_DELETE_SUCCESS = 204
+
+        const val HOST_FLAG_SET_FRAGMENT = 1
+        const val HOST_FLAG_SHOW_LIST_HOST = 2
     }
 }

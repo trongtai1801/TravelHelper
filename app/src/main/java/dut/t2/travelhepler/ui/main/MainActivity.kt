@@ -12,6 +12,7 @@ import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
+import dut.t2.travelhepler.ui.hosts.HostsActivity_
 import dut.t2.travelhepler.ui.main.dashboard.DashboardFragment
 import dut.t2.travelhepler.ui.main.dashboard.DashboardFragment_
 import dut.t2.travelhepler.ui.main.more.MoreFragment
@@ -21,6 +22,7 @@ import dut.t2.travelhepler.ui.main.search.SearchFragment_
 import dut.t2.travelhepler.ui.search.SearchActivity_
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.RealmDAO
+import dut.t2.travelhepler.utils.SessionManager
 import kotlinx.android.synthetic.main.activity_hosts.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
@@ -40,6 +42,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
 
     companion object {
         private var index: Int = -1
+        private var host_flag = -1
     }
 
 
@@ -75,8 +78,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
                 }
                 Constant.REQUEST_CODE_GET_SEARCH_HOST_STRING -> {
                     var searchString = data!!.getStringExtra(Constant.SEARCH_HOST_STRING)
-                    showLoading()
-                    mPresenter!!.getHosts(searchString)
+                    getHosts(Constant.HOST_FLAG_SET_FRAGMENT, searchString)
                 }
             }
         }
@@ -113,9 +115,16 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
 
     override fun getHostsResult(hosts: ArrayList<Profile>) {
         if (hosts != null) {
-            if (hosts.size > 0) {
-                searchFragment.setHosts(hosts)
-            } else showToast(getString(R.string.data_null))
+            when (host_flag) {
+                Constant.HOST_FLAG_SHOW_LIST_HOST -> {
+                    HostsActivity_.intent(this).extra(Constant.HOSTS, hosts).start()
+                }
+                Constant.HOST_FLAG_SET_FRAGMENT -> {
+                    if (hosts.size > 0) {
+                        searchFragment.setHosts(hosts)
+                    } else showToast(getString(R.string.data_null))
+                }
+            }
         }
     }
 
@@ -190,5 +199,11 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
             .create()
         alertDialog.getWindow()!!.setBackgroundDrawableResource(R.drawable.background_dialog)
         alertDialog.show()
+    }
+
+    public fun getHosts(flag: Int, searchString: String) {
+        host_flag = flag
+        showLoading()
+        mPresenter!!.getHosts(searchString)
     }
 }
