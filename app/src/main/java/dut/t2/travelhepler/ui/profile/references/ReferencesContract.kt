@@ -9,6 +9,6 @@ interface ReferencesContract {
     }
 
     interface ReferencesPresenter {
-        fun getReferences()
+        fun getReferences(userId: String)
     }
 }

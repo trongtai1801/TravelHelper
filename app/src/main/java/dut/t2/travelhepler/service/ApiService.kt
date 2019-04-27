@@ -60,8 +60,8 @@ interface ApiService {
         @Body jsonObjects: JsonObject
     ): Call<Profile>
 
-    @GET("users/images")
-    fun getPhotos(@Header("Authorization") authorization: String): Call<ArrayList<Photo>>
+    @GET("users/{id}/images")
+    fun getPhotos(@Path("id") userId: String): Call<ArrayList<Photo>>
 
     @DELETE("Images/{id}")
     fun deletePhoto(
@@ -76,8 +76,8 @@ interface ApiService {
         @Part photo: MultipartBody.Part
     ): Call<Photo>
 
-    @GET("users/References")
-    fun getReferences(@Header("Authorization") authorization: String): Call<ArrayList<Reference>>
+    @GET("users/{id}/References")
+    fun getReferences(@Path("id") userId: String): Call<ArrayList<Reference>>
 
     @GET("Users/Homes")
     fun getHomeInfo(@Header("Authorization") authorization: String): Call<ArrayList<Home>>

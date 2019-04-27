@@ -1,10 +1,12 @@
 package dut.t2.travelhepler.ui.profile.references
 
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Reference
+import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.activity_references.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_light.img_back_appbar
@@ -18,18 +20,27 @@ class ReferencesActivity : BaseActivity<ReferencesContract.ReferencesView, Refer
     private var mReferences = ArrayList<Reference>()
     private var mAdapter: ReferencesAdapter? = null
 
+    companion object {
+        var sUserId: String = ""
+    }
+
     override fun initPresenter() {
         mPresenter = ReferencesPresenterImpl(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sUserId = intent.getStringExtra(Constant.USER_ID)
     }
 
     override fun afterViews() {
         initToolbar()
         initRcv()
         swf_references.setOnRefreshListener {
-            mPresenter!!.getReferences()
+            mPresenter!!.getReferences(sUserId)
         }
         showLoading()
-        mPresenter!!.getReferences()
+        mPresenter!!.getReferences(sUserId)
     }
 
     override fun getReferencesResult(references: ArrayList<Reference>) {

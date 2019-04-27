@@ -15,7 +15,7 @@ interface PhotosContract {
     }
 
     interface PhotoPresenter {
-        fun getPhotos()
+        fun getPhotos(userId: String)
 
         fun deletePhoto(id: Int)
 

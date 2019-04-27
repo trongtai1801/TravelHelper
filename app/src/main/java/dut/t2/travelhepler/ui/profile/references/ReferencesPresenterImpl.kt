@@ -13,8 +13,8 @@ import retrofit2.Response
 class ReferencesPresenterImpl(context: Context) : BasePresenter<ReferencesContract.ReferencesView>(context),
     ReferencesContract.ReferencesPresenter {
 
-    override fun getReferences() {
-        val req = ApiClient.getService()!!.getReferences(SessionManager.getAccessToken()!!)
+    override fun getReferences(userId: String) {
+        val req = ApiClient.getService()!!.getReferences(userId)
 
         req.enqueue(object : Callback<ArrayList<Reference>> {
             override fun onResponse(call: Call<ArrayList<Reference>>, response: Response<ArrayList<Reference>>) {

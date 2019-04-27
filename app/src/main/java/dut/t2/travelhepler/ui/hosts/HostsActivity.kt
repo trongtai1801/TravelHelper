@@ -1,5 +1,6 @@
 package dut.t2.travelhepler.ui.hosts
 
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -62,11 +63,12 @@ class HostsActivity : BaseActivity<HostsContrct.HostsView, HostsPresenterImpl>()
     }
 
     fun initRcv() {
+        var context: Context = this
         tv_total_result_hosts.text = mHosts.size.toString() + " " + getString(R.string.host)
         rcv_hosts.setHasFixedSize(true)
         mAdapter = HostsAdapter(this, mHosts, object : HostsAdapter.HostClickListener {
             override fun onClick(host: Profile) {
-                HostInfoActivity_.intent(this@HostsActivity).extra(Constant.HOST, host).start()
+                HostInfoActivity_.intent(context).extra(Constant.HOST, host).start()
             }
         })
         rcv_hosts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

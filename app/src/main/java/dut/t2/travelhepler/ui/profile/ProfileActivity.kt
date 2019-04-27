@@ -52,10 +52,10 @@ class ProfileActivity : BaseActivity<ProfileContract.ProfileView, ProfilePresent
                 UpdateProfileActivity_.intent(this).startForResult(Constant.REQUEST_CODE_UPDATE_USER_PROFILE)
             }
             R.id.tv_lb_photos_profile -> {
-                PhotosActivity_.intent(this).start()
+                PhotosActivity_.intent(this).extra(Constant.USER_ID, RealmDAO.getProfileLogin()!!.id).start()
             }
             R.id.tv_lb_reference_profile -> {
-                ReferencesActivity_.intent(this).start()
+                ReferencesActivity_.intent(this).extra(Constant.USER_ID, RealmDAO.getProfileLogin()!!.id).start()
             }
             R.id.tv_lb_home_profile -> {
                 showLoading()

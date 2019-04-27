@@ -19,11 +19,11 @@ import org.androidannotations.annotations.EActivity
 class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPresenterImpl>(),
     HostInfoContract.HostInfoView {
 
-    private var host: Profile? = null
+    private var mHost: Profile? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        host = intent.getParcelableExtra(Constant.HOST)
+        mHost = intent.getParcelableExtra(Constant.HOST)
     }
 
     override fun initPresenter() {
@@ -42,14 +42,14 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
     fun onClick(v: View) {
         when (v.id) {
             R.id.tv_lb_photos_profile -> {
-                PhotosActivity_.intent(this).start()
+                PhotosActivity_.intent(this).extra(Constant.USER_ID, mHost!!.id).start()
             }
             R.id.tv_lb_reference_profile -> {
-                ReferencesActivity_.intent(this).start()
+                ReferencesActivity_.intent(this).extra(Constant.USER_ID, mHost!!.id).start()
             }
             R.id.tv_lb_home_profile -> {
                 showLoading()
-                mPresenter!!.getHomeInfo(host!!.id)
+                mPresenter!!.getHomeInfo(mHost!!.id)
             }
             R.id.btn_request_stay_host -> {
 
@@ -67,27 +67,27 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
         setSupportActionBar(toolbar_show_profile)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(true)
-        title = host!!.fullName
-        Glide.with(this).load(host!!.avatar)
+        title = mHost!!.fullName
+        Glide.with(this).load(mHost!!.avatar)
             .placeholder(this.getDrawable(R.drawable.ic_user_circle))
             .into(img_avatar_toolbar)
         toolbar_show_profile.setNavigationOnClickListener { view -> onBackPressed() }
     }
 
     fun setupViews() {
-        tv_content_address_profile.text = host!!.address
-        if (!host!!.splitBirthday()!!.equals(""))
+        tv_content_address_profile.text = mHost!!.address
+        if (!mHost!!.splitBirthday()!!.equals(""))
             tv_content_birthday_profile.text =
-                CalendarUtils.convertStringFormat(host!!.splitBirthday()!!)
+                CalendarUtils.convertStringFormat(mHost!!.splitBirthday()!!)
         else tv_content_birthday_profile.text = ""
-        if (host!!.gender) {
+        if (mHost!!.gender) {
             tv_content_gender_profile.text = getString(R.string.male)
         } else
             tv_content_gender_profile.text = getString(R.string.female)
-        tv_content_occupation_profile.text = host!!.address
-        tv_content_fluence_profile.text = host!!.fluentLanguage
-        tv_content_learning_profile.text = host!!.learningLanguage
-        tv_content_about_me_profile.text = host!!.about
-        tv_content_interest_profile.text = host!!.interest
+        tv_content_occupation_profile.text = mHost!!.address
+        tv_content_fluence_profile.text = mHost!!.fluentLanguage
+        tv_content_learning_profile.text = mHost!!.learningLanguage
+        tv_content_about_me_profile.text = mHost!!.about
+        tv_content_interest_profile.text = mHost!!.interest
     }
 }

@@ -13,10 +13,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PhotoPresenterImpl(context: Context) : BasePresenter<PhotosContract.PhotosViews>(context),
+class PhotosPresenterImpl(context: Context) : BasePresenter<PhotosContract.PhotosViews>(context),
     PhotosContract.PhotoPresenter {
-    override fun getPhotos() {
-        val req = ApiClient.getService()!!.getPhotos(SessionManager.getAccessToken()!!)
+    override fun getPhotos(userId: String) {
+        val req = ApiClient.getService()!!.getPhotos(userId)
 
         req.enqueue(object : Callback<ArrayList<Photo>> {
             override fun onResponse(call: Call<ArrayList<Photo>>, response: Response<ArrayList<Photo>>) {

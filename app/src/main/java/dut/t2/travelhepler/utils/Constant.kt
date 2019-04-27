@@ -15,6 +15,7 @@ class Constant {
         const val HOST = "host"
         const val HOSTS = "hosts"
         const val SEARCH_HOST_STRING = "search_host"
+        const val USER_ID = "user_id"
 
         const val REQUEST_CODE_CREATE_PUBLIC_TRIP: Int = 1
         const val REQUEST_CODE_UPDATE_PUBLIC_TRIP: Int = 2
