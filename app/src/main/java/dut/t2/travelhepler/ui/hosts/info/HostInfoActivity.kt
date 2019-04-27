@@ -7,6 +7,7 @@ import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Home
+import dut.t2.travelhepler.ui.hosts.request.RequestToStayActivity_
 import dut.t2.travelhepler.ui.profile.home.HomeActivity_
 import dut.t2.travelhepler.ui.profile.photos.PhotosActivity_
 import dut.t2.travelhepler.ui.profile.references.ReferencesActivity_
@@ -52,7 +53,7 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
                 mPresenter!!.getHomeInfo(mHost!!.id)
             }
             R.id.btn_request_stay_host -> {
-
+                RequestToStayActivity_.intent(this).extra(Constant.HOST, mHost).start()
             }
         }
     }

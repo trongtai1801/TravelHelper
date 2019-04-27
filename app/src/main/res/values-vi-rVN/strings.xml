@@ -108,4 +108,5 @@
     <string name="no_host">Không tìm thấy chủ nhà nào</string>
     <string name="request_stay">Yêu cầu ở nhờ</string>
     <string name="from">từ</string>
+    <string name="request_to_stay">Yêu cầu ở nhờ</string>
 </resources>

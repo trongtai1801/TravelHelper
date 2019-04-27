@@ -11,6 +11,7 @@ import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.hosts.HostsActivity_
 import dut.t2.travelhepler.ui.search.SearchActivity_
 import dut.t2.travelhepler.utils.Constant
+import kotlinx.android.synthetic.main.activity_hosts.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click
@@ -24,6 +25,7 @@ class SearchFragment : Fragment() {
     @AfterViews
     fun afterViews() {
         setHasOptionsMenu(true)
+        showHideHostCardView()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -52,6 +54,7 @@ class SearchFragment : Fragment() {
     public fun setHosts(hosts: ArrayList<Profile>) {
         mHosts.clear()
         mHosts.addAll(hosts)
+        showHideHostCardView()
         tv_total_host_item_search.text = hosts.size.toString() + " " + context!!.getString(R.string.host)
         if (hosts.size > 0) {
             Glide.with(context!!).load(hosts.get(0).avatar)
@@ -68,5 +71,11 @@ class SearchFragment : Fragment() {
                 .placeholder(context!!.getDrawable(R.drawable.ic_user_circle))
                 .into(img_third_host)
         }
+    }
+
+    fun showHideHostCardView() {
+        if (mHosts.size <= 0) {
+            cv_host.visibility = View.GONE
+        } else cv_host.visibility = View.VISIBLE
     }
 }

@@ -107,4 +107,5 @@
     <string name="no_host">No host was found out</string>
     <string name="request_stay">Request to stay</string>
     <string name="from">from</string>
+    <string name="request_to_stay">Request to stay</string>
 </resources>

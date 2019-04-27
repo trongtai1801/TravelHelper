@@ -36,6 +36,7 @@
         <activity android:name=".ui.hosts.HostsActivity_"></activity>
         <activity android:name=".ui.hosts.info.HostInfoActivity_"></activity>
         <activity android:name=".ui.search.SearchActivity_"></activity>
+        <activity android:name=".ui.hosts.request.RequestToStayActivity_"></activity>
     </application>
 
 </manifest>

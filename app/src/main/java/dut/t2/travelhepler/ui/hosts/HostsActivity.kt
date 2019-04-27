@@ -36,7 +36,7 @@ class HostsActivity : BaseActivity<HostsContrct.HostsView, HostsPresenterImpl>()
     override fun afterViews() {
         initToolbar()
         initRcv()
-        swf_hosts.setOnRefreshListener { mPresenter!!.getHosts(RealmDAO.getProfileLogin()!!.address.split(",")[1].trim()) }
+//        swf_hosts.setOnRefreshListener { mPresenter!!.getHosts(RealmDAO.getProfileLogin()!!.address.split(",")[1].trim()) }
     }
 
     override fun getHostsResult(hosts: ArrayList<Profile>) {
@@ -49,7 +49,7 @@ class HostsActivity : BaseActivity<HostsContrct.HostsView, HostsPresenterImpl>()
         }
         tv_total_result_hosts.text = mHosts.size.toString() + " " + getString(R.string.host)
         dismissLoading()
-        if (swf_hosts.isRefreshing) swf_hosts.isRefreshing = false
+//        if (swf_hosts.isRefreshing) swf_hosts.isRefreshing = false
     }
 
     fun initToolbar() {
