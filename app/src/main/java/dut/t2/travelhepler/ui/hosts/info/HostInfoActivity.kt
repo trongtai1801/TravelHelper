@@ -12,7 +12,18 @@ import dut.t2.travelhepler.ui.profile.home.HomeActivity_
 import dut.t2.travelhepler.ui.profile.photos.PhotosActivity_
 import dut.t2.travelhepler.ui.profile.references.ReferencesActivity_
 import dut.t2.travelhepler.utils.*
+import kotlinx.android.synthetic.main.activity_host_info.*
 import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.activity_profile.img_avatar_toolbar
+import kotlinx.android.synthetic.main.activity_profile.toolbar_show_profile
+import kotlinx.android.synthetic.main.activity_profile.tv_content_about_me_profile
+import kotlinx.android.synthetic.main.activity_profile.tv_content_address_profile
+import kotlinx.android.synthetic.main.activity_profile.tv_content_birthday_profile
+import kotlinx.android.synthetic.main.activity_profile.tv_content_fluence_profile
+import kotlinx.android.synthetic.main.activity_profile.tv_content_gender_profile
+import kotlinx.android.synthetic.main.activity_profile.tv_content_interest_profile
+import kotlinx.android.synthetic.main.activity_profile.tv_content_learning_profile
+import kotlinx.android.synthetic.main.activity_profile.tv_content_occupation_profile
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
 
@@ -77,6 +88,8 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
 
     fun setupViews() {
         tv_content_address_profile.text = mHost!!.address
+        if (mHost!!.id.equals(RealmDAO.getProfileLogin()!!.id)) btn_request_stay_host.visibility = View.GONE
+        else btn_request_stay_host.visibility = View.VISIBLE
         if (!mHost!!.splitBirthday()!!.equals(""))
             tv_content_birthday_profile.text =
                 CalendarUtils.convertStringFormat(mHost!!.splitBirthday()!!)

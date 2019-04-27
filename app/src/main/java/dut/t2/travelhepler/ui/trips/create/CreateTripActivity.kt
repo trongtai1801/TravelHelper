@@ -178,10 +178,7 @@ class CreateTripActivity : BaseActivity<CreateTripContract.CreateTripView, Creat
 
     fun isValidDate(): Boolean {
         if (mArrival == null || mDeparture == null) return true
-        else {
-            if (mArrival!!.after(mDeparture)) return false
-            return true
-        }
+        else return (mArrival!!.before(mDeparture))
         return false
     }
 
