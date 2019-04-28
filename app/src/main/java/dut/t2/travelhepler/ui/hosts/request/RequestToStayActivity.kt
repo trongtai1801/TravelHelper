@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.google.gson.JsonObject
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
@@ -63,7 +64,7 @@ class RequestToStayActivity : BaseActivity<RequestToStayContract.RequestToStayVi
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.item_add -> {
-//                submit()
+                submit()
             }
         }
         return super.onOptionsItemSelected(item)
@@ -88,6 +89,12 @@ class RequestToStayActivity : BaseActivity<RequestToStayContract.RequestToStayVi
                 setNumTravelerTextView()
             }
         }
+    }
+
+    override fun createRequestToStayResult() {
+        showToast(getString(R.string.create))
+        dismissLoading()
+        finish()
     }
 
     fun initToolbar() {
@@ -155,5 +162,30 @@ class RequestToStayActivity : BaseActivity<RequestToStayContract.RequestToStayVi
         mArrival = null
         mDeparture = null
         sNumTraveler = 1
+    }
+
+    fun submit() {
+        var trip = JsonObject()
+        if (!invalidField()) {
+            trip.addProperty("ArrivalDate", tv_arrival.text.toString())
+            trip.addProperty("DepartureDate", tv_departure.text.toString())
+            trip.addProperty("TravelerNumber", sNumTraveler)
+            trip.addProperty("Message", "")
+            showLoading()
+//            mPresenter!!.createPublicTrip(trip)
+            mPresenter!!.createRequestToStay(mHost!!.id, trip)
+        }
+    }
+
+    fun invalidField(): Boolean {
+        if (tv_arrival.text.isEmpty()) {
+            showToast(getString(R.string.warning_input_arrival_date))
+            return true
+        }
+        if (tv_departure.text.isEmpty()) {
+            showToast(getString(R.string.warning_input_departure_date))
+            return true
+        }
+        return false
     }
 }

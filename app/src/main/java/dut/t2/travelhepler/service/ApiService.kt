@@ -91,4 +91,11 @@ interface ApiService {
 
     @GET("Users/{id}/Homes")
     fun getHomeInfoOfOtherUser(@Path("id") userId: String): Call<ArrayList<Home>>
+
+    @POST("TravelRequests/{id}")
+    fun createRequestToStay(
+        @Header("Authorization") authorization: String,
+        @Path("id") hostId: String,
+        @Body trip: JsonObject
+    ): Call<Void>
 }
