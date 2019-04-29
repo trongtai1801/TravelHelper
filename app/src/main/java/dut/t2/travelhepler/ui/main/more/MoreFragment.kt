@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.main.MainActivity
 import dut.t2.travelhepler.ui.main.more.profile.ProfileActivity_
+import dut.t2.travelhepler.ui.main.more.requests.RequestsActivity_
 import dut.t2.travelhepler.ui.splash.SplashActivity_
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.RealmDAO
@@ -43,7 +44,7 @@ class MoreFragment : Fragment() {
                 (activity as MainActivity).showToast("friend")
             }
             R.id.ln_my_requests_more -> {
-                (activity as MainActivity).showToast("inbox")
+                RequestsActivity_.intent(context).start()
             }
             R.id.btn_logout -> {
                 showConfirmLogoutDialog()

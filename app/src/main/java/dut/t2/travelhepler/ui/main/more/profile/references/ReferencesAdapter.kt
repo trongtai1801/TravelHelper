@@ -21,9 +21,9 @@ class ReferencesAdapter(
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ReferencesViewHolder {
         var view = LayoutInflater.from(this.mContext).inflate(R.layout.item_rcv_references, p0, false)
         return ReferencesViewHolder(
-            view, view.cir_img_item_references, view.tv_sender_name_item_references,
-            view.tv_sender_address_item_references, view.tv_positive_negative_item_references,
-            view.tv_content_item_references
+            view, view.cir_img_item_references, view.tv_receiver_name_item_my_request,
+            view.tv_receiver_address_item_my_request, view.tv_positive_negative_item_references,
+            view.tv_arr_dep_date_item_my_request
         )
     }
 

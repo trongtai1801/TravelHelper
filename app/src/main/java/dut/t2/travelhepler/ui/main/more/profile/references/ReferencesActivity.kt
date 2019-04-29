@@ -7,10 +7,12 @@ import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Reference
 import dut.t2.travelhepler.utils.Constant
+import dut.t2.travelhepler.utils.RealmDAO
 import kotlinx.android.synthetic.main.activity_references.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_light.img_back_appbar
 import kotlinx.android.synthetic.main.custom_appbar_layout_light.tv_title_appbar
+import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
 
 @EActivity(R.layout.activity_references)
@@ -39,8 +41,19 @@ class ReferencesActivity : BaseActivity<ReferencesContract.ReferencesView, Refer
         swf_references.setOnRefreshListener {
             mPresenter!!.getReferences(sUserId)
         }
+        if (sUserId.equals(RealmDAO.getProfileLogin()!!.id)) fab_write_reference.hide()
+        else fab_write_reference.show()
         showLoading()
         mPresenter!!.getReferences(sUserId)
+    }
+
+    @Click(R.id.fab_write_reference)
+    fun onClick(v: View) {
+        when (v.id) {
+            R.id.fab_write_reference -> {
+                showToast("write")
+            }
+        }
     }
 
     override fun getReferencesResult(references: ArrayList<Reference>) {

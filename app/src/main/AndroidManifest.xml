@@ -37,6 +37,7 @@
         <activity android:name=".ui.hosts.info.HostInfoActivity_"></activity>
         <activity android:name="dut.t2.travelhepler.ui.main.search.search.SearchActivity_"></activity>
         <activity android:name=".ui.hosts.request.RequestToStayActivity_"></activity>
+        <activity android:name=".ui.main.more.requests.RequestsActivity_"></activity>
     </application>
 
 </manifest>
