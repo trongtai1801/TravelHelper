@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view_flex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:cardPreventCornerOverlap="false">
+
+    <RelativeLayout
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ImageView
+                android:id="@+id/img_avatar_item_host"
+                android:scaleType="fitXY"
+                android:background="@drawable/ic_user_circle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_150sdp"/>
+
+        <TextView
+                android:id="@+id/tv_user_name_host"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_below="@id/img_avatar_item_host"
+                android:text="@string/full_name"
+                android:textColor="@android:color/black"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/_15ssp"
+                android:textStyle="bold"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"/>
+
+        <TextView
+                android:id="@+id/tv_address_host"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_below="@id/tv_user_name_host"
+                android:text="@string/address"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/_12ssp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"/>
+
+        <TextView
+                android:id="@+id/tv_fluent_language_host"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_below="@id/tv_address_host"
+                android:text="@string/fluence_language"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/_12ssp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"/>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
