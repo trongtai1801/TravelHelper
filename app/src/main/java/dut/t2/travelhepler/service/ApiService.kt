@@ -4,10 +4,7 @@ import com.google.gson.JsonObject
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhelper.service.model.User
 import dut.t2.travelhelper.service.response.LoginResponse
-import dut.t2.travelhepler.service.model.Home
-import dut.t2.travelhepler.service.model.Photo
-import dut.t2.travelhepler.service.model.PublicTrip
-import dut.t2.travelhepler.service.model.Reference
+import dut.t2.travelhepler.service.model.*
 import dut.t2.travelhepler.service.response.SignUpResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -60,8 +57,8 @@ interface ApiService {
         @Body jsonObjects: JsonObject
     ): Call<Profile>
 
-    @GET("users/images")
-    fun getPhotos(@Header("Authorization") authorization: String): Call<ArrayList<Photo>>
+    @GET("users/{id}/images")
+    fun getPhotos(@Path("id") userId: String): Call<ArrayList<Photo>>
 
     @DELETE("Images/{id}")
     fun deletePhoto(
@@ -76,9 +73,29 @@ interface ApiService {
         @Part photo: MultipartBody.Part
     ): Call<Photo>
 
-    @GET("users/References")
-    fun getReferences(@Header("Authorization") authorization: String): Call<ArrayList<Reference>>
+    @GET("users/{id}/References")
+    fun getReferences(@Path("id") userId: String): Call<ArrayList<Reference>>
 
     @GET("Users/Homes")
     fun getHomeInfo(@Header("Authorization") authorization: String): Call<ArrayList<Home>>
+
+    @GET("Users/Search")
+    fun getHosts(
+        @Header("Authorization") authorization: String,
+        @Query("address") address: String
+    ): Call<ArrayList<Profile>>
+
+
+    @GET("Users/{id}/Homes")
+    fun getHomeInfoOfOtherUser(@Path("id") userId: String): Call<ArrayList<Home>>
+
+    @POST("TravelRequests/{id}")
+    fun createRequestToStay(
+        @Header("Authorization") authorization: String,
+        @Path("id") hostId: String,
+        @Body trip: JsonObject
+    ): Call<Void>
+
+    @GET("Users/SentTravelRequests")
+    fun getMyRequests(@Header("Authorization") authorization: String): Call<ArrayList<Request>>
 }

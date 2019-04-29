@@ -86,4 +86,7 @@ dependencies {
 
     //iosDialog
     implementation 'com.itlgl:iosdialog:1.0.1'
+
+    //floating search view
+    implementation 'com.github.arimorty:floatingsearchview:2.1.1'
 }
