@@ -22,6 +22,7 @@ class Constant {
         const val REQUEST_CODE_UPDATE_USER_AVATAR: Int = 3
         const val REQUEST_CODE_UPDATE_USER_PROFILE: Int = 4
         const val REQUEST_CODE_GET_SEARCH_HOST_STRING: Int = 5
+        const val REQUEST_CODE_WRITE_REFERENCE: Int = 6
 
         const val DATE_FORMAT_SEND = "MM.dd.yyyy"
         const val DATE_FORMAT_RECEIVE = "yyyy-MM-dd"
