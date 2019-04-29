@@ -114,4 +114,11 @@
     <string name="my_request">Yêu cầu của tôi</string>
     <string name="you_dont_have_request">Bạn chưa có yêu cầu nào</string>
     <string name="can_not_get_request">Không thể lấy yêu cầu</string>
+    <string name="would_you_commended">Bạn sẽ giới thiệu</string>
+    <string name="warning_write_reference">Your reference will appear on this user profile, so be sure that you\'re only
+        sharing words you\'re comfortable saying publicly.\nYou can\'t edit or delete it.
+    </string>
+    <string name="your_reference">Đánh giá của bạn</string>
+    <string name="please_input_reference">Nhập nhận xét</string>
+    <string name="can_not_create_reference">Không thể tạo đánh giá.</string>
 </resources>

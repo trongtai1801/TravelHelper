@@ -98,4 +98,11 @@ interface ApiService {
 
     @GET("Users/SentTravelRequests")
     fun getMyRequests(@Header("Authorization") authorization: String): Call<ArrayList<Request>>
+
+    @POST("References/{id}")
+    fun writeReference(
+        @Header("Authorization") authorization: String,
+        @Path("id") userId: String,
+        @Body reference: JsonObject
+    ): Call<Reference>
 }

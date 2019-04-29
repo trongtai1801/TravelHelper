@@ -1,5 +1,7 @@
 package dut.t2.travelhepler.ui.main.more.profile.references
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -51,7 +53,20 @@ class ReferencesActivity : BaseActivity<ReferencesContract.ReferencesView, Refer
     fun onClick(v: View) {
         when (v.id) {
             R.id.fab_write_reference -> {
-                showToast("write")
+                WriteReferenceActivity_.intent(this).extra(Constant.USER_ID, sUserId)
+                    .startForResult(Constant.REQUEST_CODE_WRITE_REFERENCE)
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            when (requestCode) {
+                Constant.REQUEST_CODE_WRITE_REFERENCE -> {
+                    showLoading()
+                    mPresenter!!.getReferences(sUserId)
+                }
             }
         }
     }
