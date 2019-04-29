@@ -24,18 +24,18 @@
         <activity android:name=".ui.main.MainActivity_"></activity>
         <activity android:name=".ui.login.LoginActivity_"></activity>
         <activity android:name="dut.t2.travelhelper.ui.signup.SignUpActivity_"></activity>
-        <activity android:name=".ui.trips.info.InfoActivity_"></activity>
-        <activity android:name=".ui.trips.create.CreateTripActivity_"></activity>
-        <activity android:name=".ui.trips.update.UpdateTripActivity_"></activity>
-        <activity android:name=".ui.profile.ProfileActivity_"></activity>
-        <activity android:name=".ui.profile.update.UpdateProfileActivity_"></activity>
-        <activity android:name=".ui.profile.photos.PhotosActivity_"></activity>
-        <activity android:name=".ui.profile.photos.PhotoActivity_"></activity>
-        <activity android:name=".ui.profile.references.ReferencesActivity_"></activity>
-        <activity android:name=".ui.profile.home.HomeActivity_"></activity>
+        <activity android:name="dut.t2.travelhepler.ui.main.dashboard.trips.info.InfoActivity_"></activity>
+        <activity android:name="dut.t2.travelhepler.ui.main.dashboard.trips.create.CreateTripActivity_"></activity>
+        <activity android:name="dut.t2.travelhepler.ui.main.dashboard.trips.update.UpdateTripActivity_"></activity>
+        <activity android:name="dut.t2.travelhepler.ui.main.more.profile.ProfileActivity_"></activity>
+        <activity android:name="dut.t2.travelhepler.ui.main.more.profile.update.UpdateProfileActivity_"></activity>
+        <activity android:name="dut.t2.travelhepler.ui.main.more.profile.photos.PhotosActivity_"></activity>
+        <activity android:name="dut.t2.travelhepler.ui.main.more.profile.photos.PhotoActivity_"></activity>
+        <activity android:name="dut.t2.travelhepler.ui.main.more.profile.references.ReferencesActivity_"></activity>
+        <activity android:name="dut.t2.travelhepler.ui.main.more.profile.home.HomeActivity_"></activity>
         <activity android:name=".ui.hosts.HostsActivity_"></activity>
         <activity android:name=".ui.hosts.info.HostInfoActivity_"></activity>
-        <activity android:name=".ui.search.SearchActivity_"></activity>
+        <activity android:name="dut.t2.travelhepler.ui.main.search.search.SearchActivity_"></activity>
         <activity android:name=".ui.hosts.request.RequestToStayActivity_"></activity>
     </application>
 

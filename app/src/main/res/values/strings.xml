@@ -110,4 +110,5 @@
     <string name="request_to_stay">Request to stay</string>
     <string name="can_not_create_equest">Can not create request</string>
     <string name="created">Created</string>
+    <string name="my_request">My request</string>
 </resources>

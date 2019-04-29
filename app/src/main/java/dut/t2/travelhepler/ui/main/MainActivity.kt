@@ -5,8 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
@@ -19,11 +17,7 @@ import dut.t2.travelhepler.ui.main.more.MoreFragment
 import dut.t2.travelhepler.ui.main.more.MoreFragment_
 import dut.t2.travelhepler.ui.main.search.SearchFragment
 import dut.t2.travelhepler.ui.main.search.SearchFragment_
-import dut.t2.travelhepler.ui.search.SearchActivity_
 import dut.t2.travelhepler.utils.Constant
-import dut.t2.travelhepler.utils.RealmDAO
-import dut.t2.travelhepler.utils.SessionManager
-import kotlinx.android.synthetic.main.activity_hosts.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_light.img_back_appbar

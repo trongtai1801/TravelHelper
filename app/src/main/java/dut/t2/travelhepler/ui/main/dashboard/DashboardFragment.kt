@@ -7,9 +7,9 @@ import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.service.model.SearchItem
 import dut.t2.travelhepler.ui.main.MainActivity
-import dut.t2.travelhepler.ui.trips.create.CreateTripActivity_
-import dut.t2.travelhepler.ui.trips.info.InfoActivity_
-import dut.t2.travelhepler.ui.trips.update.UpdateTripActivity_
+import dut.t2.travelhepler.ui.main.dashboard.trips.create.CreateTripActivity_
+import dut.t2.travelhepler.ui.main.dashboard.trips.info.InfoActivity_
+import dut.t2.travelhepler.ui.main.dashboard.trips.update.UpdateTripActivity_
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.SessionManager
 import kotlinx.android.synthetic.main.fragment_dashboard.*

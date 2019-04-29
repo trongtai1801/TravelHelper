@@ -111,4 +111,5 @@
     <string name="request_to_stay">Yêu cầu ở nhờ</string>
     <string name="can_not_create_equest">Không thể tạo yêu cầu</string>
     <string name="created">Đã tạo</string>
+    <string name="my_request">Yêu cầu của tôi</string>
 </resources>

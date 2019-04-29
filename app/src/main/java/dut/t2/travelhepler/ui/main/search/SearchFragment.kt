@@ -9,9 +9,8 @@ import com.bumptech.glide.Glide
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.hosts.HostsActivity_
-import dut.t2.travelhepler.ui.search.SearchActivity_
+import dut.t2.travelhepler.ui.main.search.search.SearchActivity_
 import dut.t2.travelhepler.utils.Constant
-import kotlinx.android.synthetic.main.activity_hosts.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.androidannotations.annotations.AfterViews
 import org.androidannotations.annotations.Click

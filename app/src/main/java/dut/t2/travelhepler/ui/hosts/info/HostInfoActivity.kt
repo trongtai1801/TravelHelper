@@ -8,12 +8,11 @@ import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Home
 import dut.t2.travelhepler.ui.hosts.request.RequestToStayActivity_
-import dut.t2.travelhepler.ui.profile.home.HomeActivity_
-import dut.t2.travelhepler.ui.profile.photos.PhotosActivity_
-import dut.t2.travelhepler.ui.profile.references.ReferencesActivity_
+import dut.t2.travelhepler.ui.main.more.profile.home.HomeActivity_
+import dut.t2.travelhepler.ui.main.more.profile.photos.PhotosActivity_
+import dut.t2.travelhepler.ui.main.more.profile.references.ReferencesActivity_
 import dut.t2.travelhepler.utils.*
 import kotlinx.android.synthetic.main.activity_host_info.*
-import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.activity_profile.img_avatar_toolbar
 import kotlinx.android.synthetic.main.activity_profile.toolbar_show_profile
 import kotlinx.android.synthetic.main.activity_profile.tv_content_about_me_profile

@@ -2,24 +2,18 @@ package dut.t2.travelhepler.ui.hosts.request
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.provider.ContactsContract
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.gson.JsonObject
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
-import dut.t2.travelhepler.ui.trips.create.CreateTripActivity
 import dut.t2.travelhepler.utils.Constant
-import dut.t2.travelhepler.utils.RealmDAO
 import kotlinx.android.synthetic.main.activity_request_to_stay.*
-import kotlinx.android.synthetic.main.activity_trip_info.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
-import kotlinx.android.synthetic.main.fragment_more.*
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
 import java.text.SimpleDateFormat
@@ -32,7 +26,7 @@ class RequestToStayActivity : BaseActivity<RequestToStayContract.RequestToStayVi
     var mHost: Profile?? = null
 
     companion object {
-        private var sNumTraveler = 1
+        private var sNumTraveler = 0
         private var mArrival: Calendar? = null
         private var mDeparture: Calendar? = null
     }
@@ -92,7 +86,7 @@ class RequestToStayActivity : BaseActivity<RequestToStayContract.RequestToStayVi
     }
 
     override fun createRequestToStayResult() {
-        showToast(getString(R.string.create))
+        showToast(getString(R.string.created))
         dismissLoading()
         finish()
     }
@@ -161,7 +155,7 @@ class RequestToStayActivity : BaseActivity<RequestToStayContract.RequestToStayVi
     fun clearData() {
         mArrival = null
         mDeparture = null
-        sNumTraveler = 1
+        sNumTraveler = 0
     }
 
     fun submit() {
@@ -172,7 +166,6 @@ class RequestToStayActivity : BaseActivity<RequestToStayContract.RequestToStayVi
             trip.addProperty("TravelerNumber", sNumTraveler)
             trip.addProperty("Message", "")
             showLoading()
-//            mPresenter!!.createPublicTrip(trip)
             mPresenter!!.createRequestToStay(mHost!!.id, trip)
         }
     }
