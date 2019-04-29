@@ -115,7 +115,7 @@
     </LinearLayout>
 
     <LinearLayout
-            android:id="@+id/ln_inbox_more"
+            android:id="@+id/ln_my_requests_more"
             android:orientation="horizontal"
             android:layout_below="@id/ln_fiend_more"
             android:layout_width="match_parent"
@@ -123,13 +123,14 @@
 
         <ImageView
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_inbox"
+                android:src="@drawable/ic_request"
+                android:padding="@dimen/_9ssp"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"/>
 
         <TextView
-                android:text="@string/inbox"
+                android:text="@string/my_request"
                 style="@style/MoreTextView"
                 android:layout_weight="6"
                 android:layout_width="0dp"
@@ -139,7 +140,7 @@
 
     <View
             android:id="@+id/view2_more"
-            android:layout_below="@id/ln_inbox_more"
+            android:layout_below="@id/ln_my_requests_more"
             android:background="@color/colorGrayDark"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"/>

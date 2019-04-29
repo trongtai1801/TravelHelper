@@ -30,7 +30,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent">
                 <TextView
-                        android:id="@+id/tv_sender_name_item_references"
+                        android:id="@+id/tv_receiver_name_item_my_request"
                         android:text="@string/full_name"
                         android:gravity="center_vertical"
                         android:textColor="@android:color/black"
@@ -39,7 +39,7 @@
                         android:layout_weight="2"
                         android:layout_width="match_parent" android:layout_height="0dp"/>
                 <TextView
-                        android:id="@+id/tv_sender_address_item_references"
+                        android:id="@+id/tv_receiver_address_item_my_request"
                         android:textSize="@dimen/_12ssp"
                         android:text="@string/address"
                         android:gravity="center_vertical"
@@ -64,7 +64,7 @@
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
 
         <TextView
-                android:id="@+id/tv_content_item_references"
+                android:id="@+id/tv_arr_dep_date_item_my_request"
                 android:layout_marginStart="@dimen/_63sdp"
                 android:maxLines="100"
                 android:text="@string/content"
