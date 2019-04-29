@@ -7,8 +7,10 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
+import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
+import dut.t2.travelhepler.ui.hosts.HostsActivity_
 import dut.t2.travelhepler.ui.main.dashboard.DashboardFragment
 import dut.t2.travelhepler.ui.main.dashboard.DashboardFragment_
 import dut.t2.travelhepler.ui.main.more.MoreFragment
@@ -30,8 +32,12 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     private var dashboardFragment = DashboardFragment_()
     private var searchFragment = SearchFragment_()
     private var moreFragment = MoreFragment_()
-    private var index: Int = -1
     private var mPublicTrips: ArrayList<PublicTrip> = ArrayList()
+
+    companion object {
+        private var index: Int = -1
+        private var host_flag = -1
+    }
 
 
     override fun initPresenter() {
@@ -64,6 +70,10 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
                 Constant.REQUEST_CODE_UPDATE_USER_AVATAR -> {
                     moreFragment.setupViews()
                 }
+                Constant.REQUEST_CODE_GET_SEARCH_HOST_STRING -> {
+                    var searchString = data!!.getStringExtra(Constant.SEARCH_HOST_STRING)
+                    getHosts(Constant.HOST_FLAG_SET_FRAGMENT, searchString)
+                }
             }
         }
     }
@@ -88,7 +98,6 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
                 mPublicTrips.addAll(publicTrips)
             }
         }
-//        setFragment(dashboardFragment, Constant.INDEX_FRAGMENT_DASBOARD)
         dismissLoading()
         dashboardFragment.dismissSwipeRefreshLayout()
         dashboardFragment.notifyDataSetChanged(mPublicTrips)
@@ -96,6 +105,21 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
 
     override fun deletePublicTripResult() {
         getPublicTrips()
+    }
+
+    override fun getHostsResult(hosts: ArrayList<Profile>) {
+        if (hosts != null) {
+            when (host_flag) {
+                Constant.HOST_FLAG_SHOW_LIST_HOST -> {
+                    HostsActivity_.intent(this).extra(Constant.HOSTS, hosts).start()
+                }
+                Constant.HOST_FLAG_SET_FRAGMENT -> {
+                    if (hosts.size > 0) {
+                        searchFragment.setHosts(hosts)
+                    } else showToast(getString(R.string.data_null))
+                }
+            }
+        }
     }
 
     fun initToolbar() {
@@ -111,7 +135,6 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         bottom_navigation_view.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_dashboard -> {
-//                    getPublicTrips()
                     setFragment(dashboardFragment, Constant.INDEX_FRAGMENT_DASBOARD)
                     return@setOnNavigationItemSelectedListener true
                 }
@@ -129,7 +152,6 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
     }
 
     fun setFragment(fragment: Fragment, i: Int) {
-//        if (i == index) return
         when (fragment) {
             is DashboardFragment -> {
                 val b = Bundle()
@@ -171,5 +193,11 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
             .create()
         alertDialog.getWindow()!!.setBackgroundDrawableResource(R.drawable.background_dialog)
         alertDialog.show()
+    }
+
+    public fun getHosts(flag: Int, searchString: String) {
+        host_flag = flag
+        showLoading()
+        mPresenter!!.getHosts(searchString)
     }
 }

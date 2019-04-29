@@ -105,4 +105,13 @@
     <string name="add_info">Thông tin thêm</string>
     <string name="dont_have_home">Bạn chưa có thông tin nào về nhà của bạn</string>
     <string name="dont_have_reference">Bạn chưa có đánh giá nào</string>
+    <string name="no_host">Không tìm thấy chủ nhà nào</string>
+    <string name="request_stay">Yêu cầu ở nhờ</string>
+    <string name="from">từ</string>
+    <string name="request_to_stay">Yêu cầu ở nhờ</string>
+    <string name="can_not_create_equest">Không thể tạo yêu cầu</string>
+    <string name="created">Đã tạo</string>
+    <string name="my_request">Yêu cầu của tôi</string>
+    <string name="you_dont_have_request">Bạn chưa có yêu cầu nào</string>
+    <string name="can_not_get_request">Không thể lấy yêu cầu</string>
 </resources>

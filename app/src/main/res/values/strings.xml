@@ -104,4 +104,13 @@
     <string name="add_info">Additional Information</string>
     <string name="dont_have_home">You don\'t have any home info</string>
     <string name="dont_have_reference">You don\'t have any home reference</string>
+    <string name="no_host">No host was found out</string>
+    <string name="request_stay">Request to stay</string>
+    <string name="from">from</string>
+    <string name="request_to_stay">Request to stay</string>
+    <string name="can_not_create_equest">Can not create request</string>
+    <string name="created">Created</string>
+    <string name="my_request">My request</string>
+    <string name="you_dont_have_request">You don\'t have any request</string>
+    <string name="can_not_get_request">Can not get request</string>
 </resources>

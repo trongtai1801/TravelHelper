@@ -6,7 +6,8 @@ import android.view.View
 import com.bumptech.glide.Glide
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.main.MainActivity
-import dut.t2.travelhepler.ui.profile.ProfileActivity_
+import dut.t2.travelhepler.ui.main.more.profile.ProfileActivity_
+import dut.t2.travelhepler.ui.main.more.requests.RequestsActivity_
 import dut.t2.travelhepler.ui.splash.SplashActivity_
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.RealmDAO
@@ -26,7 +27,7 @@ class MoreFragment : Fragment() {
 
     @Click(
         R.id.btn_logout, R.id.csl_profile_more, R.id.ln_hosting_more, R.id.ln_my_public_trip_more,
-        R.id.ln_fiend_more, R.id.ln_inbox_more, R.id.ln_setting_more
+        R.id.ln_fiend_more, R.id.ln_my_requests_more, R.id.ln_setting_more
     )
     fun onClick(v: View) {
         when (v.id) {
@@ -42,8 +43,8 @@ class MoreFragment : Fragment() {
             R.id.ln_fiend_more -> {
                 (activity as MainActivity).showToast("friend")
             }
-            R.id.ln_inbox_more -> {
-                (activity as MainActivity).showToast("inbox")
+            R.id.ln_my_requests_more -> {
+                RequestsActivity_.intent(context).start()
             }
             R.id.btn_logout -> {
                 showConfirmLogoutDialog()
