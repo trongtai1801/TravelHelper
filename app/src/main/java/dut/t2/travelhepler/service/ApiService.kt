@@ -107,5 +107,11 @@ interface ApiService {
     ): Call<Reference>
 
     @GET("Users/TravelRequests")
-    fun getTravelerRequests(@Header("Authorization") authorization: String): Call<ArrayList<Request>>
+    fun getRequestsToStay(@Header("Authorization") authorization: String): Call<ArrayList<Request>>
+
+    @GET("Publictrips/Search")
+    fun getTravelers(
+        @Header("Authorization") authorization: String,
+        @Query("destination") destination: String
+    ): Call<ArrayList<PublicTrip>>
 }

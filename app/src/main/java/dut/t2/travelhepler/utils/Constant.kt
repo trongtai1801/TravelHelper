@@ -14,6 +14,8 @@ class Constant {
         const val HOME = "home"
         const val HOST = "host"
         const val HOSTS = "hosts"
+        const val TRAVELER = "traveler"
+        const val TRAVELERS = "travelers"
         const val SEARCH_HOST_STRING = "search_host"
         const val USER_ID = "user_id"
 

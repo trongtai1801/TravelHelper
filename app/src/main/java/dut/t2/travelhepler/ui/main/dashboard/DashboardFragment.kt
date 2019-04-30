@@ -80,7 +80,10 @@ class DashboardFragment : Fragment() {
                         )
                     }
                     Constant.ID_SEARCH_ITEM_TRAVELERS -> {
-
+                        (activity as MainActivity).getTravelers(
+                            Constant.HOST_FLAG_SHOW_LIST_HOST,
+                            SessionManager.Profile!!.address.split(",")[1].trim()
+                        )
                     }
                 }
             }

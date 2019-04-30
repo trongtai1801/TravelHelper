@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import dut.t2.travelhelper.service.model.Profile
 
 class PublicTrip(
     @SerializedName("publicTripId")
@@ -28,7 +29,11 @@ class PublicTrip(
 
     @SerializedName("description")
     @Expose
-    var description: String
+    var description: String,
+
+    @SerializedName("user")
+    @Expose
+    var user: Profile?
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -37,7 +42,8 @@ class PublicTrip(
         parcel.readString(),
         parcel.readString(),
         parcel.readInt(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.readParcelable(Profile::class.java.classLoader)
     )
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
@@ -47,6 +53,7 @@ class PublicTrip(
         dest.writeString(destination)
         dest.writeInt(travelerNumber)
         dest.writeString(description)
+        dest.writeParcelable(user, flags)
     }
 
     override fun describeContents(): Int {

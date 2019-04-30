@@ -102,7 +102,7 @@
     <string name="allow_thing">Allowed Thing</string>
     <string name="stuff">Stuff</string>
     <string name="add_info">Additional Information</string>
-    <string name="dont_have_home">You don\'t have any home info</string>
+    <string name="dont_have_home">Can not find out any home info</string>
     <string name="dont_have_reference">You don\'t have any home reference</string>
     <string name="no_host">No host was found out</string>
     <string name="request_stay">Request to stay</string>
@@ -120,4 +120,8 @@
     <string name="your_reference">Your reference</string>
     <string name="please_input_reference">Please input your reference</string>
     <string name="can_not_create_reference">Can not create reference</string>
+    <string name="no_travelers">can not find out any travelers</string>
+    <string name="visiting">Visiting</string>
+    <string name="offer_to_host">Offer to host</string>
+    <string name="offer">Offer</string>
 </resources>

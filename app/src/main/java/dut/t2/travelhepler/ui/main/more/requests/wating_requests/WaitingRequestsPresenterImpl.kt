@@ -15,7 +15,7 @@ class WaitingRequestsPresenterImpl(context: Context) :
     WaitingRequestsContract.WaitingRequestsPresenter {
 
     override fun getTravelerRequests() {
-        var req = ApiClient.getService()!!.getTravelerRequests(SessionManager.getAccessToken()!!)
+        var req = ApiClient.getService()!!.getRequestsToStay(SessionManager.getAccessToken()!!)
 
         req.enqueue(object : Callback<ArrayList<Request>> {
             override fun onResponse(call: Call<ArrayList<Request>>, response: Response<ArrayList<Request>>) {

@@ -38,7 +38,7 @@
                 android:id="@+id/tv_arr_dep"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_below="@id/tv_user_name_host"
-                android:text="@string/address"
+                android:text="@string/when_arrival"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/_12ssp"
                 android:layout_width="match_parent"

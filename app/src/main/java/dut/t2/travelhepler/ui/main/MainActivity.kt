@@ -17,6 +17,7 @@ import dut.t2.travelhepler.ui.main.more.MoreFragment
 import dut.t2.travelhepler.ui.main.more.MoreFragment_
 import dut.t2.travelhepler.ui.main.search.SearchFragment
 import dut.t2.travelhepler.ui.main.search.SearchFragment_
+import dut.t2.travelhepler.ui.travelers.TravelersActivity_
 import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
@@ -122,6 +123,21 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         }
     }
 
+    override fun getTravelersResult(travelers: ArrayList<PublicTrip>) {
+        if (travelers != null) {
+            when (host_flag) {
+                Constant.HOST_FLAG_SHOW_LIST_HOST -> {
+                    TravelersActivity_.intent(this).extra(Constant.HOSTS, travelers).start()
+                }
+                Constant.HOST_FLAG_SET_FRAGMENT -> {
+                    if (travelers.size > 0) {
+                        searchFragment.setTravelers(travelers)
+                    } else showToast(getString(R.string.data_null))
+                }
+            }
+        }
+    }
+
     fun initToolbar() {
         setSupportActionBar(toolbar_appbar_dark)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
@@ -199,5 +215,11 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         host_flag = flag
         showLoading()
         mPresenter!!.getHosts(searchString)
+    }
+
+    public fun getTravelers(flag: Int, searchString: String) {
+        host_flag = flag
+        showLoading()
+        mPresenter!!.getTravelers(searchString)
     }
 }

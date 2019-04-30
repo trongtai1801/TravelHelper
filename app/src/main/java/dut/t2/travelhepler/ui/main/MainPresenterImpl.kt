@@ -79,4 +79,30 @@ class MainPresenterImpl(context: Context) : BasePresenter<MainContract.MainView>
             }
         })
     }
+
+    override fun getTravelers(address: String) {
+        val req = ApiClient.getService()!!.getTravelers(SessionManager.getAccessToken()!!, address)
+
+        req.enqueue(object : Callback<ArrayList<PublicTrip>> {
+            override fun onResponse(call: Call<ArrayList<PublicTrip>>, response: Response<ArrayList<PublicTrip>>) {
+                if (response.isSuccessful) {
+                    if (response.body() != null) {
+                        if ((response.body() as ArrayList<PublicTrip>).size > 0) {
+                            var result: ArrayList<PublicTrip> = response.body() as ArrayList<PublicTrip>
+                            for (publictrip: PublicTrip in result) {
+                                publictrip.user!!.setDefaultValue()
+                            }
+                            view!!.getTravelersResult(result)
+                        } else view!!.showToast(context.getString(R.string.no_travelers))
+                    } else view!!.showMessage(context.getString(R.string.data_null))
+                    view!!.dismissLoading()
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<PublicTrip>>, t: Throwable) {
+                view!!.showMessage(t.toString())
+                view!!.dismissLoading()
+            }
+        })
+    }
 }

@@ -12,6 +12,8 @@ interface MainContract {
         fun deletePublicTripResult()
 
         fun getHostsResult(hosts: ArrayList<Profile>)
+
+        fun getTravelersResult(travelers: ArrayList<PublicTrip>)
     }
 
     interface MainPresenter {
@@ -20,6 +22,8 @@ interface MainContract {
         fun deletePublicTrip(id: Int)
 
         fun getHosts(address: String)
+
+        fun getTravelers(address: String)
     }
 
 }

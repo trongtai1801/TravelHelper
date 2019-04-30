@@ -40,6 +40,9 @@
         <activity android:name=".ui.main.more.requests.my_requests.MyRequestsActivity_"></activity>
         <activity android:name=".ui.main.more.profile.references.WriteReferenceActivity_"></activity>
         <activity android:name=".ui.main.more.requests.wating_requests.WaitingRequestsActivity_"></activity>
+        <activity android:name=".ui.travelers.TravelersActivity_"></activity>
+        <activity android:name=".ui.travelers.info.TravelerInfoActivity_"></activity>
+        <activity android:name=".ui.travelers.offer.OfferActivity_"></activity>
     </application>
 
 </manifest>
