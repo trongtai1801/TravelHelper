@@ -5,10 +5,12 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.bumptech.glide.Glide
+import com.google.gson.JsonObject
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
+import dut.t2.travelhepler.ui.hosts.request.RequestToStayActivity
 import dut.t2.travelhepler.utils.CalendarUtils
 import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.activity_request_to_stay.*
@@ -45,10 +47,15 @@ class OfferActivity : BaseActivity<OfferContract.OfferView, OfferPresenterImpl>(
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.item_offer -> {
-//                submit()
+                submit()
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun createOfferResult() {
+        showToast(getString(R.string.created))
+        dismissLoading()
     }
 
     fun initToolbar() {
@@ -72,5 +79,15 @@ class OfferActivity : BaseActivity<OfferContract.OfferView, OfferPresenterImpl>(
         tv_arrival.text = CalendarUtils.convertStringFormat(mTrip!!.splitArrivalDate())
         tv_departure.text = CalendarUtils.convertStringFormat(mTrip!!.splitDepartureDate())
         tv_num_traveler.text = mTrip!!.travelerNumber.toString() + " " + getString(R.string.travelers)
+    }
+
+    fun submit() {
+        var trip = JsonObject()
+        trip.addProperty("ArrivalDate", CalendarUtils.convertStringFormat(mTrip!!.arrivalDate))
+        trip.addProperty("DepartureDate", CalendarUtils.convertStringFormat(mTrip!!.departureDate))
+        trip.addProperty("TravelerNumber", mTrip!!.travelerNumber)
+        trip.addProperty("Message", "")
+        showLoading()
+        mPresenter!!.createOffer(mTraveler!!.id, trip)
     }
 }

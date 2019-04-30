@@ -114,4 +114,11 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Query("destination") destination: String
     ): Call<ArrayList<PublicTrip>>
+
+    @POST("HostOffers/{id}")
+    fun createOffer(
+        @Header("Authorization") authorization: String,
+        @Path("id") userId: String,
+        @Body trip: JsonObject
+    ): Call<Void>
 }
