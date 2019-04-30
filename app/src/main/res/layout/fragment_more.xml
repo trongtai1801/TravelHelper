@@ -138,9 +138,33 @@
 
     </LinearLayout>
 
+    <LinearLayout
+            android:id="@+id/ln_waiting_requests_more"
+            android:orientation="horizontal"
+            android:layout_below="@id/ln_my_requests_more"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/more_csl_height">
+
+        <ImageView
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_request"
+                android:padding="@dimen/_9ssp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:text="@string/request_stay"
+                style="@style/MoreTextView"
+                android:layout_weight="6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
     <View
             android:id="@+id/view2_more"
-            android:layout_below="@id/ln_my_requests_more"
+            android:layout_below="@id/ln_waiting_requests_more"
             android:background="@color/colorGrayDark"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"/>

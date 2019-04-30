@@ -25,13 +25,18 @@ class Request(
 
     @SerializedName("receiver")
     @Expose
-    var receiver: Profile
+    var receiver: Profile,
+
+    @SerializedName("sender")
+    @Expose
+    var sender: Profile
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
         parcel.readInt(),
+        parcel.readParcelable(Profile::class.java.classLoader),
         parcel.readParcelable(Profile::class.java.classLoader)
     ) {
     }
@@ -42,6 +47,7 @@ class Request(
         dest.writeString(departureDate)
         dest.writeInt(travelerNumber)
         dest.writeParcelable(receiver, flags)
+        dest.writeParcelable(sender, flags)
     }
 
     override fun describeContents(): Int {

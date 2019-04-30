@@ -7,7 +7,8 @@ import com.bumptech.glide.Glide
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.main.MainActivity
 import dut.t2.travelhepler.ui.main.more.profile.ProfileActivity_
-import dut.t2.travelhepler.ui.main.more.requests.RequestsActivity_
+import dut.t2.travelhepler.ui.main.more.requests.my_requests.MyRequestsActivity_
+import dut.t2.travelhepler.ui.main.more.requests.wating_requests.WaitingRequestsActivity_
 import dut.t2.travelhepler.ui.splash.SplashActivity_
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.RealmDAO
@@ -27,7 +28,7 @@ class MoreFragment : Fragment() {
 
     @Click(
         R.id.btn_logout, R.id.csl_profile_more, R.id.ln_hosting_more, R.id.ln_my_public_trip_more,
-        R.id.ln_fiend_more, R.id.ln_my_requests_more, R.id.ln_setting_more
+        R.id.ln_fiend_more, R.id.ln_my_requests_more, R.id.ln_waiting_requests_more, R.id.ln_setting_more
     )
     fun onClick(v: View) {
         when (v.id) {
@@ -44,7 +45,10 @@ class MoreFragment : Fragment() {
                 (activity as MainActivity).showToast("friend")
             }
             R.id.ln_my_requests_more -> {
-                RequestsActivity_.intent(context).start()
+                MyRequestsActivity_.intent(context).start()
+            }
+            R.id.ln_waiting_requests_more -> {
+                WaitingRequestsActivity_.intent(context).start()
             }
             R.id.btn_logout -> {
                 showConfirmLogoutDialog()

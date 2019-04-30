@@ -1,4 +1,4 @@
-package dut.t2.travelhepler.ui.main.more.requests
+package dut.t2.travelhepler.ui.main.more.requests.wating_requests
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
@@ -17,11 +17,11 @@ import kotlinx.android.synthetic.main.item_rcv_references.view.tv_receiver_addre
 import kotlinx.android.synthetic.main.item_rcv_references.view.tv_receiver_name_item_my_request
 import kotlinx.android.synthetic.main.item_rcv_requests.view.*
 
-class RequestsAdapter(
+class WaitingRequestsAdapter(
     val mContext: Context,
     val mRequests: List<Request>,
     var mCallback: RequestClickListener
-) : RecyclerView.Adapter<RequestsAdapter.RequestsViewHolder>() {
+) : RecyclerView.Adapter<WaitingRequestsAdapter.RequestsViewHolder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RequestsViewHolder {
         var view = LayoutInflater.from(this.mContext).inflate(R.layout.item_rcv_requests, p0, false)
         return RequestsViewHolder(
@@ -38,11 +38,11 @@ class RequestsAdapter(
 
     override fun onBindViewHolder(p0: RequestsViewHolder, p1: Int) {
         val item = mRequests.get(p1)
-        Glide.with(mContext).load(item.receiver.avatar)
+        Glide.with(mContext).load(item.sender.avatar)
             .placeholder(mContext.getDrawable(R.drawable.ic_user_circle))
             .into(p0.cirImgReceiverAvatar)
-        p0.tvReceiverName.text = item.receiver.fullName
-        p0.tvReceiverAddress.text = item.receiver.address
+        p0.tvReceiverName.text = item.sender.fullName
+        p0.tvReceiverAddress.text = item.sender.address
         p0.tvArrDepDate.text = CalendarUtils.convertStringFormat(item.arrivalDate.split("T")[0]) +
                 "-" + CalendarUtils.convertStringFormat(item.departureDate.split("T")[0])
     }
@@ -60,7 +60,7 @@ class RequestsAdapter(
                 mCallback.onDelete(mRequests.get(adapterPosition))
             }
             tvReceiverName.setOnClickListener {
-                mCallback.onReceiverClick(mRequests.get(adapterPosition).receiver)
+                mCallback.onReceiverClick(mRequests.get(adapterPosition).sender)
             }
         }
     }

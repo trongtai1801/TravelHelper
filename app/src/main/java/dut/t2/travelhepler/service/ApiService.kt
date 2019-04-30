@@ -105,4 +105,7 @@ interface ApiService {
         @Path("id") userId: String,
         @Body reference: JsonObject
     ): Call<Reference>
+
+    @GET("Users/TravelRequests")
+    fun getTravelerRequests(@Header("Authorization") authorization: String): Call<ArrayList<Request>>
 }

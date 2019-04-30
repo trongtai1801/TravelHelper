@@ -1,4 +1,4 @@
-package dut.t2.travelhepler.ui.main.more.requests
+package dut.t2.travelhepler.ui.main.more.requests.my_requests
 
 import android.content.Context
 import dut.t2.travelhelper.base.BasePresenter
@@ -10,8 +10,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class RequestsPresenterImpl(context: Context) : BasePresenter<RequestsContract.RequestsView>(context),
-    RequestsContract.RequestsPresenter {
+class MyRequestsPresenterImpl(context: Context) : BasePresenter<MyRequestsContract.MyRequestsView>(context),
+    MyRequestsContract.MyRequestsPresenter {
 
     override fun getMyRequests() {
         var req = ApiClient.getService()!!.getMyRequests(SessionManager.getAccessToken()!!)
