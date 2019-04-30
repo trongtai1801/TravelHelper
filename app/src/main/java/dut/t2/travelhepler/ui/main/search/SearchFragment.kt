@@ -57,26 +57,37 @@ class SearchFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        mHosts.clear()
+        showHideHostCardView()
+        mTravelers.clear()
+        showHideTravelersCardView()
+        super.onDestroyView()
+    }
+
     public fun setHosts(hosts: ArrayList<Profile>) {
         mHosts.clear()
         mHosts.addAll(hosts)
         showHideHostCardView()
         tv_total_host_item_search.text = hosts.size.toString() + " " + context!!.getString(R.string.host)
         if (hosts.size > 0) {
+            img_first_host.visibility = View.VISIBLE
             Glide.with(context!!).load(hosts.get(0).avatar)
                 .placeholder(context!!.getDrawable(R.drawable.ic_user_circle))
                 .into(img_first_host)
-        }
+        } else img_first_host.visibility = View.INVISIBLE
         if (hosts.size > 1) {
+            img_second_host.visibility = View.VISIBLE
             Glide.with(context!!).load(hosts.get(1).avatar)
                 .placeholder(context!!.getDrawable(R.drawable.ic_user_circle))
                 .into(img_second_host)
-        }
+        } else img_second_host.visibility = View.INVISIBLE
         if (hosts.size > 2) {
+            img_third_host.visibility = View.VISIBLE
             Glide.with(context!!).load(hosts.get(2).avatar)
                 .placeholder(context!!.getDrawable(R.drawable.ic_user_circle))
                 .into(img_third_host)
-        }
+        } else img_third_host.visibility = View.INVISIBLE
     }
 
     public fun setTravelers(travelers: ArrayList<PublicTrip>) {
@@ -85,20 +96,23 @@ class SearchFragment : Fragment() {
         tv_total_traveler_item_search.text = travelers.size.toString() + " " + getString(R.string.travelers)
 
         if (travelers.size > 0) {
+            img_first_traveler.visibility = View.VISIBLE
             Glide.with(context!!).load(travelers.get(0).user!!.avatar)
                 .placeholder(context!!.getDrawable(R.drawable.ic_user_circle))
-                .into(img_first_host)
-        }
+                .into(img_first_traveler)
+        } else img_first_traveler.visibility = View.INVISIBLE
         if (travelers.size > 1) {
+            img_second_traveler.visibility = View.VISIBLE
             Glide.with(context!!).load(travelers.get(1).user!!.avatar)
                 .placeholder(context!!.getDrawable(R.drawable.ic_user_circle))
-                .into(img_second_host)
-        }
+                .into(img_second_traveler)
+        } else img_second_traveler.visibility = View.INVISIBLE
         if (travelers.size > 2) {
+            img_third_traveler.visibility = View.VISIBLE
             Glide.with(context!!).load(travelers.get(2).user!!.avatar)
                 .placeholder(context!!.getDrawable(R.drawable.ic_user_circle))
-                .into(img_third_host)
-        }
+                .into(img_third_traveler)
+        } else img_third_traveler.visibility = View.INVISIBLE
     }
 
     fun showHideHostCardView() {
