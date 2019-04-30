@@ -12,6 +12,7 @@ import dut.t2.travelhepler.service.model.PublicTrip
 import dut.t2.travelhepler.ui.hosts.HostsActivity_
 import dut.t2.travelhepler.ui.main.MainActivity
 import dut.t2.travelhepler.ui.main.search.search.SearchActivity_
+import dut.t2.travelhepler.ui.travelers.TravelersActivity_
 import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.androidannotations.annotations.AfterViews
@@ -52,7 +53,7 @@ class SearchFragment : Fragment() {
                 HostsActivity_.intent(context).extra(Constant.HOSTS, mHosts).start()
             }
             R.id.cv_traveler -> {
-                (activity as MainActivity).showToast("tra")
+                TravelersActivity_.intent(this).extra(Constant.TRAVELERS, mTravelers).start()
             }
         }
     }
@@ -93,8 +94,8 @@ class SearchFragment : Fragment() {
     public fun setTravelers(travelers: ArrayList<PublicTrip>) {
         mTravelers.clear()
         mTravelers.addAll(travelers)
+        showHideTravelersCardView()
         tv_total_traveler_item_search.text = travelers.size.toString() + " " + getString(R.string.travelers)
-
         if (travelers.size > 0) {
             img_first_traveler.visibility = View.VISIBLE
             Glide.with(context!!).load(travelers.get(0).user!!.avatar)

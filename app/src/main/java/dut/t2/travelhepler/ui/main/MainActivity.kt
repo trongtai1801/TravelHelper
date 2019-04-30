@@ -74,6 +74,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
                 Constant.REQUEST_CODE_GET_SEARCH_HOST_STRING -> {
                     var searchString = data!!.getStringExtra(Constant.SEARCH_HOST_STRING)
                     getHosts(Constant.HOST_FLAG_SET_FRAGMENT, searchString)
+                    getTravelers(Constant.HOST_FLAG_SET_FRAGMENT, searchString)
                 }
             }
         }
@@ -127,7 +128,7 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
         if (travelers != null) {
             when (host_flag) {
                 Constant.HOST_FLAG_SHOW_LIST_HOST -> {
-                    TravelersActivity_.intent(this).extra(Constant.HOSTS, travelers).start()
+                    TravelersActivity_.intent(this).extra(Constant.TRAVELERS, travelers).start()
                 }
                 Constant.HOST_FLAG_SET_FRAGMENT -> {
                     if (travelers.size > 0) {

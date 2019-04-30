@@ -30,7 +30,7 @@ class TravelersActivity : BaseActivity<TravelersContract.TravelersView, Traveler
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mTravelers.clear()
-        mTravelers.addAll(intent.getParcelableArrayListExtra(Constant.HOSTS))
+        mTravelers.addAll(intent.getParcelableArrayListExtra(Constant.TRAVELERS))
     }
 
     override fun afterViews() {
