@@ -121,4 +121,7 @@ interface ApiService {
         @Path("id") userId: String,
         @Body trip: JsonObject
     ): Call<Void>
+
+    @GET("Users/SentHostOffers")
+    fun getMyOffers(@Header("Authorization") authorization: String): Call<ArrayList<Offer>>
 }

@@ -17,11 +17,7 @@ class MyRequestsActivity : BaseActivity<MyRequestsContract.MyRequestsView, MyReq
     MyRequestsContract.MyRequestsView {
 
     private var mRequests: ArrayList<Request> = ArrayList()
-    private lateinit var mAdapterMy: MyRequestsAdapter
-
-    companion object {
-        var sFlag = -1
-    }
+    private lateinit var mAdapter: MyRequestsAdapter
 
     override fun initPresenter() {
         mPresenter = MyRequestsPresenterImpl(this)
@@ -39,7 +35,7 @@ class MyRequestsActivity : BaseActivity<MyRequestsContract.MyRequestsView, MyReq
         if (requests != null) {
             mRequests.clear()
             mRequests.addAll(requests)
-            mAdapterMy.notifyDataSetChanged()
+            mAdapter.notifyDataSetChanged()
         }
         dismissLoading()
         if (swf_my_requests.isRefreshing) swf_my_requests.isRefreshing = false
@@ -58,7 +54,7 @@ class MyRequestsActivity : BaseActivity<MyRequestsContract.MyRequestsView, MyReq
 
     fun initRcv() {
         rcv_my_requests.setHasFixedSize(true)
-        mAdapterMy = MyRequestsAdapter(
+        mAdapter = MyRequestsAdapter(
             this,
             mRequests,
             object : MyRequestsAdapter.RequestClickListener {
@@ -75,6 +71,6 @@ class MyRequestsActivity : BaseActivity<MyRequestsContract.MyRequestsView, MyReq
                 }
             })
         rcv_my_requests.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        rcv_my_requests.adapter = mAdapterMy
+        rcv_my_requests.adapter = mAdapter
     }
 }

@@ -39,7 +39,7 @@ class TravelerInfoActivity : BaseActivity<TravelerInfoContract.TravelerInfoView,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mTrip = intent.getParcelableExtra(Constant.TRAVELER)
+        mTrip = intent.getParcelableExtra(Constant.TRIP)
         mTraveler = mTrip!!.user
     }
 

@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.gson.JsonObject
 import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
+import dut.t2.travelhepler.utils.Common
 import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,7 +19,10 @@ class OfferPresenterImpl(context: Context) : BasePresenter<OfferContract.OfferVi
         req.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) view!!.createOfferResult()
-                else view!!.showMessage(response.message())
+                else {
+                    val errorMessage = Common.getErrorString(response)
+                    view!!.showToast(errorMessage)
+                }
                 view!!.dismissLoading()
             }
 

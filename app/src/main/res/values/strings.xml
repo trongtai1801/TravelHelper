@@ -124,4 +124,7 @@
     <string name="visiting">Visiting</string>
     <string name="offer_to_host">Offer to host</string>
     <string name="offer">Offer</string>
+    <string name="my_offer">My offer</string>
+    <string name="offer_to_traveler">Offer to travel</string>
+    <string name="offered">Offered</string>
 </resources>

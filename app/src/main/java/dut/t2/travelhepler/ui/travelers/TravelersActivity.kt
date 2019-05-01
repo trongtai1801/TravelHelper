@@ -54,7 +54,7 @@ class TravelersActivity : BaseActivity<TravelersContract.TravelersView, Traveler
         rcv_hosts.setHasFixedSize(true)
         mAdapter = TravlersAdapter(this, mTravelers, object : TravlersAdapter.HostClickListener {
             override fun onClick(traveler: PublicTrip) {
-                TravelerInfoActivity_.intent(context).extra(Constant.TRAVELER, traveler).start()
+                TravelerInfoActivity_.intent(context).extra(Constant.TRIP, traveler).start()
             }
         })
         rcv_hosts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

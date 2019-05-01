@@ -1,5 +1,7 @@
 package dut.t2.travelhepler.utils
 
+import android.os.Message
+
 class Constant {
     companion object {
         const val SHARE_PREFERENCES_NAME = "share_preferences_travelhelper";
@@ -18,6 +20,8 @@ class Constant {
         const val TRAVELERS = "travelers"
         const val SEARCH_HOST_STRING = "search_host"
         const val USER_ID = "user_id"
+        const val TRIP = "trip"
+        const val MESSAGE = "message"
 
         const val REQUEST_CODE_CREATE_PUBLIC_TRIP: Int = 1
         const val REQUEST_CODE_UPDATE_PUBLIC_TRIP: Int = 2
@@ -25,6 +29,7 @@ class Constant {
         const val REQUEST_CODE_UPDATE_USER_PROFILE: Int = 4
         const val REQUEST_CODE_GET_SEARCH_HOST_STRING: Int = 5
         const val REQUEST_CODE_WRITE_REFERENCE: Int = 6
+        const val REQUEST_CODE_PICK_IMAGE = 101
 
         const val DATE_FORMAT_SEND = "MM.dd.yyyy"
         const val DATE_FORMAT_RECEIVE = "yyyy-MM-dd"
@@ -32,8 +37,6 @@ class Constant {
         const val ID_SEARCH_ITEM_HOST = 1
         const val ID_SEARCH_ITEM_TRAVELERS = 2
         const val ID_SEARCH_ITEM_EVENT = 3
-
-        const val REQUEST_CODE_PICK_IMAGE = 101
 
         const val REQUEST_DELETE_SUCCESS = 204
 

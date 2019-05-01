@@ -54,7 +54,7 @@ class OfferActivity : BaseActivity<OfferContract.OfferView, OfferPresenterImpl>(
     }
 
     override fun createOfferResult() {
-        showToast(getString(R.string.created))
+        showToast(getString(R.string.offered))
         dismissLoading()
     }
 
