@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.main.MainActivity
 import dut.t2.travelhepler.ui.main.more.offer.my_offer.MyOffersActivity_
+import dut.t2.travelhepler.ui.main.more.offer.wating_offer.WaitingOffersActivity_
 import dut.t2.travelhepler.ui.main.more.profile.ProfileActivity_
 import dut.t2.travelhepler.ui.main.more.requests.my_requests.MyRequestsActivity_
 import dut.t2.travelhepler.ui.main.more.requests.wating_requests.WaitingRequestsActivity_
@@ -56,7 +57,7 @@ class MoreFragment : Fragment() {
                 MyOffersActivity_.intent(context).start()
             }
             R.id.ln_waiting_offer_more -> {
-                WaitingRequestsActivity_.intent(context).start()
+                WaitingOffersActivity_.intent(context).start()
             }
             R.id.btn_logout -> {
                 showConfirmLogoutDialog()

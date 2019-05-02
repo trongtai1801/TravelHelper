@@ -50,7 +50,6 @@ class WaitingRequestsActivity :
         img_back_appbar.visibility = View.VISIBLE
         tv_title_appbar.text = getString(R.string.request_to_stay)
         img_back_appbar.setOnClickListener { finish() }
-
     }
 
     fun initRcv() {

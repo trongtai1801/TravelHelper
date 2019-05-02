@@ -132,8 +132,8 @@
 
                 <ImageView
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_request"
-                        android:padding="@dimen/_9ssp"
+                        android:src="@drawable/ic_my_request"
+                        android:padding="@dimen/_10ssp"
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"/>
@@ -204,7 +204,7 @@
 
                 <ImageView
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_offer"
+                        android:src="@drawable/ic_offer_to_trave"
                         android:padding="@dimen/_11ssp"
                         android:layout_weight="1"
                         android:layout_width="0dp"
