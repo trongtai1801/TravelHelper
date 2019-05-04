@@ -71,11 +71,11 @@ class OfferActivity : BaseActivity<OfferContract.OfferView, OfferPresenterImpl>(
     fun setupView() {
         img_add_num_traveler.visibility = View.GONE
         img_sub_num_traveler.visibility = View.GONE
-        Glide.with(this).load(mTraveler)
+        Glide.with(this).load(mTraveler!!.avatar)
             .placeholder(this.getDrawable(R.drawable.ic_user_circle))
             .into(cir_img_host_avatar)
         tv_host_name.text = mTraveler!!.fullName
-        tv_host_address.text = mTraveler!!.address
+        tv_host_address.text = getString(R.string.travel_to) + " " + mTrip!!.destination
         tv_arrival.text = CalendarUtils.convertStringFormat(mTrip!!.splitArrivalDate())
         tv_departure.text = CalendarUtils.convertStringFormat(mTrip!!.splitDepartureDate())
         tv_num_traveler.text = mTrip!!.travelerNumber.toString() + " " + getString(R.string.travelers)

@@ -30,7 +30,7 @@ class MoreFragment : Fragment() {
     }
 
     @Click(
-        R.id.btn_logout, R.id.csl_profile_more, R.id.ln_hosting_more, R.id.ln_my_public_trip_more,
+        R.id.btn_logout, R.id.csl_profile_more, R.id.ln_my_public_trip_more,
         R.id.ln_fiend_more, R.id.ln_my_requests_more, R.id.ln_waiting_requests_more, R.id.ln_setting_more,
         R.id.ln_my_offer_more, R.id.ln_waiting_offer_more
     )
@@ -38,9 +38,6 @@ class MoreFragment : Fragment() {
         when (v.id) {
             R.id.csl_profile_more -> {
                 ProfileActivity_.intent(context).startForResult(Constant.REQUEST_CODE_UPDATE_USER_AVATAR)
-            }
-            R.id.ln_hosting_more -> {
-                (activity as MainActivity).showToast("hosting")
             }
             R.id.ln_my_public_trip_more -> {
                 (activity as MainActivity).showToast("trips")

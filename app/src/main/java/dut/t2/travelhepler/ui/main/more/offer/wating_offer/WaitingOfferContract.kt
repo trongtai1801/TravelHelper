@@ -7,10 +7,18 @@ interface WaitingOfferContract {
 
     interface WaitingOffersView : BaseView {
         fun getOfferToHostResult(offers: ArrayList<Offer>)
+
+        fun acceptHostOfferResult()
+
+        fun ignoreHostOffer()
     }
 
     interface WaitingOffersPresenter {
         fun getOfferToHost()
+
+        fun acceptHostOffer(offerId: Int)
+
+        fun ignoretHostOffer(offerId: Int)
     }
 
 }

@@ -43,7 +43,7 @@ class MyOffersAdapter(
             .placeholder(mContext.getDrawable(R.drawable.ic_user_circle))
             .into(p0.cirImgReceiverAvatar)
         p0.tvReceiverName.text = item.receiver!!.fullName
-        p0.tvReceiverAddress.text = item.receiver!!.address
+        p0.tvReceiverAddress.text = mContext.getString(R.string.from) + " " + item.receiver!!.address
         p0.tvArrDepDate.text = CalendarUtils.convertStringFormat(item.arrivalDate.split("T")[0]) +
                 "-" + CalendarUtils.convertStringFormat(item.departureDate.split("T")[0])
     }

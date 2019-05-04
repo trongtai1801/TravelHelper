@@ -41,6 +41,16 @@ class WaitingOffersActivity :
         if (swf_my_offers.isRefreshing) swf_my_offers.isRefreshing = false
     }
 
+    override fun acceptHostOfferResult() {
+        showLoading()
+        mPresenter!!.getOfferToHost()
+    }
+
+    override fun ignoreHostOffer() {
+        showLoading()
+        mPresenter!!.getOfferToHost()
+    }
+
     fun initToolbar() {
         setSupportActionBar(toolbar_appbar_dark)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
@@ -58,15 +68,24 @@ class WaitingOffersActivity :
             mOffers,
             object : WaitingOffersAdapter.OfferClickListener {
                 override fun onClick(offer: Offer) {
-                    showToast("click " + offer.id)
-                }
-
-                override fun onDelete(offer: Offer) {
-                    showToast("delete " + offer.id)
+//                    showToast("click " + offer.id)
                 }
 
                 override fun onSenderClick(sender: Profile) {
                     HostInfoActivity_.intent(this@WaitingOffersActivity).extra(Constant.HOST, sender).start()
+                }
+
+                override fun onPopupItemClick(itemId: Int, offer: Offer) {
+                    when (itemId) {
+                        R.id.item_accept -> {
+                            showLoading()
+                            mPresenter!!.acceptHostOffer(offer.id)
+                        }
+                        R.id.item_ignore -> {
+                            showLoading()
+                            mPresenter!!.ignoretHostOffer(offer.id)
+                        }
+                    }
                 }
             })
         rcv_my_offers.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

@@ -73,8 +73,10 @@ class MainActivity : BaseActivity<MainContract.MainView, MainPresenterImpl>(),
                 }
                 Constant.REQUEST_CODE_GET_SEARCH_HOST_STRING -> {
                     var searchString = data!!.getStringExtra(Constant.SEARCH_HOST_STRING)
+                    tv_title_appbar.text = searchString
                     getHosts(Constant.HOST_FLAG_SET_FRAGMENT, searchString)
                     getTravelers(Constant.HOST_FLAG_SET_FRAGMENT, searchString)
+
                 }
             }
         }

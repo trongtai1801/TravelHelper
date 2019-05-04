@@ -131,4 +131,14 @@
     <string name="unfriend">Unfriend</string>
     <string name="can_not_get_friends">Can not get friends</string>
     <string name="can_not_find_out_friend">Can not found out any friend</string>
+    <string name="travel_to">Travel to</string>
+    <string name="accept">Accept</string>
+    <string name="accepted">Accepted</string>
+    <string name="ignore">Ignore</string>
+    <string name="ignored">Ignored</string>
+    <string name="waiting">Waiting</string>
+    <string name="can_not_accept_host_offer">Can not accept host offer</string>
+    <string name="can_not_accept_travel_request">Can not accept travel request</string>
+    <string name="can_not_ignore_host_offer">Can not ignore host offer</string>
+    <string name="can_not_ignore_travel_request">Can not ignore travel request</string>
 </resources>

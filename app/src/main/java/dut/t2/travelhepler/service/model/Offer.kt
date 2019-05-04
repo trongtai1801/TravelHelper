@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName
 import dut.t2.travelhelper.service.model.Profile
 
 class Offer(
-    @SerializedName("id")
+    @SerializedName("hostOfferId")
     @Expose
     var id: Int,
 
@@ -23,6 +23,10 @@ class Offer(
     @Expose
     var isAccepted: Boolean,
 
+    @SerializedName("isDeleted")
+    @Expose
+    var isDeleted: Boolean,
+
     @SerializedName("sender")
     @Expose
     var sender: Profile?,
@@ -36,6 +40,7 @@ class Offer(
         parcel.readString(),
         parcel.readString(),
         parcel.readByte() != 0.toByte(),
+        parcel.readByte() != 0.toByte(),
         parcel.readParcelable(Profile::class.java.classLoader),
         parcel.readParcelable(Profile::class.java.classLoader)
     ) {
@@ -46,6 +51,7 @@ class Offer(
         dest.writeString(arrivalDate)
         dest.writeString(departureDate)
         dest.writeByte(if (isAccepted) 1 else 0)
+        dest.writeByte(if (isDeleted) 1 else 0)
         dest.writeParcelable(sender, flags)
         dest.writeParcelable(receiver, flags)
     }

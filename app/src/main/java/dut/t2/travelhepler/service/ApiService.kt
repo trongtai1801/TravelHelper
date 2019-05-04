@@ -130,4 +130,16 @@ interface ApiService {
 
     @GET("Users/Friends")
     fun getFriends(@Header("Authorization") authorization: String): Call<ArrayList<Profile>>
+
+    @PUT("HostOffers/{id}")
+    fun acceptHostOffer(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Int
+    ): Call<Offer>
+
+    @DELETE("HostOffers/{id}")
+    fun ignoreHostOffer(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Int
+    ): Call<Void>
 }

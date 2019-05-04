@@ -284,7 +284,7 @@
                     android:textSize="@dimen/_15ssp"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
-                    android:text="@string/request_from_traveler"
+                    android:text="@string/request_to_stay"
                     android:background="@color/colorBlue"
                     android:layout_below="@id/view_home"
                     android:layout_width="match_parent"
