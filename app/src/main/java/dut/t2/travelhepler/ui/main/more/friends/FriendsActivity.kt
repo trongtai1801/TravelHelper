@@ -25,6 +25,16 @@ class FriendsActivity : BaseActivity<FriendsContract.FriendsView, FriendsPresent
     override fun afterViews() {
         initToolbar()
         initRcvFriend()
+        showLoading()
+        mPresenter!!.getFriends()
+    }
+
+    override fun getFriendsResult(friends: ArrayList<Profile>) {
+        if (friends.size == 0) showToast(getString(R.string.can_not_find_out_friend))
+        mFriends.clear()
+        mFriends.addAll(friends)
+        mAdapter.notifyDataSetChanged()
+        dismissLoading()
     }
 
     fun initToolbar() {
@@ -42,6 +52,17 @@ class FriendsActivity : BaseActivity<FriendsContract.FriendsView, FriendsPresent
         mAdapter = FriendsAdapter(this, mFriends, object : FriendsAdapter.FriendsClickListener {
             override fun onClick(friend: Profile) {
 
+            }
+
+            override fun onPopupItemClick(itemId: Int, friend: Profile) {
+                when (itemId) {
+                    R.id.item_message -> {
+                        showToast("message to " + friend.id)
+                    }
+                    R.id.item_unfriend -> {
+                        showToast("unfriend with " + friend.id)
+                    }
+                }
             }
         })
         rcv_friends.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

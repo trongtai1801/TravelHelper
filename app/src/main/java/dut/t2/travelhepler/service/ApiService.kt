@@ -127,4 +127,7 @@ interface ApiService {
 
     @GET("Users/HostOffers")
     fun getOfferToHost(@Header("Authorization") authorization: String): Call<ArrayList<Offer>>
+
+    @GET("Users/Friends")
+    fun getFriends(@Header("Authorization") authorization: String): Call<ArrayList<Profile>>
 }

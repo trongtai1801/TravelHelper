@@ -38,11 +38,14 @@ class FriendsAdapter(val mContext: Context, val mFriends: List<Profile>, var mCa
         itemView: View, var cirImgFriendAvatar: CircleImageView, var tvFriendName: TextView, var imgMore: ImageView
     ) : RecyclerView.ViewHolder(itemView) {
         init {
-            itemView.setOnClickListener {
+
+            itemView.setOnClickListener { mCallback.onClick(mFriends.get(adapterPosition)) }
+
+            imgMore.setOnClickListener {
                 var popup = PopupMenu(mContext, imgMore)
-                popup.getMenuInflater().inflate(R.menu.menu_popup_edit_delete, popup.getMenu())
+                popup.getMenuInflater().inflate(R.menu.menu_popup_friends, popup.getMenu())
                 popup.setOnMenuItemClickListener { item ->
-                    mCallback.onClick(mFriends.get(adapterPosition))
+                    mCallback.onPopupItemClick(item.itemId, mFriends.get(adapterPosition))
                     true
                 }
                 popup.show()
@@ -52,6 +55,8 @@ class FriendsAdapter(val mContext: Context, val mFriends: List<Profile>, var mCa
 
     interface FriendsClickListener {
         fun onClick(friend: Profile)
+
+        fun onPopupItemClick(itemId: Int, friend: Profile)
     }
 
 }

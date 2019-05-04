@@ -3,7 +3,10 @@
 
     <item
             android:id="@+id/item_message"
-            android:title="mes"
-    ></item>
+            android:title="@string/message"></item>
+
+    <item
+            android:id="@+id/item_unfriend"
+            android:title="@string/unfriend"></item>
 
 </menu>
