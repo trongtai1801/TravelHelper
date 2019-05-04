@@ -47,7 +47,7 @@ class WaitingOffersActivity :
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         tv_title_appbar.visibility = View.VISIBLE
         img_back_appbar.visibility = View.VISIBLE
-        tv_title_appbar.text = getString(R.string.offer_to_host)
+        tv_title_appbar.text = getString(R.string.offer_from_host)
         img_back_appbar.setOnClickListener { finish() }
     }
 

@@ -45,6 +45,7 @@
         <activity android:name=".ui.travelers.offer.OfferActivity_"></activity>
         <activity android:name=".ui.main.more.offer.my_offer.MyOffersActivity_"></activity>
         <activity android:name=".ui.main.more.offer.wating_offer.WaitingOffersActivity_"></activity>
+        <activity android:name=".ui.main.more.friends.FriendsActivity_"></activity>
     </application>
 
 </manifest>

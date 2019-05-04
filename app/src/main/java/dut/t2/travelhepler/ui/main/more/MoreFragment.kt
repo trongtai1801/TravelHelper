@@ -6,6 +6,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.main.MainActivity
+import dut.t2.travelhepler.ui.main.more.friends.FriendsActivity_
 import dut.t2.travelhepler.ui.main.more.offer.my_offer.MyOffersActivity_
 import dut.t2.travelhepler.ui.main.more.offer.wating_offer.WaitingOffersActivity_
 import dut.t2.travelhepler.ui.main.more.profile.ProfileActivity_
@@ -45,7 +46,7 @@ class MoreFragment : Fragment() {
                 (activity as MainActivity).showToast("trips")
             }
             R.id.ln_fiend_more -> {
-                (activity as MainActivity).showToast("friend")
+                FriendsActivity_.intent(context).start()
             }
             R.id.ln_my_requests_more -> {
                 MyRequestsActivity_.intent(context).start()

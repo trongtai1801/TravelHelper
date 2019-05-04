@@ -187,7 +187,7 @@
                         android:layout_height="wrap_content"/>
 
                 <TextView
-                        android:text="@string/request_stay"
+                        android:text="@string/request_from_traveler"
                         style="@style/MoreTextView"
                         android:layout_weight="6"
                         android:layout_width="0dp"
@@ -211,7 +211,7 @@
                         android:layout_height="wrap_content"/>
 
                 <TextView
-                        android:text="@string/offer_to_traveler"
+                        android:text="@string/offer_from_host"
                         style="@style/MoreTextView"
                         android:layout_weight="6"
                         android:layout_width="0dp"

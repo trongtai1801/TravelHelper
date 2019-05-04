@@ -67,7 +67,7 @@
     <string name="no">No</string>
     <string name="host">Hosting</string>
     <string name="my_public_trip">My public trips</string>
-    <string name="friend">Friend</string>
+    <string name="friend">Friends</string>
     <string name="setting">Setting</string>
     <string name="inbox">Inbox</string>
     <string name="logout">Logout</string>
@@ -105,12 +105,12 @@
     <string name="dont_have_home">Can not find out any home info</string>
     <string name="dont_have_reference">You don\'t have any home reference</string>
     <string name="no_host">No host was found out</string>
-    <string name="request_stay">Request to stay</string>
+    <string name="request_from_traveler">Request from traveler</string>
     <string name="from">from</string>
     <string name="request_to_stay">Request to stay</string>
     <string name="can_not_create_equest">Can not create request</string>
     <string name="created">Created</string>
-    <string name="my_request">My request</string>
+    <string name="my_request">My request to stay</string>
     <string name="you_dont_have_request">You don\'t have any request</string>
     <string name="can_not_get_request">Can not get request</string>
     <string name="would_you_commended">Would you recommend</string>
@@ -124,7 +124,9 @@
     <string name="visiting">Visiting</string>
     <string name="offer_to_host">Offer to host</string>
     <string name="offer">Offer</string>
-    <string name="my_offer">My offer</string>
-    <string name="offer_to_traveler">Offer to travel</string>
+    <string name="my_offer">My offer to host</string>
+    <string name="offer_from_host">Offer from host</string>
     <string name="offered">Offered</string>
+    <string name="message">Message</string>
+    <string name="unfriend">Unfriend</string>
 </resources>

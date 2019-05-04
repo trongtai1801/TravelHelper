@@ -48,7 +48,7 @@ class WaitingRequestsActivity :
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         tv_title_appbar.visibility = View.VISIBLE
         img_back_appbar.visibility = View.VISIBLE
-        tv_title_appbar.text = getString(R.string.request_to_stay)
+        tv_title_appbar.text = getString(R.string.request_from_traveler)
         img_back_appbar.setOnClickListener { finish() }
     }
 
