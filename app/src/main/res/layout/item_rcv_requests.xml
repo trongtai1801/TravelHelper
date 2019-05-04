@@ -53,6 +53,7 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/cir_img_delete_my_requests"
+                    android:visibility="invisible"
                     android:src="@drawable/ic_more"
                     android:padding="@dimen/_10ssp"
                     android:layout_weight="1"
@@ -69,6 +70,17 @@
                 android:textColor="@color/colorGrayDark"
                 android:layout_below="@+id/ln_title_item_references"
                 android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/tv_status_my_request"
+                android:layout_marginStart="@dimen/_54sdp"
+                android:maxLines="100"
+                android:text="@string/accepted"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/colorGreen"
+                android:layout_below="@+id/tv_arr_dep_date_item_my_request"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

@@ -7,10 +7,18 @@ interface WaitingRequestsContract {
 
     interface WaitingRequestsView : BaseView {
         fun getTravelerRequests(requests: ArrayList<Request>)
+
+        fun acceptTravelRequestResult()
+
+        fun ignoreTravelRequestResult()
     }
 
     interface WaitingRequestsPresenter {
         fun getTravelerRequests()
+
+        fun acceptTravelRequest(requestId: Int)
+
+        fun ignoreTravelRequest(requestId: Int)
     }
 
 }

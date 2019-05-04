@@ -142,4 +142,16 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Path("id") id: Int
     ): Call<Void>
+
+    @PUT("TravelRequests/{id}")
+    fun acceptTravelRequest(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Int
+    ): Call<Request>
+
+    @DELETE("TravelRequests/{id}")
+    fun ignoreTravelRequest(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Int
+    ): Call<Void>
 }

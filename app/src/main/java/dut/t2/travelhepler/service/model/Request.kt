@@ -23,6 +23,14 @@ class Request(
     @Expose
     var travelerNumber: Int,
 
+    @SerializedName("isAccepted")
+    @Expose
+    var isAccepted: Boolean,
+
+    @SerializedName("isDeleted")
+    @Expose
+    var isDeleted: Boolean,
+
     @SerializedName("receiver")
     @Expose
     var receiver: Profile,
@@ -36,6 +44,8 @@ class Request(
         parcel.readString(),
         parcel.readString(),
         parcel.readInt(),
+        parcel.readByte() != 0.toByte(),
+        parcel.readByte() != 0.toByte(),
         parcel.readParcelable(Profile::class.java.classLoader),
         parcel.readParcelable(Profile::class.java.classLoader)
     ) {
@@ -46,6 +56,8 @@ class Request(
         dest.writeString(arrivalDate)
         dest.writeString(departureDate)
         dest.writeInt(travelerNumber)
+        dest.writeByte(if (isAccepted) 1 else 0)
+        dest.writeByte(if (isDeleted) 1 else 0)
         dest.writeParcelable(receiver, flags)
         dest.writeParcelable(sender, flags)
     }

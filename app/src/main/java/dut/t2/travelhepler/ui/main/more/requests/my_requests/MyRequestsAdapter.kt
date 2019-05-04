@@ -27,7 +27,7 @@ class MyRequestsAdapter(
         return RequestsViewHolder(
             view, view.cir_img_receiver_avatar_my_requests, view.tv_receiver_name_item_my_request,
             view.tv_receiver_address_item_my_request, view.cir_img_delete_my_requests,
-            view.tv_arr_dep_date_item_my_request
+            view.tv_arr_dep_date_item_my_request, view.tv_status_my_request
         )
     }
 
@@ -45,12 +45,26 @@ class MyRequestsAdapter(
         p0.tvReceiverAddress.text = mContext.getString(R.string.travel_to) + " " + item.receiver.address
         p0.tvArrDepDate.text = CalendarUtils.convertStringFormat(item.arrivalDate.split("T")[0]) +
                 "-" + CalendarUtils.convertStringFormat(item.departureDate.split("T")[0])
+
+        if (item.isDeleted != null && item.isDeleted) {
+            p0.tvStatus.text = mContext.getString(R.string.ignored)
+            p0.tvStatus.setTextColor(mContext.resources.getColor(R.color.ios_red))
+        } else {
+            if (item.isAccepted != null && item.isAccepted) {
+                p0.tvStatus.text = mContext.getString(R.string.accepted)
+                p0.tvStatus.setTextColor(mContext.resources.getColor(R.color.colorGreen))
+            } else {
+                p0.tvStatus.text = mContext.getString(R.string.waiting)
+                p0.tvStatus.setTextColor(mContext.resources.getColor(R.color.ios_red))
+            }
+        }
     }
 
     inner class RequestsViewHolder(
         itemView: View, var cirImgReceiverAvatar: CircleImageView,
         var tvReceiverName: TextView, var tvReceiverAddress: TextView,
-        var cirImgDeleteMyRequest: CircleImageView, var tvArrDepDate: TextView
+        var cirImgDeleteMyRequest: CircleImageView, var tvArrDepDate: TextView,
+        var tvStatus: TextView
     ) : RecyclerView.ViewHolder(itemView) {
         init {
             itemView.setOnClickListener {

@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"/>
 
         <TextView
-                android:id="@+id/tv_status_my_request"
+                android:id="@+id/tv_status_my_offer"
                 android:layout_marginStart="@dimen/_54sdp"
                 android:maxLines="100"
                 android:text="@string/accepted"

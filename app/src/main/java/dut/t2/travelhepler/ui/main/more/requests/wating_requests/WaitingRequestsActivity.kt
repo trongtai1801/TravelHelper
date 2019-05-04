@@ -5,6 +5,7 @@ import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
+import dut.t2.travelhepler.service.model.Offer
 import dut.t2.travelhepler.service.model.Request
 import dut.t2.travelhepler.ui.hosts.info.HostInfoActivity_
 import dut.t2.travelhepler.utils.Constant
@@ -41,6 +42,15 @@ class WaitingRequestsActivity :
         dismissLoading()
     }
 
+    override fun acceptTravelRequestResult() {
+        showLoading()
+        mPresenter!!.getTravelerRequests()
+    }
+
+    override fun ignoreTravelRequestResult() {
+        showLoading()
+        mPresenter!!.getTravelerRequests()
+    }
 
     fun initToolbar() {
         setSupportActionBar(toolbar_appbar_dark)
@@ -58,16 +68,26 @@ class WaitingRequestsActivity :
             this,
             mRequests,
             object : WaitingRequestsAdapter.RequestClickListener {
-                override fun onClick(request: Request) {
-                    showToast("click " + request.id)
-                }
 
-                override fun onDelete(request: Request) {
-                    showToast("delete " + request.id)
+                override fun onClick(request: Request) {
+
                 }
 
                 override fun onReceiverClick(receiver: Profile) {
                     HostInfoActivity_.intent(this@WaitingRequestsActivity).extra(Constant.HOST, receiver).start()
+                }
+
+                override fun onPopupItemClick(itemId: Int, request: Request) {
+                    when (itemId) {
+                        R.id.item_accept -> {
+                            showLoading()
+                            mPresenter!!.acceptTravelRequest(request.id)
+                        }
+                        R.id.item_ignore -> {
+                            showLoading()
+                            mPresenter!!.ignoreTravelRequest(request.id)
+                        }
+                    }
                 }
             })
         rcv_my_requests.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
