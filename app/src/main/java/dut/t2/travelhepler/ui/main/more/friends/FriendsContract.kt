@@ -7,10 +7,14 @@ interface FriendsContract {
 
     interface FriendsView : BaseView {
         fun getFriendsResult(friends: ArrayList<Profile>)
+
+        fun searchFriendResult(users: ArrayList<Profile>)
     }
 
     interface FriendsPresenter {
         fun getFriends()
+
+        fun searchFriend(searchString: String)
     }
 
 }

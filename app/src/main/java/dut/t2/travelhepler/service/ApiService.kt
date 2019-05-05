@@ -189,6 +189,12 @@ interface ApiService {
         @Body message: JsonObject
     ): Call<Void>
 
-    @GET("Users/SentTravelRequests")
+    @GET("Users/SentFriendRequests")
     fun getMyFriendRequests(@Header("Authorization") authorization: String): Call<ArrayList<FriendRequest>>
+
+    @GET("Users/SearchByName")
+    fun searchUser(
+        @Header("Authorization") authorization: String,
+        @Query("name") seachString: String
+    ): Call<ArrayList<Profile>>
 }

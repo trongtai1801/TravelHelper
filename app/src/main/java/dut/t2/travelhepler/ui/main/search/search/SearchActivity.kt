@@ -76,7 +76,7 @@ class SearchActivity : BaseActivity<SearchContract.SearchView, SearchPresenterIm
         })
 
         //back press
-        floating_search_view.setOnHomeActionClickListener({ onBackPressed() })
+        floating_search_view.setOnHomeActionClickListener { onBackPressed() }
     }
 
     fun getHostSuggestions(query: String): ArrayList<HostSuggestion> {

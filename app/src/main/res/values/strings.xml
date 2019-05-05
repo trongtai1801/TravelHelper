@@ -149,7 +149,10 @@
     <string name="can_not_get_friend_request">Can not get friend requests</string>
     <string name="can_not_check_friend">Can not check friend</string>
     <string name="can_not_add_friend">Can not add friend</string>
-    <string name="add_friend_successfully">Add friend successfully. Waiting for response1</string>
+    <string name="add_friend_successfully">Add friend successfully. Waiting for response</string>
     <string name="cancel">Cancel</string>
     <string name="can_not_get_my_requests">Cant not get your friend requests</string>
+    <string name="search_friend_result">Search friend result</string>
+    <string name="can_not_search_user">Can not search user</string>
+    <string name="result_is_empty">Result is empty</string>
 </resources>

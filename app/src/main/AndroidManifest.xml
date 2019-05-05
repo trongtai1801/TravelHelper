@@ -48,6 +48,9 @@
         <activity android:name=".ui.main.more.friends.FriendsActivity_"></activity>
         <activity android:name=".ui.main.more.friends.waiting_requests.WaitingFriendRequestsActivity_"></activity>
         <activity android:name=".ui.main.more.friends.my_requests.MyFriendRequestsActivity_"></activity>
+        <activity android:name=".ui.main.more.friends.search_friend.SearchFriendActivity_"></activity>
+        <activity
+                android:name=".ui.main.more.friends.search_friend.search_result.SearchFriendResultActivity_"></activity>
     </application>
 
 </manifest>

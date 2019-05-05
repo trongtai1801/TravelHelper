@@ -59,7 +59,7 @@ class MyRequestsActivity : BaseActivity<MyRequestsContract.MyRequestsView, MyReq
             mRequests,
             object : MyRequestsAdapter.RequestClickListener {
                 override fun onClick(request: Request) {
-                    showToast("click " + request.id)
+
                 }
 
                 override fun onDelete(request: Request) {

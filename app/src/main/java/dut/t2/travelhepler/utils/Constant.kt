@@ -19,9 +19,11 @@ class Constant {
         const val TRAVELER = "traveler"
         const val TRAVELERS = "travelers"
         const val SEARCH_HOST_STRING = "search_host"
+        const val SEARCH_USER_STRING = "search_user"
         const val USER_ID = "user_id"
         const val TRIP = "trip"
         const val MESSAGE = "message"
+        const val USERS = "users"
 
         const val REQUEST_CODE_CREATE_PUBLIC_TRIP: Int = 1
         const val REQUEST_CODE_UPDATE_PUBLIC_TRIP: Int = 2
@@ -29,6 +31,7 @@ class Constant {
         const val REQUEST_CODE_UPDATE_USER_PROFILE: Int = 4
         const val REQUEST_CODE_GET_SEARCH_HOST_STRING: Int = 5
         const val REQUEST_CODE_WRITE_REFERENCE: Int = 6
+        const val REQUEST_CODE_GET_SEARCH_USER_STRING: Int = 7
         const val REQUEST_CODE_PICK_IMAGE = 101
 
         const val DATE_FORMAT_SEND = "MM.dd.yyyy"

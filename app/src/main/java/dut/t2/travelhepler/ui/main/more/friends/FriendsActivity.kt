@@ -1,20 +1,25 @@
 package dut.t2.travelhepler.ui.main.more.friends
 
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
-import dut.t2.travelhepler.ui.main.search.search.SearchActivity_
+import dut.t2.travelhepler.ui.hosts.info.HostInfoActivity_
+import dut.t2.travelhepler.ui.main.more.friends.search_friend.SearchFriendActivity_
+import dut.t2.travelhepler.ui.main.more.friends.search_friend.search_result.SearchFriendResultActivity_
 import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.activity_friends.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.img_back_appbar
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.tv_title_appbar
 import org.androidannotations.annotations.EActivity
+import org.androidannotations.annotations.OnActivityResult
+
+
 
 @EActivity(R.layout.activity_friends)
 class FriendsActivity : BaseActivity<FriendsContract.FriendsView, FriendsPresenterImpl>(),
@@ -42,10 +47,17 @@ class FriendsActivity : BaseActivity<FriendsContract.FriendsView, FriendsPresent
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
             R.id.item_search -> {
-                SearchActivity_.intent(this).startForResult(Constant.REQUEST_CODE_GET_SEARCH_HOST_STRING)
+                SearchFriendActivity_.intent(this).startForResult(Constant.REQUEST_CODE_GET_SEARCH_USER_STRING)
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    @OnActivityResult(Constant.REQUEST_CODE_GET_SEARCH_USER_STRING)
+    fun onResult(resultCode: Int, data: Intent) {
+        var searchString = data!!.getStringExtra(Constant.SEARCH_USER_STRING)
+        showLoading()
+        mPresenter!!.searchFriend(searchString)
     }
 
     override fun getFriendsResult(friends: ArrayList<Profile>) {
@@ -54,6 +66,11 @@ class FriendsActivity : BaseActivity<FriendsContract.FriendsView, FriendsPresent
         mFriends.addAll(friends)
         mAdapter.notifyDataSetChanged()
         dismissLoading()
+    }
+
+    override fun searchFriendResult(users: ArrayList<Profile>) {
+        dismissLoading()
+        SearchFriendResultActivity_.intent(this).extra(Constant.USERS, users).start()
     }
 
     fun initToolbar() {
@@ -70,7 +87,7 @@ class FriendsActivity : BaseActivity<FriendsContract.FriendsView, FriendsPresent
         rcv_friends.setHasFixedSize(true)
         mAdapter = FriendsAdapter(this, mFriends, object : FriendsAdapter.FriendsClickListener {
             override fun onClick(friend: Profile) {
-
+                HostInfoActivity_.intent(this@FriendsActivity).extra(Constant.HOST, friend).start()
             }
 
             override fun onPopupItemClick(itemId: Int, friend: Profile) {
