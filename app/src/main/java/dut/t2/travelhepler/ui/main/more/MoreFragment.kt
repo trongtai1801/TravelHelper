@@ -8,6 +8,7 @@ import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.FriendRequest
 import dut.t2.travelhepler.ui.main.MainActivity
 import dut.t2.travelhepler.ui.main.more.friends.FriendsActivity_
+import dut.t2.travelhepler.ui.main.more.friends.my_requests.MyFriendRequestsActivity_
 import dut.t2.travelhepler.ui.main.more.friends.waiting_requests.WaitingFriendRequestsActivity_
 import dut.t2.travelhepler.ui.main.more.offer.my_offer.MyOffersActivity_
 import dut.t2.travelhepler.ui.main.more.offer.wating_offer.WaitingOffersActivity_
@@ -42,7 +43,7 @@ class MoreFragment : Fragment() {
                 ProfileActivity_.intent(context).startForResult(Constant.REQUEST_CODE_UPDATE_USER_AVATAR)
             }
             R.id.ln_my_friend_request_more -> {
-                (activity as MainActivity).showToast("trips")
+                MyFriendRequestsActivity_.intent(context).start()
             }
             R.id.ln_fiend_more -> {
                 FriendsActivity_.intent(context).start()

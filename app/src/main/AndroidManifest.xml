@@ -47,6 +47,7 @@
         <activity android:name=".ui.main.more.offer.wating_offer.WaitingOffersActivity_"></activity>
         <activity android:name=".ui.main.more.friends.FriendsActivity_"></activity>
         <activity android:name=".ui.main.more.friends.waiting_requests.WaitingFriendRequestsActivity_"></activity>
+        <activity android:name=".ui.main.more.friends.my_requests.MyFriendRequestsActivity_"></activity>
     </application>
 
 </manifest>

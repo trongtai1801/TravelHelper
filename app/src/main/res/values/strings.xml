@@ -150,4 +150,6 @@
     <string name="can_not_check_friend">Can not check friend</string>
     <string name="can_not_add_friend">Can not add friend</string>
     <string name="add_friend_successfully">Add friend successfully. Waiting for response1</string>
+    <string name="cancel">Cancel</string>
+    <string name="can_not_get_my_requests">Cant not get your friend requests</string>
 </resources>
