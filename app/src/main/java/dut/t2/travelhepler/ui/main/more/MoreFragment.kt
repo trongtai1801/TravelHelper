@@ -5,13 +5,15 @@ import android.support.v7.app.AlertDialog
 import android.view.View
 import com.bumptech.glide.Glide
 import dut.t2.travelhepler.R
+import dut.t2.travelhepler.service.model.FriendRequest
 import dut.t2.travelhepler.ui.main.MainActivity
 import dut.t2.travelhepler.ui.main.more.friends.FriendsActivity_
+import dut.t2.travelhepler.ui.main.more.friends.waiting_requests.WaitingFriendRequestsActivity_
 import dut.t2.travelhepler.ui.main.more.offer.my_offer.MyOffersActivity_
 import dut.t2.travelhepler.ui.main.more.offer.wating_offer.WaitingOffersActivity_
 import dut.t2.travelhepler.ui.main.more.profile.ProfileActivity_
 import dut.t2.travelhepler.ui.main.more.requests.my_requests.MyRequestsActivity_
-import dut.t2.travelhepler.ui.main.more.requests.wating_requests.WaitingRequestsActivity_
+import dut.t2.travelhepler.ui.main.more.requests.wating_requests.WaitingTravelRequestsActivity_
 import dut.t2.travelhepler.ui.splash.SplashActivity_
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.RealmDAO
@@ -30,8 +32,8 @@ class MoreFragment : Fragment() {
     }
 
     @Click(
-        R.id.btn_logout, R.id.csl_profile_more, R.id.ln_my_public_trip_more,
-        R.id.ln_fiend_more, R.id.ln_my_requests_more, R.id.ln_waiting_requests_more, R.id.ln_setting_more,
+        R.id.btn_logout, R.id.csl_profile_more, R.id.ln_my_friend_request_more,
+        R.id.ln_fiend_more, R.id.ln_my_requests_more, R.id.ln_waiting_requests_more, R.id.ln_waiting_friend_more,
         R.id.ln_my_offer_more, R.id.ln_waiting_offer_more
     )
     fun onClick(v: View) {
@@ -39,7 +41,7 @@ class MoreFragment : Fragment() {
             R.id.csl_profile_more -> {
                 ProfileActivity_.intent(context).startForResult(Constant.REQUEST_CODE_UPDATE_USER_AVATAR)
             }
-            R.id.ln_my_public_trip_more -> {
+            R.id.ln_my_friend_request_more -> {
                 (activity as MainActivity).showToast("trips")
             }
             R.id.ln_fiend_more -> {
@@ -49,13 +51,19 @@ class MoreFragment : Fragment() {
                 MyRequestsActivity_.intent(context).start()
             }
             R.id.ln_waiting_requests_more -> {
-                WaitingRequestsActivity_.intent(context).start()
+                WaitingTravelRequestsActivity_.intent(context).start()
             }
             R.id.ln_my_offer_more -> {
                 MyOffersActivity_.intent(context).start()
             }
             R.id.ln_waiting_offer_more -> {
                 WaitingOffersActivity_.intent(context).start()
+            }
+            R.id.ln_waiting_requests_more -> {
+                WaitingTravelRequestsActivity_.intent(context).start()
+            }
+            R.id.ln_waiting_friend_more -> {
+                WaitingFriendRequestsActivity_.intent(context).start()
             }
             R.id.btn_logout -> {
                 showConfirmLogoutDialog()

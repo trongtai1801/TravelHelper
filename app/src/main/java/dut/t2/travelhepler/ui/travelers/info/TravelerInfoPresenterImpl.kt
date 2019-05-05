@@ -5,6 +5,7 @@ import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Home
+import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -13,7 +14,7 @@ class TravelerInfoPresenterImpl(context: Context) : BasePresenter<TravelerInfoCo
     TravelerInfoContract.TravelerPresenter {
 
     override fun getHomeInfo(userId: String) {
-        val req = ApiClient.getService()!!.getHomeInfoOfOtherUser(userId)
+        val req = ApiClient.getService()!!.getHomeInfoOfOtherUser(SessionManager.getAccessToken()!!, userId)
 
         req.enqueue(object : Callback<ArrayList<Home>> {
             override fun onResponse(call: Call<ArrayList<Home>>, response: Response<ArrayList<Home>>) {

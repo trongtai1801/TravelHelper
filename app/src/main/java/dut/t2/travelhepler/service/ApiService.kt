@@ -58,7 +58,10 @@ interface ApiService {
     ): Call<Profile>
 
     @GET("users/{id}/images")
-    fun getPhotos(@Path("id") userId: String): Call<ArrayList<Photo>>
+    fun getPhotos(
+        @Header("Authorization") authorization: String,
+        @Path("id") userId: String
+    ): Call<ArrayList<Photo>>
 
     @DELETE("Images/{id}")
     fun deletePhoto(
@@ -74,7 +77,10 @@ interface ApiService {
     ): Call<Photo>
 
     @GET("users/{id}/References")
-    fun getReferences(@Path("id") userId: String): Call<ArrayList<Reference>>
+    fun getReferences(
+        @Header("Authorization") authorization: String,
+        @Path("id") userId: String
+    ): Call<ArrayList<Reference>>
 
     @GET("Users/Homes")
     fun getHomeInfo(@Header("Authorization") authorization: String): Call<ArrayList<Home>>
@@ -87,7 +93,10 @@ interface ApiService {
 
 
     @GET("Users/{id}/Homes")
-    fun getHomeInfoOfOtherUser(@Path("id") userId: String): Call<ArrayList<Home>>
+    fun getHomeInfoOfOtherUser(
+        @Header("Authorization") authorization: String,
+        @Path("id") userId: String
+    ): Call<ArrayList<Home>>
 
     @POST("TravelRequests/{id}")
     fun createRequestToStay(
@@ -154,4 +163,7 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Path("id") id: Int
     ): Call<Void>
+
+    @GET("Users/FriendRequests")
+    fun getFriendRequests(@Header("Authorization") authorization: String): Call<ArrayList<FriendRequest>>
 }

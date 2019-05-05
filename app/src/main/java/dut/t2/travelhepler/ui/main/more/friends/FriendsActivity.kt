@@ -1,10 +1,15 @@
 package dut.t2.travelhepler.ui.main.more.friends
 
 import android.support.v7.widget.LinearLayoutManager
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
+import dut.t2.travelhepler.ui.main.search.search.SearchActivity_
+import dut.t2.travelhepler.utils.Constant
 import kotlinx.android.synthetic.main.activity_friends.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.img_back_appbar
@@ -27,6 +32,20 @@ class FriendsActivity : BaseActivity<FriendsContract.FriendsView, FriendsPresent
         initRcvFriend()
         showLoading()
         mPresenter!!.getFriends()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_search, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            R.id.item_search -> {
+                SearchActivity_.intent(this).startForResult(Constant.REQUEST_CODE_GET_SEARCH_HOST_STRING)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun getFriendsResult(friends: ArrayList<Profile>) {

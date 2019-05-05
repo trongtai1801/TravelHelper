@@ -3,9 +3,9 @@ package dut.t2.travelhepler.ui.main.more.requests.wating_requests
 import dut.t2.travelhelper.base.BaseView
 import dut.t2.travelhepler.service.model.Request
 
-interface WaitingRequestsContract {
+interface WaitingTravelRequestsContract {
 
-    interface WaitingRequestsView : BaseView {
+    interface WaitingTravelRequestsView : BaseView {
         fun getTravelerRequests(requests: ArrayList<Request>)
 
         fun acceptTravelRequestResult()
@@ -13,7 +13,7 @@ interface WaitingRequestsContract {
         fun ignoreTravelRequestResult()
     }
 
-    interface WaitingRequestsPresenter {
+    interface WaitingTravelRequestsPresenter {
         fun getTravelerRequests()
 
         fun acceptTravelRequest(requestId: Int)

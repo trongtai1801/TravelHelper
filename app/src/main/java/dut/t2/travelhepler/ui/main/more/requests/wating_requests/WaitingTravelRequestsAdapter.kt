@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
-import dut.t2.travelhepler.service.model.Offer
 import dut.t2.travelhepler.service.model.Request
 import dut.t2.travelhepler.utils.CalendarUtils
 import kotlinx.android.synthetic.main.item_rcv_references.view.tv_arr_dep_date_item_my_request
@@ -19,11 +18,11 @@ import kotlinx.android.synthetic.main.item_rcv_references.view.tv_receiver_addre
 import kotlinx.android.synthetic.main.item_rcv_references.view.tv_receiver_name_item_my_request
 import kotlinx.android.synthetic.main.item_rcv_requests.view.*
 
-class WaitingRequestsAdapter(
+class WaitingTravelRequestsAdapter(
     val mContext: Context,
     val mRequests: List<Request>,
     var mCallback: RequestClickListener
-) : RecyclerView.Adapter<WaitingRequestsAdapter.RequestsViewHolder>() {
+) : RecyclerView.Adapter<WaitingTravelRequestsAdapter.RequestsViewHolder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): RequestsViewHolder {
         var view = LayoutInflater.from(this.mContext).inflate(R.layout.item_rcv_requests, p0, false)
         return RequestsViewHolder(

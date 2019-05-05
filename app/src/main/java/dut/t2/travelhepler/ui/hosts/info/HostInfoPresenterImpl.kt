@@ -5,6 +5,7 @@ import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Home
+import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -13,7 +14,7 @@ class HostInfoPresenterImpl(context: Context) : BasePresenter<HostInfoContract.H
     HostInfoContract.HostInfoPresenter {
 
     override fun getHomeInfo(userId: String) {
-        val req = ApiClient.getService()!!.getHomeInfoOfOtherUser(userId)
+        val req = ApiClient.getService()!!.getHomeInfoOfOtherUser(SessionManager.getAccessToken()!!, userId)
 
         req.enqueue(object : Callback<ArrayList<Home>> {
             override fun onResponse(call: Call<ArrayList<Home>>, response: Response<ArrayList<Home>>) {
@@ -23,8 +24,8 @@ class HostInfoPresenterImpl(context: Context) : BasePresenter<HostInfoContract.H
                         home.setDefaultValue()
                         view!!.getHomeInfoResult(home)
                     } else view!!.showToast(context.getString(R.string.dont_have_home))
-                    view!!.dismissLoading()
-                }
+                } else view!!.showMessage(response.message())
+                view!!.dismissLoading()
             }
 
             override fun onFailure(call: Call<ArrayList<Home>>, t: Throwable) {

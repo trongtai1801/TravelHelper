@@ -15,17 +15,16 @@ import retrofit2.Response
 class PhotosPresenterImpl(context: Context) : BasePresenter<PhotosContract.PhotosViews>(context),
     PhotosContract.PhotoPresenter {
     override fun getPhotos(userId: String) {
-        val req = ApiClient.getService()!!.getPhotos(userId)
+        val req = ApiClient.getService()!!.getPhotos(SessionManager.getAccessToken()!!, userId)
 
         req.enqueue(object : Callback<ArrayList<Photo>> {
             override fun onResponse(call: Call<ArrayList<Photo>>, response: Response<ArrayList<Photo>>) {
                 if (response.isSuccessful) {
                     if (response.body() != null)
                         view!!.getPhotosResult(response.body() as ArrayList<Photo>)
-                } else {
-                    view!!.dismissLoading()
-                    view!!.showToast(response.message())
-                }
+                    else view!!.showMessage(context.getString(R.string.data_null))
+                } else view!!.showMessage(response.message())
+                view!!.dismissLoading()
             }
 
             override fun onFailure(call: Call<ArrayList<Photo>>, t: Throwable) {

@@ -5,7 +5,6 @@ import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
-import dut.t2.travelhepler.service.model.Offer
 import dut.t2.travelhepler.service.model.Request
 import dut.t2.travelhepler.ui.hosts.info.HostInfoActivity_
 import dut.t2.travelhepler.utils.Constant
@@ -14,15 +13,15 @@ import kotlinx.android.synthetic.main.custom_appbar_layout_dark.*
 import org.androidannotations.annotations.EActivity
 
 @EActivity(R.layout.activity_requests)
-class WaitingRequestsActivity :
-    BaseActivity<WaitingRequestsContract.WaitingRequestsView, WaitingRequestsPresenterImpl>(),
-    WaitingRequestsContract.WaitingRequestsView {
+class WaitingTravelRequestsActivity :
+    BaseActivity<WaitingTravelRequestsContract.WaitingTravelRequestsView, WaitingTravelRequestsPresenterImpl>(),
+    WaitingTravelRequestsContract.WaitingTravelRequestsView {
 
     private var mRequests: ArrayList<Request> = ArrayList()
-    private lateinit var mAdapter: WaitingRequestsAdapter
+    private lateinit var mAdapter: WaitingTravelRequestsAdapter
 
     override fun initPresenter() {
-        mPresenter = WaitingRequestsPresenterImpl(this)
+        mPresenter = WaitingTravelRequestsPresenterImpl(this)
     }
 
     override fun afterViews() {
@@ -64,17 +63,17 @@ class WaitingRequestsActivity :
 
     fun initRcv() {
         rcv_my_requests.setHasFixedSize(true)
-        mAdapter = WaitingRequestsAdapter(
+        mAdapter = WaitingTravelRequestsAdapter(
             this,
             mRequests,
-            object : WaitingRequestsAdapter.RequestClickListener {
+            object : WaitingTravelRequestsAdapter.RequestClickListener {
 
                 override fun onClick(request: Request) {
 
                 }
 
                 override fun onReceiverClick(receiver: Profile) {
-                    HostInfoActivity_.intent(this@WaitingRequestsActivity).extra(Constant.HOST, receiver).start()
+                    HostInfoActivity_.intent(this@WaitingTravelRequestsActivity).extra(Constant.HOST, receiver).start()
                 }
 
                 override fun onPopupItemClick(itemId: Int, request: Request) {

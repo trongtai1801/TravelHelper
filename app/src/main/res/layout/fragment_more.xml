@@ -55,32 +55,9 @@
                     android:layout_height="@dimen/_1sdp"/>
 
             <LinearLayout
-                    android:id="@+id/ln_my_public_trip_more"
-                    android:orientation="horizontal"
-                    android:layout_below="@id/view1_more"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/more_csl_height">
-
-                <ImageView
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_airplane1"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"/>
-
-                <TextView
-                        android:text="@string/my_public_trip"
-                        style="@style/MoreTextView"
-                        android:layout_weight="6"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <LinearLayout
                     android:id="@+id/ln_fiend_more"
                     android:orientation="horizontal"
-                    android:layout_below="@id/ln_my_public_trip_more"
+                    android:layout_below="@id/view1_more"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/more_csl_height">
 
@@ -148,10 +125,35 @@
 
             </LinearLayout>
 
+
+            <LinearLayout
+                    android:id="@+id/ln_my_friend_request_more"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/ln_my_offer_more"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/more_csl_height">
+
+                <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_my_friend_request"
+                        android:padding="@dimen/_9ssp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+                <TextView
+                        android:text="@string/my_friend_request"
+                        style="@style/MoreTextView"
+                        android:layout_weight="6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
             <LinearLayout
                     android:id="@+id/ln_waiting_requests_more"
                     android:orientation="horizontal"
-                    android:layout_below="@id/ln_my_offer_more"
+                    android:layout_below="@id/ln_my_friend_request_more"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/more_csl_height">
 
@@ -196,29 +198,25 @@
 
             </LinearLayout>
 
-            <View
-                    android:id="@+id/view2_more"
-                    android:layout_below="@id/ln_waiting_offer_more"
-                    android:background="@color/colorGrayDark"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"/>
+
 
             <LinearLayout
-                    android:id="@+id/ln_setting_more"
+                    android:id="@+id/ln_waiting_friend_more"
                     android:orientation="horizontal"
-                    android:layout_below="@id/view2_more"
+                    android:layout_below="@id/ln_waiting_offer_more"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/more_csl_height">
 
                 <ImageView
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_setting"
+                        android:src="@drawable/ic_friend_request"
+                        android:padding="@dimen/_9ssp"
                         android:layout_weight="1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"/>
 
                 <TextView
-                        android:text="@string/setting"
+                        android:text="@string/request_from_friend"
                         style="@style/MoreTextView"
                         android:layout_weight="6"
                         android:layout_width="0dp"

@@ -102,11 +102,12 @@ class RequestToStayActivity : BaseActivity<RequestToStayContract.RequestToStayVi
     }
 
     fun setupView() {
-        Glide.with(this).load(mHost)
+        Glide.with(this).load(mHost!!.avatar)
             .placeholder(this.getDrawable(R.drawable.ic_user_circle))
             .into(cir_img_host_avatar)
         tv_host_name.text = mHost!!.fullName
         tv_host_address.text = mHost!!.address
+        tv_num_traveler.text = sNumTraveler.toString() + getString(R.string.traveler)
     }
 
     fun showCalendar(v: TextView) {

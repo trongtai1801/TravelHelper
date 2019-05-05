@@ -11,9 +11,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class WaitingRequestsPresenterImpl(context: Context) :
-    BasePresenter<WaitingRequestsContract.WaitingRequestsView>(context),
-    WaitingRequestsContract.WaitingRequestsPresenter {
+class WaitingTravelRequestsPresenterImpl(context: Context) :
+    BasePresenter<WaitingTravelRequestsContract.WaitingTravelRequestsView>(context),
+    WaitingTravelRequestsContract.WaitingTravelRequestsPresenter {
 
     override fun getTravelerRequests() {
         var req = ApiClient.getService()!!.getRequestsToStay(SessionManager.getAccessToken()!!)

@@ -5,6 +5,7 @@ import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Reference
+import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -13,7 +14,7 @@ class ReferencesPresenterImpl(context: Context) : BasePresenter<ReferencesContra
     ReferencesContract.ReferencesPresenter {
 
     override fun getReferences(userId: String) {
-        val req = ApiClient.getService()!!.getReferences(userId)
+        val req = ApiClient.getService()!!.getReferences(SessionManager.getAccessToken()!!, userId)
 
         req.enqueue(object : Callback<ArrayList<Reference>> {
             override fun onResponse(call: Call<ArrayList<Reference>>, response: Response<ArrayList<Reference>>) {
@@ -24,8 +25,8 @@ class ReferencesPresenterImpl(context: Context) : BasePresenter<ReferencesContra
                         result.addAll(response.body() as ArrayList<Reference>)
                         view!!.getReferencesResult(result)
                     } else view!!.showMessage(context.getString(R.string.data_null))
-                    view!!.dismissLoading()
-                }
+                } else view!!.showMessage(response.message())
+                view!!.dismissLoading()
             }
 
             override fun onFailure(call: Call<ArrayList<Reference>>, t: Throwable) {
