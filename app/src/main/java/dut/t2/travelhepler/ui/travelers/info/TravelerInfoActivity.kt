@@ -35,6 +35,10 @@ class TravelerInfoActivity : BaseActivity<TravelerInfoContract.TravelerInfoView,
     private var mTrip: PublicTrip? = null
     private var mTraveler: Profile? = null
 
+    companion object {
+        private var sIsFriend = true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mTrip = intent.getParcelableExtra(Constant.TRIP)
@@ -47,6 +51,7 @@ class TravelerInfoActivity : BaseActivity<TravelerInfoContract.TravelerInfoView,
 
     override fun afterViews() {
         initToolbar()
+        checkFriend()
         setupViews()
     }
 
@@ -81,6 +86,12 @@ class TravelerInfoActivity : BaseActivity<TravelerInfoContract.TravelerInfoView,
         dismissLoading()
     }
 
+    override fun checkFriendResult(isFriend: Boolean) {
+        sIsFriend = isFriend
+        showHideAddFriendButton()
+        dismissLoading()
+    }
+
     fun initToolbar() {
         setSupportActionBar(toolbar_show_profile)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -112,5 +123,16 @@ class TravelerInfoActivity : BaseActivity<TravelerInfoContract.TravelerInfoView,
         tv_content_learning_profile.text = mTraveler!!.learningLanguage
         tv_content_about_me_profile.text = mTraveler!!.about
         tv_content_interest_profile.text = mTraveler!!.interest
+        showHideAddFriendButton()
+    }
+
+    fun checkFriend() {
+        showLoading()
+        mPresenter!!.checkFriend(mTraveler!!.id)
+    }
+
+    fun showHideAddFriendButton() {
+        if (sIsFriend) rl_add_friend.visibility = View.GONE
+        else rl_add_friend.visibility = View.VISIBLE
     }
 }

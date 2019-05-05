@@ -32,6 +32,10 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
 
     private var mHost: Profile? = null
 
+    companion object {
+        private var sIsFriend = true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mHost = intent.getParcelableExtra(Constant.HOST)
@@ -43,7 +47,13 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
 
     override fun afterViews() {
         initToolbar()
+        checkFriend()
         setupViews()
+    }
+
+    override fun onDestroy() {
+        sIsFriend = true
+        super.onDestroy()
     }
 
     @Click(
@@ -77,6 +87,12 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
         dismissLoading()
     }
 
+    override fun checkFriendResult(isFriend: Boolean) {
+        sIsFriend = isFriend
+        showHideAddFriendButton()
+        dismissLoading()
+    }
+
     fun initToolbar() {
         setSupportActionBar(toolbar_show_profile)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -105,5 +121,16 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
         tv_content_learning_profile.text = mHost!!.learningLanguage
         tv_content_about_me_profile.text = mHost!!.about
         tv_content_interest_profile.text = mHost!!.interest
+        showHideAddFriendButton()
+    }
+
+    fun checkFriend() {
+        showLoading()
+        mPresenter!!.checkFriend(mHost!!.id)
+    }
+
+    fun showHideAddFriendButton() {
+        if (sIsFriend) rl_add_friend.visibility = View.GONE
+        else rl_add_friend.visibility = View.VISIBLE
     }
 }

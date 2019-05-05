@@ -4,6 +4,7 @@ import android.content.Context
 import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhepler.R
+import dut.t2.travelhepler.service.model.CheckFriend
 import dut.t2.travelhepler.service.model.Home
 import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
@@ -29,6 +30,24 @@ class TravelerInfoPresenterImpl(context: Context) : BasePresenter<TravelerInfoCo
             }
 
             override fun onFailure(call: Call<ArrayList<Home>>, t: Throwable) {
+                view!!.showMessage(t.toString())
+                view!!.dismissLoading()
+            }
+        })
+    }
+
+    override fun checkFriend(userId: String) {
+        var req = ApiClient.getService()!!.chekFriend(SessionManager.getAccessToken()!!, userId)
+
+        req.enqueue(object : Callback<CheckFriend> {
+            override fun onResponse(call: Call<CheckFriend>, response: Response<CheckFriend>) {
+                if (response.isSuccessful) {
+                    view!!.checkFriendResult(response.body()!!.isFriend ?: true)
+                } else view!!.showToast(context.getString(R.string.can_not_check_friend))
+                view!!.dismissLoading()
+            }
+
+            override fun onFailure(call: Call<CheckFriend>, t: Throwable) {
                 view!!.showMessage(t.toString())
                 view!!.dismissLoading()
             }

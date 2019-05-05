@@ -8,11 +8,15 @@ interface HostInfoContract {
 
         fun getHomeInfoResult(home: Home)
 
+        fun checkFriendResult(isFriend: Boolean)
+
     }
 
     interface HostInfoPresenter {
 
         fun getHomeInfo(userId: String)
+
+        fun checkFriend(userId: String)
 
     }
 }

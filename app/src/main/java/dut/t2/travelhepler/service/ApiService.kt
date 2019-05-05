@@ -178,4 +178,7 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Path("id") id: Int
     ): Call<Void>
+
+    @GET("Friends/CheckIsFriend/{id}")
+    fun chekFriend(@Header("Authorization") authorization: String, @Path("id") userId: String): Call<CheckFriend>
 }
