@@ -12,10 +12,8 @@ import dut.t2.travelhepler.ui.main.more.profile.home.HomeActivity_
 import dut.t2.travelhepler.ui.main.more.profile.photos.PhotosActivity_
 import dut.t2.travelhepler.ui.main.more.profile.references.ReferencesActivity_
 import dut.t2.travelhepler.ui.travelers.offer.OfferActivity_
-import dut.t2.travelhepler.ui.travelers.offer.OfferContract
 import dut.t2.travelhepler.utils.CalendarUtils
 import dut.t2.travelhepler.utils.Constant
-import kotlinx.android.synthetic.main.activity_host_info.btn_offer_host
 import kotlinx.android.synthetic.main.activity_profile.img_avatar_toolbar
 import kotlinx.android.synthetic.main.activity_profile.toolbar_show_profile
 import kotlinx.android.synthetic.main.activity_profile.tv_content_about_me_profile
@@ -54,7 +52,7 @@ class TravelerInfoActivity : BaseActivity<TravelerInfoContract.TravelerInfoView,
 
     @Click(
         R.id.tv_lb_photos_profile, R.id.tv_lb_reference_profile,
-        R.id.tv_lb_home_profile, R.id.btn_offer_host
+        R.id.tv_lb_home_profile, R.id.btn_offer_host, R.id.btn_add_friend
     )
     fun onClick(v: View) {
         when (v.id) {
@@ -70,6 +68,9 @@ class TravelerInfoActivity : BaseActivity<TravelerInfoContract.TravelerInfoView,
             }
             R.id.btn_offer_host -> {
                 OfferActivity_.intent(this).extra(Constant.TRAVELER, mTrip).start()
+            }
+            R.id.btn_add_friend -> {
+                showToast("add friend")
             }
         }
     }

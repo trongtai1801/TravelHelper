@@ -107,7 +107,7 @@ class RequestToStayActivity : BaseActivity<RequestToStayContract.RequestToStayVi
             .into(cir_img_host_avatar)
         tv_host_name.text = mHost!!.fullName
         tv_host_address.text = mHost!!.address
-        tv_num_traveler.text = sNumTraveler.toString() + getString(R.string.traveler)
+        tv_num_traveler.text = sNumTraveler.toString() + " " + getString(R.string.traveler)
     }
 
     fun showCalendar(v: TextView) {

@@ -332,18 +332,40 @@
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"/>
 
-            <Button
-                    android:id="@+id/btn_offer_host"
+            <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_marginBottom="@dimen/_5sdp"
-                    android:textSize="@dimen/_15ssp"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:text="@string/offer_to_host"
-                    android:background="@color/colorBlue"
                     android:layout_below="@id/view_home"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_30sdp"/>
+                    android:layout_height="@dimen/_30sdp">
+
+                <Button
+                        android:id="@+id/btn_offer_host"
+                        android:textSize="@dimen/_15ssp"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:text="@string/offer_to_host"
+                        android:background="@color/colorBlue"
+                        android:layout_weight="6"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"/>
+
+                <RelativeLayout
+                        android:id="@+id/rl_add_friend"
+                        android:layout_marginStart="@dimen/_2sdp"
+                        android:background="@color/colorBlue"
+                        android:padding="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+                    <Button
+                            android:id="@+id/btn_add_friend"
+                            android:background="@drawable/ic_add_friend"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+                </RelativeLayout>
+            </LinearLayout>
 
         </RelativeLayout>
 

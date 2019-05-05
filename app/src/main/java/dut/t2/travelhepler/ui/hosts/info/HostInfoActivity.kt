@@ -48,7 +48,7 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
 
     @Click(
         R.id.tv_lb_photos_profile, R.id.tv_lb_reference_profile,
-        R.id.tv_lb_home_profile, R.id.btn_request_stay_host
+        R.id.tv_lb_home_profile, R.id.btn_request_stay_host, R.id.btn_add_friend
     )
     fun onClick(v: View) {
         when (v.id) {
@@ -64,6 +64,9 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
             }
             R.id.btn_request_stay_host -> {
                 RequestToStayActivity_.intent(this).extra(Constant.HOST, mHost).start()
+            }
+            R.id.btn_add_friend -> {
+                showToast("add friend")
             }
         }
     }
