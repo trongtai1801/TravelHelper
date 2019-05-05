@@ -9,11 +9,15 @@ interface TravelerInfoContract {
         fun getHomeInfoResult(home: Home)
 
         fun checkFriendResult(isFriend: Boolean)
+
+        fun addFriendResult()
     }
 
     interface TravelerPresenter {
         fun getHomeInfo(userId: String)
 
         fun checkFriend(userId: String)
+
+        fun addFriend(userId: String)
     }
 }

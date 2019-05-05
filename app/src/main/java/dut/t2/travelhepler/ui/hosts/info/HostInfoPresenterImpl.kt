@@ -1,6 +1,7 @@
 package dut.t2.travelhepler.ui.hosts.info
 
 import android.content.Context
+import com.google.gson.JsonObject
 import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhepler.R
@@ -48,6 +49,26 @@ class HostInfoPresenterImpl(context: Context) : BasePresenter<HostInfoContract.H
             }
 
             override fun onFailure(call: Call<CheckFriend>, t: Throwable) {
+                view!!.showMessage(t.toString())
+                view!!.dismissLoading()
+            }
+        })
+    }
+
+    override fun addFriend(userId: String) {
+        var message = JsonObject()
+        message.addProperty("message", "Hello, i want to become your friend\"")
+        var req = ApiClient.getService()!!.addFriend(SessionManager.getAccessToken()!!, userId, message)
+
+        req.enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    view!!.addFriendResult()
+                } else view!!.showMessage(context.getString(R.string.can_not_add_friend))
+                view!!.dismissLoading()
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
                 view!!.showMessage(t.toString())
                 view!!.dismissLoading()
             }

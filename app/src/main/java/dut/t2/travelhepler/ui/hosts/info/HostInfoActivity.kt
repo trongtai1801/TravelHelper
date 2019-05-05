@@ -76,7 +76,8 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
                 RequestToStayActivity_.intent(this).extra(Constant.HOST, mHost).start()
             }
             R.id.btn_add_friend -> {
-                showToast("add friend")
+                showLoading()
+                mPresenter!!.addFriend(mHost!!.id)
             }
         }
     }
@@ -91,6 +92,10 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
         sIsFriend = isFriend
         showHideAddFriendButton()
         dismissLoading()
+    }
+
+    override fun addFriendResult() {
+        showToast(getString(R.string.add_friend_successfully))
     }
 
     fun initToolbar() {

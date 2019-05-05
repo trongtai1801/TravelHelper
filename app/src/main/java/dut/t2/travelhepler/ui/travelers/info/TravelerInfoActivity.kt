@@ -75,7 +75,8 @@ class TravelerInfoActivity : BaseActivity<TravelerInfoContract.TravelerInfoView,
                 OfferActivity_.intent(this).extra(Constant.TRAVELER, mTrip).start()
             }
             R.id.btn_add_friend -> {
-                showToast("add friend")
+                showLoading()
+                mPresenter!!.addFriend(mTraveler!!.id)
             }
         }
     }
@@ -90,6 +91,10 @@ class TravelerInfoActivity : BaseActivity<TravelerInfoContract.TravelerInfoView,
         sIsFriend = isFriend
         showHideAddFriendButton()
         dismissLoading()
+    }
+
+    override fun addFriendResult() {
+        showToast(getString(R.string.add_friend_successfully))
     }
 
     fun initToolbar() {

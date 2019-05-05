@@ -10,6 +10,8 @@ interface HostInfoContract {
 
         fun checkFriendResult(isFriend: Boolean)
 
+        fun addFriendResult()
+
     }
 
     interface HostInfoPresenter {
@@ -17,6 +19,8 @@ interface HostInfoContract {
         fun getHomeInfo(userId: String)
 
         fun checkFriend(userId: String)
+
+        fun addFriend(userId: String)
 
     }
 }
