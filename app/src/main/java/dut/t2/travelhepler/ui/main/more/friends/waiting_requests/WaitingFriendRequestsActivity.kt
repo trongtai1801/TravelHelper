@@ -39,6 +39,16 @@ class WaitingFriendRequestsActivity :
         dismissLoading()
     }
 
+    override fun acceptFriendRequestResult(friendRequest: FriendRequest) {
+        showLoading()
+        mPresenter!!.getFriendRequests()
+    }
+
+    override fun ignoreFriendRequest() {
+        showLoading()
+        mPresenter!!.getFriendRequests()
+    }
+
     fun initToolbar() {
         setSupportActionBar(toolbar_appbar_dark)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
@@ -63,8 +73,12 @@ class WaitingFriendRequestsActivity :
                 override fun onPopupItemClick(itemId: Int, request: FriendRequest) {
                     when (itemId) {
                         R.id.item_accept -> {
+                            showLoading()
+                            mPresenter!!.acceptFriendRequest(request.id)
                         }
                         R.id.item_ignore -> {
+                            showLoading()
+                            mPresenter!!.ignoreFriendRequest(request.id)
                         }
                     }
                 }

@@ -166,4 +166,16 @@ interface ApiService {
 
     @GET("Users/FriendRequests")
     fun getFriendRequests(@Header("Authorization") authorization: String): Call<ArrayList<FriendRequest>>
+
+    @PUT("FriendRequests/{id}")
+    fun acceptFriendRequest(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Int
+    ): Call<FriendRequest>
+
+    @DELETE("FriendRequests/{id}")
+    fun ignoreFriendRequest(
+        @Header("Authorization") authorization: String,
+        @Path("id") id: Int
+    ): Call<Void>
 }

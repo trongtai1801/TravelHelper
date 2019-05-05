@@ -139,8 +139,10 @@
     <string name="waiting">Waiting</string>
     <string name="can_not_accept_host_offer">Can not accept host offer</string>
     <string name="can_not_accept_travel_request">Can not accept travel request</string>
+    <string name="can_not_accept_friend_request">Can not accept friend request</string>
     <string name="can_not_ignore_host_offer">Can not ignore host offer</string>
     <string name="can_not_ignore_travel_request">Can not ignore travel request</string>
+    <string name="can_not_ignore_friend_request">Can not ignore friend request</string>
     <string name="request_from_friend">Request from friend</string>
     <string name="my_friend_request">My friend request</string>
     <string name="can_not_find_friend_request">Can not found out any friend request</string>
