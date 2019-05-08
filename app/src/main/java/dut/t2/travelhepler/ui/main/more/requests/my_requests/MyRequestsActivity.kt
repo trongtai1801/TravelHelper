@@ -41,6 +41,11 @@ class MyRequestsActivity : BaseActivity<MyRequestsContract.MyRequestsView, MyReq
         if (swf_my_requests.isRefreshing) swf_my_requests.isRefreshing = false
     }
 
+    override fun cancelMyRequestResult() {
+        showLoading()
+        mPresenter!!.getMyRequests()
+    }
+
     fun initToolbar() {
         setSupportActionBar(toolbar_appbar_dark)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
@@ -63,11 +68,16 @@ class MyRequestsActivity : BaseActivity<MyRequestsContract.MyRequestsView, MyReq
                 }
 
                 override fun onDelete(request: Request) {
-                    showToast("delete " + request.id)
+
                 }
 
                 override fun onReceiverClick(receiver: Profile) {
                     HostInfoActivity_.intent(this@MyRequestsActivity).extra(Constant.HOST, receiver).start()
+                }
+
+                override fun onPopupItemClick(itemId: Int, request: Request) {
+                    showLoading()
+                    mPresenter!!.cancelMyRequest(request.id)
                 }
             })
         rcv_my_requests.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

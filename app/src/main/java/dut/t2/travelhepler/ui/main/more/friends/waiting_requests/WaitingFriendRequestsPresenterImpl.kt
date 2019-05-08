@@ -5,6 +5,7 @@ import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.FriendRequest
+import dut.t2.travelhepler.utils.Common
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
@@ -29,7 +30,12 @@ class WaitingFriendRequestsPresenterImpl(context: Context) :
                         for (request: FriendRequest in result) request.sender.setDefaultValue()
                         view!!.getFriendRequestsResult(result)
                     } else view!!.showMessage(context.getString(R.string.data_null))
-                } else view!!.showMessage(context.getString(R.string.can_not_get_friend_request))
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_get_friend_request))
+                }
                 view!!.dismissLoading()
             }
 
@@ -46,7 +52,12 @@ class WaitingFriendRequestsPresenterImpl(context: Context) :
         req.enqueue(object : Callback<FriendRequest> {
             override fun onResponse(call: Call<FriendRequest>, response: Response<FriendRequest>) {
                 if (response.isSuccessful) view!!.acceptFriendRequestResult(response.body() as FriendRequest)
-                else view!!.showToast(context.getString(R.string.can_not_accept_friend_request))
+                else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_accept_friend_request))
+                }
                 view!!.dismissLoading()
             }
 
@@ -63,7 +74,12 @@ class WaitingFriendRequestsPresenterImpl(context: Context) :
         req.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.code() == Constant.REQUEST_DELETE_SUCCESS) view!!.ignoreFriendRequest()
-                else view!!.showToast(context.getString(R.string.can_not_ignore_friend_request))
+                else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_ignore_friend_request))
+                }
                 view!!.dismissLoading()
             }
 

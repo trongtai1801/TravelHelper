@@ -7,10 +7,14 @@ interface MyRequestsContract {
 
     interface MyRequestsView : BaseView {
         fun getMyRequestsResult(requests: ArrayList<Request>)
+
+        fun cancelMyRequestResult()
     }
 
     interface MyRequestsPresenter {
         fun getMyRequests()
+
+        fun cancelMyRequest(requestId: Int)
     }
 
 }

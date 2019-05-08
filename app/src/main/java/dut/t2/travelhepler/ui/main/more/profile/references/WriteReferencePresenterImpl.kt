@@ -6,6 +6,7 @@ import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Reference
+import dut.t2.travelhepler.utils.Common
 import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,7 +26,12 @@ class WriteReferencePresenterImpl(context: Context) : BasePresenter<WriteReferen
                         result.sender.setDefaultValue()
                         view!!.writeReferenceResult(result)
                     } else view!!.showMessage(context.getString(R.string.data_null))
-                } else view!!.showToast(context.getString(R.string.can_not_create_reference))
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_create_reference))
+                }
                 view!!.dismissLoading()
             }
 

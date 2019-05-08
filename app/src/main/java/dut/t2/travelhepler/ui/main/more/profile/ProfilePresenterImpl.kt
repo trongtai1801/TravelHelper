@@ -6,6 +6,7 @@ import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Home
+import dut.t2.travelhepler.utils.Common
 import dut.t2.travelhepler.utils.SessionManager
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -26,8 +27,10 @@ class ProfilePresenterImpl(context: Context) : BasePresenter<ProfileContract.Pro
                     profile!!.setDefaultValue()
                     view!!.updateAvatarResult(response.body() as Profile)
                 } else {
-                    view!!.dismissLoading()
-                    view!!.showToast(response.message())
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.some_thing_went_wrong))
                 }
             }
 
@@ -52,6 +55,11 @@ class ProfilePresenterImpl(context: Context) : BasePresenter<ProfileContract.Pro
                     }
                     else view!!.showToast(context.getString(R.string.dont_have_home))
                     view!!.dismissLoading()
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.some_thing_went_wrong))
                 }
             }
 

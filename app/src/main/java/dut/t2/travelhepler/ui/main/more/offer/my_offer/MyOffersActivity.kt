@@ -39,6 +39,11 @@ class MyOffersActivity : BaseActivity<MyOffersContract.MyOffersView, MyOffersPre
         dismissLoading()
     }
 
+    override fun cancelMyOfferRersult() {
+        showLoading()
+        mPresenter!!.getMyOffer()
+    }
+
     fun initToolbar() {
         setSupportActionBar(toolbar_appbar_dark)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
@@ -57,15 +62,20 @@ class MyOffersActivity : BaseActivity<MyOffersContract.MyOffersView, MyOffersPre
             mOffer,
             object : MyOffersAdapter.OfferClickListener {
                 override fun onClick(offer: Offer) {
-                    showToast("click " + offer.id)
+
                 }
 
                 override fun onDelete(offer: Offer) {
-                    showToast("delete " + offer.id)
+
                 }
 
                 override fun onReceiverClick(receiver: Profile) {
                     HostInfoActivity_.intent(this@MyOffersActivity).extra(Constant.HOST, receiver).start()
+                }
+
+                override fun onPopupItemClick(itemId: Int, request: Offer) {
+                    showLoading()
+                    mPresenter!!.cancelMyOffer(request.id)
                 }
             })
         rcv_my_offers.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

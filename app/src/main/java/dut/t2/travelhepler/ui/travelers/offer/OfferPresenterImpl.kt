@@ -4,6 +4,7 @@ import android.content.Context
 import com.google.gson.JsonObject
 import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
+import dut.t2.travelhepler.R
 import dut.t2.travelhepler.utils.Common
 import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
@@ -20,8 +21,10 @@ class OfferPresenterImpl(context: Context) : BasePresenter<OfferContract.OfferVi
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) view!!.createOfferResult()
                 else {
-                    val errorMessage = Common.getErrorString(response)
-                    view!!.showToast(errorMessage)
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.some_thing_went_wrong))
                 }
                 view!!.dismissLoading()
             }

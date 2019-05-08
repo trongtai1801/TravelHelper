@@ -6,6 +6,7 @@ import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
+import dut.t2.travelhepler.utils.Common
 import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
@@ -21,7 +22,10 @@ class MainPresenterImpl(context: Context) : BasePresenter<MainContract.MainView>
                     view!!.getPublicTripsResult(response.body()!!)
                 } else {
                     view!!.getPublicTripsResult(null)
-                    view!!.showMessage(context.getString(R.string.get_public_trips_error))
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.get_public_trips_error))
                 }
                 view!!.dismissLoading()
             }
@@ -42,7 +46,10 @@ class MainPresenterImpl(context: Context) : BasePresenter<MainContract.MainView>
                 if (response.code() == 204) {
                     view!!.deletePublicTripResult()
                 } else {
-                    view!!.showMessage(context.getString(R.string.can_not_delete_trip))
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_delete_trip))
                 }
                 view!!.dismissLoading()
             }
@@ -69,8 +76,13 @@ class MainPresenterImpl(context: Context) : BasePresenter<MainContract.MainView>
                             view!!.getHostsResult(result)
                         } else view!!.showToast(context.getString(R.string.no_host))
                     } else view!!.showMessage(context.getString(R.string.data_null))
-                    view!!.dismissLoading()
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.some_thing_went_wrong))
                 }
+                view!!.dismissLoading()
             }
 
             override fun onFailure(call: Call<ArrayList<Profile>>, t: Throwable) {
@@ -95,8 +107,13 @@ class MainPresenterImpl(context: Context) : BasePresenter<MainContract.MainView>
                             view!!.getTravelersResult(result)
                         } else view!!.showToast(context.getString(R.string.no_travelers))
                     } else view!!.showMessage(context.getString(R.string.data_null))
-                    view!!.dismissLoading()
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.some_thing_went_wrong))
                 }
+                view!!.dismissLoading()
             }
 
             override fun onFailure(call: Call<ArrayList<PublicTrip>>, t: Throwable) {

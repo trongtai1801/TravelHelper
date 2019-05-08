@@ -35,7 +35,7 @@ class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterIm
                 else ic_sign_up_user_name.visibility = View.INVISIBLE
             }
             R.id.edt_sign_up_password -> {
-                if (text.isNotEmpty() && (text.length >= 6)) ic_sign_up_password.visibility = View.VISIBLE
+                if (text.isNotEmpty() && (text.length >= 4)) ic_sign_up_password.visibility = View.VISIBLE
                 else ic_sign_up_password.visibility = View.INVISIBLE
             }
             R.id.edt_sign_up_full_name -> {
@@ -61,7 +61,7 @@ class SignUpActivity : BaseActivity<SignUpContract.SignUpView, SignUpPresenterIm
                     showToast(getString(R.string.require_password))
                     return
                 }
-                var signUpObject = JsonObject()
+                val signUpObject = JsonObject()
                 signUpObject.addProperty("Username", edt_sign_up_user_name.text.toString())
                 signUpObject.addProperty("Password", edt_sign_up_password.text.toString())
                 signUpObject.addProperty("Fullname", edt_sign_up_full_name.text.toString())

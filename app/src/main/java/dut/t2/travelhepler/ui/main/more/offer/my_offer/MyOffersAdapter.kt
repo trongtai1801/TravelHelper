@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.PopupMenu
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
@@ -28,7 +30,7 @@ class MyOffersAdapter(
         return OffersViewHolder(
             view, view.cir_img_receiver_avatar_my_requests, view.tv_receiver_name_item_my_request,
             view.tv_receiver_address_item_my_request, view.cir_img_delete_my_requests,
-            view.tv_arr_dep_date_item_my_request, view.tv_status_my_request
+            view.tv_arr_dep_date_item_my_request, view.tv_status_my_request, view.img_more_request
         )
     }
 
@@ -65,7 +67,7 @@ class MyOffersAdapter(
         itemView: View, var cirImgReceiverAvatar: CircleImageView,
         var tvReceiverName: TextView, var tvReceiverAddress: TextView,
         var cirImgDeleteMyRequest: CircleImageView, var tvArrDepDate: TextView,
-        var tvStatus: TextView
+        var tvStatus: TextView, var mImgMore: ImageView
     ) : RecyclerView.ViewHolder(itemView) {
         init {
             itemView.setOnClickListener {
@@ -77,6 +79,15 @@ class MyOffersAdapter(
             tvReceiverName.setOnClickListener {
                 mCallback.onReceiverClick(mOffers.get(adapterPosition).receiver!!)
             }
+            mImgMore.setOnClickListener {
+                val popup = PopupMenu(mContext, cirImgDeleteMyRequest)
+                popup.menuInflater.inflate(R.menu.menu_popp_up_cancel, popup.menu)
+                popup.setOnMenuItemClickListener { item ->
+                    mCallback.onPopupItemClick(item.itemId, mOffers[adapterPosition])
+                    true
+                }
+                popup.show()
+            }
         }
     }
 
@@ -86,5 +97,7 @@ class MyOffersAdapter(
         fun onDelete(offer: Offer)
 
         fun onReceiverClick(receiver: Profile)
+
+        fun onPopupItemClick(itemId: Int, request: Offer)
     }
 }

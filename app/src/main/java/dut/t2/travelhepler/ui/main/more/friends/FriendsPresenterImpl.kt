@@ -5,6 +5,7 @@ import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
+import dut.t2.travelhepler.utils.Common
 import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,7 +25,12 @@ class FriendsPresenterImpl(context: Context) : BasePresenter<FriendsContract.Fri
                         for (friend: Profile in result) friend.setDefaultValue()
                         view!!.getFriendsResult(result)
                     } else view!!.showMessage(context.getString(R.string.data_null))
-                } else view!!.showToast(context.getString(R.string.can_not_get_friends))
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_get_friends))
+                }
                 view!!.dismissLoading()
             }
 
@@ -46,7 +52,12 @@ class FriendsPresenterImpl(context: Context) : BasePresenter<FriendsContract.Fri
                         for (user: Profile in result) user.setDefaultValue()
                         view!!.searchFriendResult(result)
                     } else view!!.showMessage(context.getString(R.string.data_null))
-                } else view!!.showMessage(context.getString(R.string.can_not_search_user))
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_search_user))
+                }
                 view!!.dismissLoading()
             }
 

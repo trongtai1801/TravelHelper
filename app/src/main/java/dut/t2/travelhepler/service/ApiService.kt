@@ -203,4 +203,16 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Path("id") requestId: Int
     ): Call<Void>
+
+    @PUT("TravelRequests/CancelRequest/{id}")
+    fun cancelTravelRequest(
+        @Header("Authorization") authorization: String,
+        @Path("id") requestId: Int
+    ): Call<Void>
+
+    @PUT("HostOffers/CancelOffer/{id}")
+    fun cancelHostOfferRequest(
+        @Header("Authorization") authorization: String,
+        @Path("id") requestId: Int
+    ): Call<Void>
 }

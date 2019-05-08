@@ -27,7 +27,12 @@ class WaitingOffersPresenterImpl(context: Context) :
                         for (of: Offer in result) of.sender!!.setDefaultValue()
                         view!!.getOfferToHostResult(result)
                     } else view!!.showMessage(context.getString(R.string.data_null))
-                } else view!!.showMessage(Common.getErrorString(response))
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.some_thing_went_wrong))
+                }
                 view!!.dismissLoading()
             }
 
@@ -45,7 +50,12 @@ class WaitingOffersPresenterImpl(context: Context) :
             override fun onResponse(call: Call<Offer>, response: Response<Offer>) {
                 if (response.isSuccessful) {
                     view!!.acceptHostOfferResult()
-                } else view!!.showMessage(context.getString(R.string.can_not_accept_host_offer))
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_accept_host_offer))
+                }
                 view!!.dismissLoading()
             }
 
@@ -63,7 +73,12 @@ class WaitingOffersPresenterImpl(context: Context) :
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.code() == Constant.REQUEST_DELETE_SUCCESS) {
                     view!!.ignoreHostOffer()
-                } else view!!.showMessage(context.getString(R.string.can_not_ignore_host_offer))
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_ignore_host_offer))
+                }
                 view!!.dismissLoading()
             }
 

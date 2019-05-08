@@ -7,9 +7,13 @@ interface MyOffersContract {
 
     interface MyOffersView : BaseView {
         fun getMyOfferResult(offers: ArrayList<Offer>)
+
+        fun cancelMyOfferRersult()
     }
 
     interface MyOffersPresenter {
         fun getMyOffer()
+
+        fun cancelMyOffer(requestId: Int)
     }
 }

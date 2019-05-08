@@ -46,10 +46,12 @@ class MyFriendRequestsPresenterImpl(context: Context) :
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.code() == Constant.REQUEST_DELETE_SUCCESS) {
                     view!!.cancelFriendRequestResult()
-                } else
-                    if (Common.getErrorString(response) != "") {
-                        view!!.showMessage(Common.getErrorString(response))
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
                     } else view!!.showMessage(context.getString(R.string.can_not_cancel_request))
+                }
                 view!!.dismissLoading()
             }
 

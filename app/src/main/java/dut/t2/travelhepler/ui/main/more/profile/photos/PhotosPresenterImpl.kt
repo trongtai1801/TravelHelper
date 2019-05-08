@@ -5,6 +5,7 @@ import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Photo
+import dut.t2.travelhepler.utils.Common
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.SessionManager
 import okhttp3.MultipartBody
@@ -23,7 +24,12 @@ class PhotosPresenterImpl(context: Context) : BasePresenter<PhotosContract.Photo
                     if (response.body() != null)
                         view!!.getPhotosResult(response.body() as ArrayList<Photo>)
                     else view!!.showMessage(context.getString(R.string.data_null))
-                } else view!!.showMessage(response.message())
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.some_thing_went_wrong))
+                }
                 view!!.dismissLoading()
             }
 
@@ -40,7 +46,12 @@ class PhotosPresenterImpl(context: Context) : BasePresenter<PhotosContract.Photo
         req.enqueue(object : Callback<Photo> {
             override fun onResponse(call: Call<Photo>, response: Response<Photo>) {
                 if (response.code() == Constant.REQUEST_DELETE_SUCCESS) view!!.deletePhotoResult()
-                else view!!.showMessage(response.message())
+                else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.some_thing_went_wrong))
+                }
                 view!!.dismissLoading()
             }
 
@@ -62,9 +73,12 @@ class PhotosPresenterImpl(context: Context) : BasePresenter<PhotosContract.Photo
                     else view!!.showMessage(context.getString(R.string.response_body_null))
                     view!!.dismissLoading()
                 } else {
-                    view!!.dismissLoading()
-                    view!!.showToast(response.message())
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.some_thing_went_wrong))
                 }
+                view!!.dismissLoading()
             }
 
             override fun onFailure(call: Call<Photo>, t: Throwable) {

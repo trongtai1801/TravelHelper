@@ -6,6 +6,7 @@ import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.PublicTrip
+import dut.t2.travelhepler.utils.Common
 import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,7 +21,12 @@ class RequestToStayPresenterImpl(context: Context) : BasePresenter<RequestToStay
         req.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) view!!.createRequestToStayResult()
-                else view!!.showMessage(context.getString(R.string.can_not_create_equest))
+                else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_create_equest))
+                }
                 view!!.dismissLoading()
             }
 

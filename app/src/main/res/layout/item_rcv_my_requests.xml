@@ -21,7 +21,7 @@
                 android:layout_height="@dimen/_40sdp">
             <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/cir_img_receiver_avatar_my_requests"
-                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_3sdp"
                     android:src="@drawable/ic_user_circle"
                     android:layout_weight="1"
                     android:layout_width="0dp"
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"/>
 
         <ImageView
-                android:id="@+id/img_more_request"
+                android:id="@+id/img_more_my_request"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:layout_alignParentEnd="true"
                 android:src="@drawable/ic_more"

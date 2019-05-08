@@ -156,4 +156,5 @@
     <string name="can_not_search_user">Can not search user</string>
     <string name="result_is_empty">Result is empty</string>
     <string name="can_not_cancel_request">Can not cancel request</string>
+    <string name="some_thing_went_wrong">Some thing went wrong. Please, try again!</string>
 </resources>

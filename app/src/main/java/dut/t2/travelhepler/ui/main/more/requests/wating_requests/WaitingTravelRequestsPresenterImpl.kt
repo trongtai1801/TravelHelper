@@ -5,6 +5,7 @@ import dut.t2.travelhelper.base.BasePresenter
 import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.Request
+import dut.t2.travelhepler.utils.Common
 import dut.t2.travelhepler.utils.Constant
 import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
@@ -28,7 +29,12 @@ class WaitingTravelRequestsPresenterImpl(context: Context) :
                             view!!.getTravelerRequests(result)
                         } else view!!.showToast(context.getString(R.string.you_dont_have_request))
                     } else view!!.showMessage(context.getString(R.string.data_null))
-                } else view!!.showMessage(context.getString(R.string.can_not_get_request))
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_get_request))
+                }
                 view!!.dismissLoading()
             }
 
@@ -46,7 +52,12 @@ class WaitingTravelRequestsPresenterImpl(context: Context) :
             override fun onResponse(call: Call<Request>, response: Response<Request>) {
                 if (response.isSuccessful) {
                     view!!.acceptTravelRequestResult()
-                } else view!!.showMessage(context.getString(R.string.can_not_accept_travel_request))
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_accept_travel_request))
+                }
                 view!!.dismissLoading()
             }
 

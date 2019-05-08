@@ -7,6 +7,7 @@ import dut.t2.travelhelper.service.core.ApiClient
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.service.model.CheckFriend
 import dut.t2.travelhepler.service.model.Home
+import dut.t2.travelhepler.utils.Common
 import dut.t2.travelhepler.utils.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
@@ -27,6 +28,11 @@ class TravelerInfoPresenterImpl(context: Context) : BasePresenter<TravelerInfoCo
                         view!!.getHomeInfoResult(home)
                     } else view!!.showToast(context.getString(R.string.dont_have_home))
                     view!!.dismissLoading()
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.some_thing_went_wrong))
                 }
             }
 
@@ -44,7 +50,12 @@ class TravelerInfoPresenterImpl(context: Context) : BasePresenter<TravelerInfoCo
             override fun onResponse(call: Call<CheckFriend>, response: Response<CheckFriend>) {
                 if (response.isSuccessful) {
                     view!!.checkFriendResult(response.body()!!.isFriend ?: true)
-                } else view!!.showToast(context.getString(R.string.can_not_check_friend))
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_check_friend))
+                }
                 view!!.dismissLoading()
             }
 
@@ -64,7 +75,12 @@ class TravelerInfoPresenterImpl(context: Context) : BasePresenter<TravelerInfoCo
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
                     view!!.addFriendResult()
-                } else view!!.showMessage(context.getString(R.string.can_not_add_friend))
+                } else {
+                    var message = Common.getErrorString(response)
+                    if (message != "") {
+                        view!!.showMessage(message)
+                    } else view!!.showMessage(context.getString(R.string.can_not_add_friend))
+                }
                 view!!.dismissLoading()
             }
 
