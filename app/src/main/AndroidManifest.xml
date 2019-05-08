@@ -51,6 +51,7 @@
         <activity android:name=".ui.main.more.friends.search_friend.SearchFriendActivity_"></activity>
         <activity
                 android:name=".ui.main.more.friends.search_friend.search_result.SearchFriendResultActivity_"></activity>
+        <activity android:name=".ui.chat.ChatActivity_"></activity>
     </application>
 
 </manifest>

@@ -1,10 +1,12 @@
 package dut.t2.travelhepler.ui.main.more.friends
 
+import android.app.Activity
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.microsoft.signalr.HubConnection
 import dut.t2.travelhelper.base.BaseActivity
 import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhepler.R
@@ -18,8 +20,6 @@ import kotlinx.android.synthetic.main.custom_appbar_layout_dark.img_back_appbar
 import kotlinx.android.synthetic.main.custom_appbar_layout_dark.tv_title_appbar
 import org.androidannotations.annotations.EActivity
 import org.androidannotations.annotations.OnActivityResult
-
-
 
 @EActivity(R.layout.activity_friends)
 class FriendsActivity : BaseActivity<FriendsContract.FriendsView, FriendsPresenterImpl>(),
@@ -55,9 +55,11 @@ class FriendsActivity : BaseActivity<FriendsContract.FriendsView, FriendsPresent
 
     @OnActivityResult(Constant.REQUEST_CODE_GET_SEARCH_USER_STRING)
     fun onResult(resultCode: Int, data: Intent) {
-        var searchString = data!!.getStringExtra(Constant.SEARCH_USER_STRING)
-        showLoading()
-        mPresenter!!.searchFriend(searchString)
+        if (resultCode == Activity.RESULT_OK) {
+            var searchString = data!!.getStringExtra(Constant.SEARCH_USER_STRING)
+            showLoading()
+            mPresenter!!.searchFriend(searchString)
+        }
     }
 
     override fun getFriendsResult(friends: ArrayList<Profile>) {

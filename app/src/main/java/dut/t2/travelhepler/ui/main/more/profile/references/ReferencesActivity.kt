@@ -1,5 +1,6 @@
 package dut.t2.travelhepler.ui.main.more.profile.references
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -17,6 +18,7 @@ import kotlinx.android.synthetic.main.custom_appbar_layout_light.tv_title_appbar
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
 
+@SuppressLint("Registered")
 @EActivity(R.layout.activity_references)
 class ReferencesActivity : BaseActivity<ReferencesContract.ReferencesView, ReferencesPresenterImpl>(),
     ReferencesContract.ReferencesView {
@@ -43,7 +45,7 @@ class ReferencesActivity : BaseActivity<ReferencesContract.ReferencesView, Refer
         swf_references.setOnRefreshListener {
             mPresenter!!.getReferences(sUserId)
         }
-        if (sUserId.equals(RealmDAO.getProfileLogin()!!.id)) fab_write_reference.hide()
+        if (sUserId == RealmDAO.getProfileLogin()!!.id) fab_write_reference.hide()
         else fab_write_reference.show()
         showLoading()
         mPresenter!!.getReferences(sUserId)
@@ -72,15 +74,13 @@ class ReferencesActivity : BaseActivity<ReferencesContract.ReferencesView, Refer
     }
 
     override fun getReferencesResult(references: ArrayList<Reference>) {
-        if (references != null) {
-            if (references.size <= 0) {
-                showToast(getString(R.string.dont_have_reference))
-                return
-            }
-            mReferences.clear()
-            mReferences.addAll(references)
-            mAdapter!!.notifyDataSetChanged()
-        } else showMessage(getString(R.string.data_null))
+        if (references.size <= 0) {
+            showToast(getString(R.string.dont_have_reference))
+            return
+        }
+        mReferences.clear()
+        mReferences.addAll(references)
+        mAdapter!!.notifyDataSetChanged()
         dismissLoading()
         if (swf_references.isRefreshing) swf_references.isRefreshing = false
     }

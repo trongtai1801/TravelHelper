@@ -42,13 +42,11 @@ open class  Profile constructor(
     @Nullable
     var occupation: String,
 
-    @Ignore
     @SerializedName("fluentLanguage")
     @Expose
     @Nullable
     var fluentLanguage: String,
 
-    @Ignore
     @SerializedName("learningLanguage")
     @Expose
     @Nullable

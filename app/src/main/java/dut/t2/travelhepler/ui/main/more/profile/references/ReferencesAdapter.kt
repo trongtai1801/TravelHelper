@@ -42,8 +42,10 @@ class ReferencesAdapter(
         if (item.status) {
             p0.tvPosNeg.setTextColor(ContextCompat.getColor(mContext, R.color.colorGreen))
             p0.tvPosNeg.text = mContext.getString(R.string.positive)
-        } else p0.tvPosNeg.text = mContext.getString(R.string.negative)
-        p0.tvPosNeg.setTextColor(ContextCompat.getColor(mContext, R.color.ios_red))
+        } else {
+            p0.tvPosNeg.text = mContext.getString(R.string.negative)
+            p0.tvPosNeg.setTextColor(ContextCompat.getColor(mContext, R.color.ios_red))
+        }
         p0.tvContent.text = item.content
     }
 

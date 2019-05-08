@@ -43,8 +43,8 @@
     <string name="when_go">When are you going?</string>
     <string name="when_arrival">When are you arrival?</string>
     <string name="when_departure">When are you departure?</string>
-    <string name="warning_post_public_trip">Post your trip details so that you can be discovered by local hosts or other
-        travelers
+    <string name="warning_post_public_trip">
+        Post your trip details so that you can be discovered by local hosts or other travelers
     </string>
     <string name="traveler">traveler</string>
     <string name="travelers">travelers</string>
@@ -102,8 +102,8 @@
     <string name="allow_thing">Allowed Thing</string>
     <string name="stuff">Stuff</string>
     <string name="add_info">Additional Information</string>
-    <string name="dont_have_home">Can not find out any home info</string>
-    <string name="dont_have_reference">You don\'t have any home reference</string>
+    <string name="dont_have_home">No home info to display</string>
+    <string name="dont_have_reference">No reference to display</string>
     <string name="no_host">No host was found out</string>
     <string name="request_from_traveler">Request from traveler</string>
     <string name="from">from</string>
@@ -111,7 +111,7 @@
     <string name="can_not_create_equest">Can not create request</string>
     <string name="created">Created</string>
     <string name="my_request">My request to stay</string>
-    <string name="you_dont_have_request">You don\'t have any request</string>
+    <string name="you_dont_have_request">No request to display</string>
     <string name="can_not_get_request">Can not get request</string>
     <string name="would_you_commended">Would you recommend</string>
     <string name="warning_write_reference">Your reference will appear on this user profile, so be sure that you\'re only
@@ -155,4 +155,5 @@
     <string name="search_friend_result">Search friend result</string>
     <string name="can_not_search_user">Can not search user</string>
     <string name="result_is_empty">Result is empty</string>
+    <string name="can_not_cancel_request">Can not cancel request</string>
 </resources>

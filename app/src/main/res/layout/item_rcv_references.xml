@@ -11,7 +11,8 @@
         app:cardCornerRadius="@dimen/_5sdp"
         app:cardPreventCornerOverlap="false">
 
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
         <LinearLayout
                 android:id="@+id/ln_title_item_references"
                 android:orientation="horizontal"

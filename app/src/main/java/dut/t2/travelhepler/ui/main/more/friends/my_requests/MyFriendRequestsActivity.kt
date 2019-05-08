@@ -40,6 +40,11 @@ class MyFriendRequestsActivity :
         dismissLoading()
     }
 
+    override fun cancelFriendRequestResult() {
+        showLoading()
+        mPresenter!!.getMyFriendRequests()
+    }
+
     fun initToolbar() {
         setSupportActionBar(toolbar_appbar_dark)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
@@ -60,7 +65,8 @@ class MyFriendRequestsActivity :
             override fun onPopupItemClick(itemId: Int, request: FriendRequest) {
                 when (itemId) {
                     R.id.item_cancel -> {
-
+                        showLoading()
+                        mPresenter!!.cancelFriendRequest(request.id)
                     }
                 }
             }

@@ -111,7 +111,7 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
 
     fun setupViews() {
         tv_content_address_profile.text = mHost!!.address
-        if (mHost!!.id.equals(RealmDAO.getProfileLogin()!!.id)) btn_request_stay_host.visibility = View.GONE
+        if (mHost!!.id == RealmDAO.getProfileLogin()!!.id) btn_request_stay_host.visibility = View.GONE
         else btn_request_stay_host.visibility = View.VISIBLE
         if (!mHost!!.splitBirthday()!!.equals(""))
             tv_content_birthday_profile.text =
@@ -135,7 +135,7 @@ class HostInfoActivity : BaseActivity<HostInfoContract.HostInfoView, HostInfoPre
     }
 
     fun showHideAddFriendButton() {
-        if (sIsFriend) rl_add_friend.visibility = View.GONE
+        if (sIsFriend || mHost!!.id == SessionManager.Profile!!.id) rl_add_friend.visibility = View.GONE
         else rl_add_friend.visibility = View.VISIBLE
     }
 }

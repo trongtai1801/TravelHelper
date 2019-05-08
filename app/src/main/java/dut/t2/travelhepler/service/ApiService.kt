@@ -197,4 +197,10 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Query("name") seachString: String
     ): Call<ArrayList<Profile>>
+
+    @PUT("FriendRequests/CancelRequest/{id}")
+    fun cancelFriendRequest(
+        @Header("Authorization") authorization: String,
+        @Path("id") requestId: Int
+    ): Call<Void>
 }

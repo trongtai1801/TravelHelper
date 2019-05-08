@@ -16,14 +16,12 @@ class PhotosAdapter(val mContext: Context, val mPhotos: List<Photo>, var mCallba
     RecyclerView.Adapter<PhotosAdapter.PhotoViewHolder>() {
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): PhotoViewHolder {
-        var view = LayoutInflater.from(this.mContext).inflate(R.layout.item_rcv_photos, p0, false);
+        val view = LayoutInflater.from(this.mContext).inflate(R.layout.item_rcv_photos, p0, false)
         return PhotoViewHolder(view, view.img_photo, view.img_more_item_photos)
     }
 
     override fun getItemCount(): Int {
-        if (mPhotos != null)
-            return mPhotos.size
-        return 0
+        return mPhotos.size
     }
 
     override fun onBindViewHolder(p0: PhotoViewHolder, p1: Int) {
@@ -39,15 +37,15 @@ class PhotosAdapter(val mContext: Context, val mPhotos: List<Photo>, var mCallba
         RecyclerView.ViewHolder(itemView) {
 
         init {
-            itemView.setOnClickListener(View.OnClickListener {
-                mCallback.onClick(mPhotos.get(adapterPosition))
-            })
+            itemView.setOnClickListener {
+                mCallback.onClick(mPhotos[adapterPosition])
+            }
 
             img_more.setOnClickListener {
-                var popup = PopupMenu(mContext, img_more)
-                popup.getMenuInflater().inflate(R.menu.menu_popup_delete, popup.getMenu())
+                val popup = PopupMenu(mContext, img_more)
+                popup.menuInflater.inflate(R.menu.menu_popup_delete, popup.menu)
                 popup.setOnMenuItemClickListener { item ->
-                    mCallback.onPopupItemClick(item.itemId, mPhotos.get(adapterPosition))
+                    mCallback.onPopupItemClick(item.itemId, mPhotos[adapterPosition])
                     true
                 }
                 popup.show()

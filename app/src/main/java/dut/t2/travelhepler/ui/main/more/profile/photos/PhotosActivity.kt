@@ -1,6 +1,7 @@
 package dut.t2.travelhepler.ui.main.more.profile.photos
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -27,6 +28,7 @@ import java.io.File
 import android.support.design.widget.CoordinatorLayout
 
 
+@SuppressLint("Registered")
 @EActivity(R.layout.activity_photos)
 class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotosPresenterImpl>(), PhotosContract.PhotosViews {
 
@@ -63,7 +65,7 @@ class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotosPresenterI
         when (v.id) {
             R.id.fab_add_photo -> {
                 if (Permission.checkPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                    if (mUserId.equals(RealmDAO.getProfileLogin()!!.id))
+                    if (mUserId == RealmDAO.getProfileLogin()!!.id)
                         startPickerImage()
                 } else
                     Permission.initPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -84,13 +86,11 @@ class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotosPresenterI
 
     override fun getPhotosResult(photos: ArrayList<Photo>) {
         dismissSwipeRefreshLayout()
-        if (photos != null) {
-            if (photos.size > 0) {
-                mPhotos.clear()
-                mPhotos.addAll(photos)
-                mAdapter.notifyDataSetChanged()
-            } else getString(R.string.no_photo)
-        }
+        if (photos.size > 0) {
+            mPhotos.clear()
+            mPhotos.addAll(photos)
+            mAdapter.notifyDataSetChanged()
+        } else showToast(getString(R.string.no_photo))
         dismissLoading()
     }
 
@@ -100,8 +100,7 @@ class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotosPresenterI
     }
 
     override fun updateImageResult(photo: Photo) {
-        if (photo != null)
-            mPhotos.add(0, photo)
+        mPhotos.add(0, photo)
         mAdapter.notifyDataSetChanged()
         dismissLoading()
     }
@@ -110,13 +109,14 @@ class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotosPresenterI
         setSupportActionBar(toolbar_appbar_dark)
         supportActionBar!!.setDisplayHomeAsUpEnabled(false)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        tv_title_appbar.visibility = View.GONE
+        tv_title_appbar.visibility = View.VISIBLE
+        tv_title_appbar.text = getString(R.string.photos)
         img_back_appbar.visibility = View.VISIBLE
         img_back_appbar.setOnClickListener { onBackPressed() }
     }
 
     fun initRcv() {
-        mPhotos.clear()
+        this.mPhotos.clear()
         rcv_photos.setHasFixedSize(true)
         mAdapter = PhotosAdapter(this, mPhotos, object : PhotosAdapter.ItemClickListener {
             override fun onClick(photo: Photo) {
@@ -147,9 +147,10 @@ class PhotosActivity : BaseActivity<PhotosContract.PhotosViews, PhotosPresenterI
         startActivityForResult(photoPickerIntent, Constant.REQUEST_CODE_PICK_IMAGE)
     }
 
+    @SuppressLint("Recycle")
     fun updateAvatar(data: Intent?) {
         if (data != null) {
-            val selectedImageUri = data!!.data
+            val selectedImageUri = data.data
             val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
             val cursor = contentResolver.query(selectedImageUri, filePathColumn, null, null, null) ?: return
 

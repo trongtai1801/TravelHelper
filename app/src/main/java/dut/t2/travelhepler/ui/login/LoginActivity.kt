@@ -3,10 +3,12 @@ package dut.t2.travelhepler.ui.login
 import android.os.Bundle
 import android.view.View
 import dut.t2.travelhelper.base.BaseActivity
+import dut.t2.travelhelper.service.model.Profile
 import dut.t2.travelhelper.service.model.User
 import dut.t2.travelhelper.ui.signup.SignUpActivity_
 import dut.t2.travelhepler.R
 import dut.t2.travelhepler.ui.main.MainActivity_
+import dut.t2.travelhepler.utils.RealmDAO
 import kotlinx.android.synthetic.main.activity_login.*
 import org.androidannotations.annotations.Click
 import org.androidannotations.annotations.EActivity
@@ -40,6 +42,7 @@ class LoginActivity : BaseActivity<LoginContract.LoginView, LoginPresenterImpl>(
     }
 
     override fun loginResult() {
+        RealmDAO.getProfileLogin()
         dismissLoading()
         finish()
         MainActivity_.intent(this).start()

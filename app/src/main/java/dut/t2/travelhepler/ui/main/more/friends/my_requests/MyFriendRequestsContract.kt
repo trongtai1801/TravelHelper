@@ -7,10 +7,14 @@ interface MyFriendRequestsContract {
 
     interface MyFriendRequestsView : BaseView {
         fun getMyFriendRequestReuslt(requests: ArrayList<FriendRequest>)
+
+        fun cancelFriendRequestResult()
     }
 
     interface MyFriendRequestsPresenter {
         fun getMyFriendRequests()
+
+        fun cancelFriendRequest(requestId: Int)
     }
 
 }
